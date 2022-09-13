@@ -3,9 +3,9 @@ from flask_login import login_user, logout_user, current_user
 from app import db, bcrypt
 from app.account.account import User
 
-login = Blueprint('login', __name__)
+account = Blueprint('account', __name__)
 
-@login.route('/login', methods=['GET', 'POST'])
+@account.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template("login.html")
@@ -36,12 +36,12 @@ def login():
 
     return redirect(url_for('home'), current_user=current_user)
 
-@login.route('/logout')
+@account.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@login.route('/register', methods=['GET', 'POST'])
+@account.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
         return render_template("register.html")
