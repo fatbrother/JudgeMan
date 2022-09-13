@@ -1,4 +1,5 @@
 from app import app, db
+import json
 
 class Problems(db.Model):
     __tablename__ = "Problem"
@@ -48,9 +49,6 @@ class Problems(db.Model):
         db.session.delete(problem)
         db.session.commit()
 
-from app import db, app
-import json
-
 class ProblemSet(db.Model):
     __tablename__ = "ProblemSet"
     id = db.Column(db.Integer, primary_key=True)
@@ -85,3 +83,7 @@ class ProblemSet(db.Model):
         problem = ProblemSet.query.filter_by(id=id).first()
         db.session.delete(problem)
         db.session.commit()
+
+# TODO: Add User model
+class User(db.Model):
+    pass

@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 import os
 
 from app.pages import home, problemSet, problem
@@ -15,3 +16,4 @@ def createApp() -> Flask:
 
 app = createApp()
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)

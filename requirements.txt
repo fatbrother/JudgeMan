@@ -1,3 +1,5 @@
 flask
+flask-sqlalchemy
+flask-bcrypt
 gunicorn
-psutil==5.9.1
+psutil
