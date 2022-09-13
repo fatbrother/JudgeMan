@@ -24,3 +24,16 @@ class AccountCheckSystem():
             return "Success"
         
         return "Something went wrong"
+
+    def getAccount(self, username: str) -> dict or None:
+        user = db.User.query(username)
+        if not user:
+            return None
+
+        return {
+            "username": user.username,
+            "email": user.email,
+            "level": user.level,
+            "passProblems": user.passProblems
+        }
+        
