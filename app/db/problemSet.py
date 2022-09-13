@@ -1,44 +1,37 @@
-import sqlite3
+from app import db, app
 import json
 
-class ProblemSet:
-    def __init__(self, db: str):
-        self.conn = sqlite3.connect(db)
-        self.cur = self.conn.cursor()
-        self.cur.execute("CREATE TABLE IF NOT EXISTS problemSet (id INTEGER PRIMARY KEY, title text, problems text)")
-        self.conn.commit()
+class ProblemSet(db.Model):
+    __tablename__ = "problem"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    problems = db.Column(db.String(500), nullable=False)
 
-    def insert(self, title: str, problems: list):
+    def __repr__(self):
+        return f"Problem('{self.title}', '{self.problems}')"
+
+    def insert(self, id:int, title: str, problems: list):
         problemsId = json.dumps(problems)
-        self.cur.execute("INSERT INTO problemSet VALUES (NULL, ?, ?)", (title, problemsId))
-        self.conn.commit()
-
-    def view(self):
-        self.cur.execute("SELECT * FROM problemSet")
-        rows = self.cur.fetchall()
-
-        for row in rows:
-            row['problems'] = json.loads(row['problems'])
-
-        return rows
-
-    def search(self, id=0, title="", problems=""):
-        self.cur.execute("SELECT * FROM problemSet WHERE id=? OR title=? OR problems=?", (id, title, problems))
-        rows = self.cur.fetchall()
-
-        for row in rows:
-            row['problems'] = json.loads(row['problems'])
-
-        return rows
-
-    def delete(self, id: int):
-        self.cur.execute("DELETE FROM problemSet WHERE id=?", (id))
-        self.conn.commit()
-
-    def update(self, id: int, title: str, problems: list):
+        problem = ProblemSet(id=id, title=title, problems=problemsId)
+        db.session.add(problem)
+        db.session.commit()
+    
+    def update(self, id:int, title: str = None, problems: list = None):
         problemsId = json.dumps(problems)
-        self.cur.execute("UPDATE problemSet SET title=?, problems=? WHERE id=?", (title, problemsId, id))
-        self.conn.commit()
+        problem = ProblemSet.query.filter_by(id=id).first()
+        if title != None:    problem.title = title
+        if problems != None: problem.problems = problemsId
+        db.session.commit()
+    
+    def viewAll(self):
+        problems = ProblemSet.query.all()
+        return problems
 
-    def __del__(self):
-        self.conn.close()
+    def query(self, id:int):
+        problem = ProblemSet.query.filter_by(id=id).first()
+        return problem
+    
+    def delete(self, id:int):
+        problem = ProblemSet.query.filter_by(id=id).first()
+        db.session.delete(problem)
+        db.session.commit()

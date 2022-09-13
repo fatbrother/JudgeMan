@@ -1,33 +1,49 @@
-import sqlite3
+from app import app, db
 
-class Problems:
-    def __init__(self, db: str) -> None:
-        self.conn = sqlite3.connect(db)
-        self.cur = self.conn.cursor()
-        self.cur.execute("CREATE TABLE IF NOT EXISTS problems (id INTEGER PRIMARY KEY, title text, description text, testCaseNumber integer)")
-        self.conn.commit()
+class Problems(db.Model):
+    __tablename__ = "problem"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    taskDescription = db.Column(db.String(500), nullable=False)
+    inputFormat = db.Column(db.String(500), nullable=False)
+    outputFormat = db.Column(db.String(500), nullable=False)
+    sampleInput = db.Column(db.String(500), nullable=False)
+    sampleOutput = db.Column(db.String(500), nullable=False)
+    testCaseNumber = db.Column(db.Integer, nullable=False)
+    AC = db.Column(db.Integer, nullable=False)
+    WA = db.Column(db.Integer, nullable=False)
 
-    def insert(self, title: str, description: str, testCaseNumber: int) -> None:
-        self.cur.execute("INSERT INTO problems VALUES (NULL, ?, ?, ?)", (title, description, testCaseNumber))
-        self.conn.commit()
 
-    def view(self) -> list:
-        self.cur.execute("SELECT * FROM problems") 
-        rows = self.cur.fetchall()
-        return rows
+    def __repr__(self):
+        return f"Problem('{self.title}', '{self.taskDescription}', '{self.inputFormat}', '{self.outputFormat}', '{self.sampleInput}', '{self.sampleOutput}', '{self.testCaseNumber}', '{self.AC}', '{self.WA}')"
+    
+    def insert(self, title: str, taskDescription: str, inputFormat: str, outputFormat: str, sampleInput: str, sampleOutput: str, testCaseNumber: int, AC: int, WA: int):
+        problem = Problems(title=title, taskDescription=taskDescription, inputFormat=inputFormat, outputFormat=outputFormat, sampleInput=sampleInput, sampleOutput=sampleOutput, testCaseNumber=testCaseNumber, AC=AC, WA=WA)
+        db.session.add(problem)
+        db.session.commit()
 
-    def search(self, id=0) -> list:
-        self.cur.execute("SELECT * FROM problems WHERE id=?", (id))
-        rows = self.cur.fetchall()
-        return rows
-
-    def delete(self, id: int) -> None:
-        self.cur.execute("DELETE FROM problems WHERE id=?", (id))
-        self.conn.commit()
-
-    def update(self, id: int, title: str, description: str, testCaseNumber: int) -> None:
-        self.cur.execute("UPDATE problems SET title=?, description=?, testCaseNumber=? WHERE id=?", (title, description, testCaseNumber, id))
-        self.conn.commit()
-
-    def __del__(self) -> None:
-        self.conn.close()
+    def update(self, id:int, title: str = None, taskDescription: str = None, inputFormat: str = None, outputFormat: str = None, sampleInput: str = None, sampleOutput: str = None, testCaseNumber: int = None, AC: int = None, WA: int = None):
+        problem = Problems.query.filter_by(id=id).first()
+        if title != None:           problem.title = title
+        if taskDescription != None: problem.taskDescription = taskDescription
+        if inputFormat != None:     problem.inputFormat = inputFormat
+        if outputFormat != None:    problem.outputFormat = outputFormat
+        if sampleInput != None:     problem.sampleInput = sampleInput
+        if sampleOutput != None:    problem.sampleOutput = sampleOutput
+        if testCaseNumber != None:  problem.testCaseNumber = testCaseNumber
+        if AC != None:              problem.AC = AC
+        if WA != None:              problem.WA = WA
+        db.session.commit()
+    
+    def viewAll(self):
+        problems = Problems.query.all()
+        return problems
+    
+    def query(self, id:int):
+        problem = Problems.query.filter_by(id=id).first()
+        return problem
+    
+    def delete(self, id:int):
+        problem = Problems.query.filter_by(id=id).first()
+        db.session.delete(problem)
+        db.session.commit()
