@@ -100,10 +100,10 @@ class ProblemSet(db.Model):
 class User(db.Model):
     __tablename__ = "User"
     id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), primary_key=True, unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
     username = db.Column(db.String(20), unique=True, nullable=False)
     Level = db.Column(db.String(20), nullable=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(60), nullable=False)
     passProblems = db.Column(db.String(500), nullable=True)
 
     def __repr__(self):
