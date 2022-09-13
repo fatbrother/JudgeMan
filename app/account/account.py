@@ -1,39 +1,39 @@
-from app import db, bcrypt
+from flask import url_for, redirect
+from flask_login import UserMixin
+import json
+from app import db, login_manager, bcrypt
 
-class AccountCheckSystem():
-    def addAccount(self, username: str, email: str, password: str) -> None:
-        hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        db.User.insert(username, email, hashed)
+class User(UserMixin):
+    def __init__(self, userImfo: dict):
+        self.id = userImfo['id']
+        self.email = userImfo['email']
+        self.username = userImfo['username']
+        self.level = userImfo['level']
+        self.passProblems = json.loads(userImfo['passProblems'])
 
-    def deleteAccount(self, username: str) -> None:
-        db.User.delete(username)
+@login_manager.user_loader
+def user_loader(email):
+    userInfo = db.session.query(db.models.User).filter_by(email=email).first()
+    if not userInfo:
+        return None
+    
+    user = User(userInfo)
 
-    def updateAccount(self, username: str, email: str, password: str) -> None:
-        hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        db.User.update(username, email, hashed)
+    return user
 
-    def checkAccount(self, username: str, email: str, password: str) -> str:
-        user = db.User.query(username)
-        if not user:
-            return "User not found"
+@login_manager.request_loader
+def request_loader(request):
+    email = request.form.get('email')
+    if email not in db.models.User:
+        return None
 
-        if user.email != email:
-            return "Email not match"
+    user = User(db.session.query(db.models.User).filter_by(email=email).first())
 
-        if bcrypt.checkpw(password.encode('utf-8'), user.password):
-            return "Success"
-        
-        return "Something went wrong"
+    inputPassword = request.form.get('password')
+    user.is_authenticated = bcrypt.check_password_hash(db.models.User[email].password, inputPassword)
 
-    def getAccount(self, username: str) -> dict or None:
-        user = db.User.query(username)
-        if not user:
-            return None
-
-        return {
-            "username": user.username,
-            "email": user.email,
-            "level": user.level,
-            "passProblems": user.passProblems
-        }
-        
+    return user
+    
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('login'))

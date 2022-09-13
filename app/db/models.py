@@ -1,7 +1,6 @@
 from app import db
 import json
 
-
 class Problems(db.Model):
     __tablename__ = "Problem"
     id = db.Column(db.Integer, primary_key=True)
