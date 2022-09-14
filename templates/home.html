@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JudgeMan</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='problemSets.css') }}">
+</head>
+
+<body style="width: 100%; margin: 0; padding: 0;">
+    <div class="div-2">
+        <div class="div-3">
+            <div class="column">
+                <div class="title">
+                    <p class="text">Judege Man</p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="login-register">
+                    <p class="text" href="{{ url_for('login')}}">Login/Register</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-5">
+        <div class="div-6">
+            <div class="div-7">ProblemSet</div>
+            <div class="div-8">
+                {% for problemSet in problemSets %}
+                <div class="problemLink" href="{{ url_for('problem', problem['id']) }}">{{ problemSet['title'] }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
