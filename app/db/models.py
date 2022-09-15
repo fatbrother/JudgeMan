@@ -104,7 +104,7 @@ class User(db.Model):
     email = db.Column(db.String(120), primary_key=True, unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    Level = db.Column(db.String(20), nullable=True)
+    level = db.Column(db.String(20), nullable=True)
     passProblems = db.Column(db.String(500), nullable=True)
 
     def __repr__(self):
