@@ -24,10 +24,10 @@
     </div>
     <div class="div-5">
         <div class="div-6">
-            <div class="div-7">ProblemSet</div>
+            <div class="div-7">problemSet['title']</div>
             <div class="div-8">
-                {% for problemSet in problemSets %}
-                <div class="problemLink" href="{{ url_for('problemSet', problemSet['id']) }}">{{ problemSets['title'] }}</div>
+                {% for problem in problemSet %}
+                <div class="problemLink" href="{{ url_for('problem', problem['id']) }}">{{ problemSet['title'] }}</div>
             </div>
         </div>
     </div>
