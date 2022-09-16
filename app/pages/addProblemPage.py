@@ -15,6 +15,6 @@ def index():
         testCaseNumber = request.form['testCaseNumber']
         AC = request.form['AC']
         WA = request.form['WA']
-        db.Problems.insert(title, taskDescription, inputFormat, outputFormat, sampleInput, sampleOutput, testCaseNumber, AC, WA)
+        db.session.query(db.models.Problem).insert(title, taskDescription, inputFormat, outputFormat, sampleInput, sampleOutput, testCaseNumber, AC, WA)
 
     return render_template('addProblem.html')

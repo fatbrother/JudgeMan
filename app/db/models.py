@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from app import db
 import json
 
-class Problems(db.Model):
+class Problem(db.Model):
     __tablename__ = "Problem"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -19,13 +19,13 @@ class Problems(db.Model):
         return f"Problem('{self.title}', '{self.taskDescription}', '{self.inputFormat}', '{self.outputFormat}', '{self.sampleInput}', '{self.sampleOutput}', '{self.testCaseNumber}', '{self.AC}', '{self.WA}')"
 
     def insert(self, title: str, taskDescription: str, inputFormat: str, outputFormat: str, sampleInput: str, sampleOutput: str, testCaseNumber: int, AC: int, WA: int):
-        problem = Problems(title=title, taskDescription=taskDescription, inputFormat=inputFormat, outputFormat=outputFormat,
+        problem = Problem(title=title, taskDescription=taskDescription, inputFormat=inputFormat, outputFormat=outputFormat,
                            sampleInput=sampleInput, sampleOutput=sampleOutput, testCaseNumber=testCaseNumber, AC=AC, WA=WA)
         db.session.add(problem)
         db.session.commit()
 
     def update(self, id: int, title: str = None, taskDescription: str = None, inputFormat: str = None, outputFormat: str = None, sampleInput: str = None, sampleOutput: str = None, testCaseNumber: int = None, AC: int = None, WA: int = None):
-        problem = Problems.query.filter_by(id=id).first()
+        problem = Problem.query.filter_by(id=id).first()
         if title != None:
             problem.title = title
         if taskDescription != None:
@@ -47,15 +47,15 @@ class Problems(db.Model):
         db.session.commit()
 
     def viewAll(self):
-        problems = Problems.query.all()
+        problems = Problem.query.all()
         return problems
 
     def query(self, id: int):
-        problem = Problems.query.filter_by(id=id).first()
+        problem = Problem.query.filter_by(id=id).first()
         return problem
 
     def delete(self, id: int):
-        problem = Problems.query.filter_by(id=id).first()
+        problem = Problem.query.filter_by(id=id).first()
         db.session.delete(problem)
         db.session.commit()
 

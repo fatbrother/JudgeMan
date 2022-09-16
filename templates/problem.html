@@ -1,29 +1,47 @@
-<section id="main">
-	<div class="header">
-		<h1>{{ problem["title"] }}</h1>
-		<h2>I'm a slow walker, but I never walk backwards.</h2>
-	</div>
-	<div class="content">
-		<h2>Task Description</h2>
-		<p> {{ problem["description"] }}</p>
-		<h2>Input Format</h2>
-		<p> {{ problem["input_format"] }}</p>
-		<h2>Output Format</h2>
-		<p> {{ problem["output_format"] }}</p>
-		<h2>Sample Input</h2>
-		<p> {{ problem["sample_input"] }}</p>
-	</div>
-	<div>
-		<h2>Submit</h2>
-	</div>
-	<h2>Testdata Set</h2>
-	<a>Download Testdata</a>
+<!DOCTYPE html>
+<html>
 
-	<ul>
-		{% for index, test in problem["testcases"] %}
-		<a>
-			<li>Subtask {{ index }}: 1.0s, 64MB</li>
-		</a>
-		{% endfor %}
-	</ul>
-</section>
+<head>
+	<meta charset="utf-8">
+	<title>{{ problem['title'] }}</title>
+	<link rel="stylesheet" href=" {{ url_for('static', filename='problem.css') }}">
+</head>
+
+<body style="width: 100%; margin: 0; padding: 0;">
+    <div class="div-2">
+        <div class="div-3">
+            <div class="column">
+                <div class="title">
+                    <p class="text">Judge Man</p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="login-register">
+                    <p class="text" href="{{ url_for('login')}}">Login/Register</p>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="div-6">
+		<div class="title">{{ problem['title'] }}</div>
+		<div class="subtitle">Description</div>
+		<div class="text">
+			{{ problem['description'] }}
+		</div>
+		<div class="subtitle">Input Format</div>
+		<div class="text">
+			{{ problem['input_format'] }}
+		</div>
+		<div class="subtitle">Output Format</div>
+		<div class="text">
+			{{ problem['output_format'] }}
+		</div>
+		<div class="subtitle">Sample Input</div>
+		<div class="text">{{ problem['sample_input'] }}</div>
+		<div class="subtitle">Sample Output</div>
+		<div class="text">{{ problem['sample_output'] }}</div>
+		<div class="subtitle" href="{{ url_for('submit', problem['id']) }}">Submit</div>
+	</div>
+</body>
+
+</html>

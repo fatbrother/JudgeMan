@@ -1,0 +1,95 @@
+.div-2 {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: auto;
+    align-self: stretch;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    background-color: rgba(79, 116, 113, 1);
+}
+
+.div-3 {
+    display: flex;
+    height: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: calc(50% - 10px);
+    margin-left: 0px;
+    height: 100%;
+}
+
+.div-4 {
+    width: auto;
+    color: rgba(255, 255, 255, 1);
+    font-size: 64px;
+    letter-spacing: 0%;
+    text-align: left;
+    font-family: "IBM Plex Serif", sans-serif;
+}
+
+.column-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+}
+
+.div-5 {
+    color: rgba(255, 255, 255, 1);
+    width: auto;
+    font-size: 64px;
+    letter-spacing: 0%;
+    text-align: right;
+    font-family: "IBM Plex Serif", sans-serif;
+}
+
+.div-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: stretch;
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    background-color: rgba(217, 217, 217, 1);
+}
+
+.title {
+    color: rgba(0, 0, 0, 1);
+    font-size: 64px;
+    letter-spacing: 0%;
+    text-align: left;
+    font-family: "IBM Plex Serif", sans-serif;
+    font-weight: bold;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 1);
+    font-size: 40px;
+    letter-spacing: 0%;
+    text-align: left;
+    font-family: "IBM Plex Serif", sans-serif;
+    font-weight: bold;
+}
+
+.text {
+    max-width: 100%;
+    align-self: stretch;
+    width: 1860px;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 1);
+    font-size: 36px;
+    letter-spacing: 0%;
+    text-align: left;
+    font-family: "IBM Plex Serif", sans-serif;
+}
