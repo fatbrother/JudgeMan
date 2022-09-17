@@ -2,6 +2,7 @@ from flask import url_for, redirect
 from flask_login import UserMixin
 import json
 from app import db, login_manager, bcrypt
+from app.database.models import User as UserDB
 
 class User(UserMixin):
     def __init__(self, userImfo: dict):
@@ -24,13 +25,14 @@ def user_loader(email):
 @login_manager.request_loader
 def request_loader(request):
     email = request.form.get('email')
-    if email not in db.models.User:
+    user_info = UserDB.query.filter_by(email=email).first()
+    if user_info == None:
         return None
 
-    user = User(db.session.query(db.models.User).filter_by(email=email).first())
+    user = User(user_info)
 
     inputPassword = request.form.get('password')
-    user.is_authenticated = bcrypt.check_password_hash(db.models.User[email].password, inputPassword)
+    user.is_authenticated = bcrypt.check_password_hash(user.password, inputPassword)
 
     return user
     
