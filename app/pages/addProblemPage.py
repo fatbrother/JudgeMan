@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from app import db
+from app.database.models import Problem
 
 addProblem = Blueprint('addProblem', __name__)
 
@@ -15,6 +15,6 @@ def index():
         testCaseNumber = request.form['testCaseNumber']
         AC = request.form['AC']
         WA = request.form['WA']
-        db.session.query(db.models.Problem).insert(title, taskDescription, inputFormat, outputFormat, sampleInput, sampleOutput, testCaseNumber, AC, WA)
+        Problem.insert(title, taskDescription, inputFormat, outputFormat, sampleInput, sampleOutput, testCaseNumber, AC, WA)
 
     return render_template('addProblem.html')
