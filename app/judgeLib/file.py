@@ -22,7 +22,6 @@ def arrange(lines: list[str]) -> str:
     while lines[0] == '\n':
         lines.pop(0)
 
-    if lines[-1].endswith('\n'):
-        lines[-1] = lines[-1][:-1]
+    lines[-1].strip()
 
     return ''.join(lines).encode('utf-8', 'ignore').decode('utf-8')
