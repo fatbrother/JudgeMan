@@ -3,7 +3,6 @@ def readFile(file_dir: str) -> str:
         with open(file_dir, 'r') as f:
             lines = f.readlines()
             return arrange(lines)
-
     except FileNotFoundError:
         return 'Error: file not found'
 

@@ -5,7 +5,7 @@ import os
 
 
 # this func return the result of judging and IO and expect of the program
-def judge(file_dir: str = None, code_text: str = None, language: str = None, input_dir: str = None, answer_dir: str = None, timeLimit: float = 1.0, memoryLimit: int = 512) -> tuple[str, str | None, str | None, str | None]:
+def judge(file_dir: str = None, code_text: str = None, language: str = None, input_dir: str = None, input: str = None, answer_dir: str = None, answer: str = None, timeLimit: float = 1.0, memoryLimit: int = 512) -> tuple[str, str | None, str | None, str | None]:
     res = ''
 
     need_delete = False
@@ -27,8 +27,17 @@ def judge(file_dir: str = None, code_text: str = None, language: str = None, inp
 
     if res == '':
         # read input and answer
-        input = readFile(input_dir)
-        answer = readFile(answer_dir)
+        if input is None:
+            try:
+                input = readFile(input_dir)
+            except:
+                res = 'input file not found'
+        if answer is None:
+            try:
+                answer = readFile(answer_dir)
+            except:
+                res = 'answer file not found'
+
         if input == 'Error: file not found':
             res = 'input not found'
         if answer == 'Error: file not found':
