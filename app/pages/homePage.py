@@ -1,14 +1,14 @@
 from flask import Blueprint, render_template
-from app import db
+from app.database.models import ProblemSet
 
 home = Blueprint('home', __name__)
 
 @home.route('/')
 def index():
-    problemSets = db.session.query(db.models.ProblemSet).all()
+    problemSets = ProblemSet.query.all()
     return render_template('home.html', problemSets=problemSets)
 
 @home.route('/<string:problemSetName>')
 def problemSetPage(problemSetName):
-    problemSet = db.session.query(db.models.ProblemSet).filter_by(name=problemSetName).first()
+    problemSet = ProblemSet.query.filter_by(name=problemSetName).first()
     return render_template('problemSet.html', problemSet=problemSet)
