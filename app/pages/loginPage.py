@@ -2,7 +2,7 @@ from flask import request, render_template, url_for, redirect, flash, Blueprint
 from flask_login import login_user, logout_user, current_user
 from app import db, bcrypt
 from app.account.account import User
-from app.database.models import User as UserDB
+from app.database.models import Account
 
 account = Blueprint('account', __name__)
 
@@ -22,7 +22,7 @@ def login():
         flash('Please enter your password')
         return redirect(url_for('login'))
 
-    userInfo = UserDB.query.filter_by(email=email).first()
+    userInfo = Account.query.filter_by(email=email).first()
 
     if not userInfo:
         flash('Email not found')
@@ -72,15 +72,15 @@ def register():
         flash('Password and confirm password do not match')
         return redirect(url_for('register'))
     
-    if UserDB.query.filter_by(email=email).first():
+    if Account.query.filter_by(email=email).first():
         flash('Email already exists')
         return redirect(url_for('register'))
     
-    if UserDB.query.filter_by(username=username).first():
+    if Account.query.filter_by(username=username).first():
         flash('Username already exists')
         return redirect(url_for('register'))
     
-    userInfo = UserDB(email=email, username=username, password=bcrypt.generate_password_hash(password).decode('utf-8'), level='User', passProblems='[]')
+    userInfo = Account(email=email, username=username, password=bcrypt.generate_password_hash(password).decode('utf-8'), level='User', passProblems='[]')
     db.session.add(userInfo)
     db.session.commit()
 

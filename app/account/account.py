@@ -2,7 +2,7 @@ from flask import url_for, redirect
 from flask_login import UserMixin
 import json
 from app import db, login_manager, bcrypt
-from app.database.models import User as UserDB
+from app.database.models import Account
 
 class User(UserMixin):
     def __init__(self, userImfo: dict):
@@ -25,7 +25,7 @@ def user_loader(email):
 @login_manager.request_loader
 def request_loader(request):
     email = request.form.get('email')
-    user_info = UserDB.query.filter_by(email=email).first()
+    user_info = Account.query.filter_by(email=email).first()
     if user_info == None:
         return None
 

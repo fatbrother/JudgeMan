@@ -97,8 +97,8 @@ class ProblemSet(db.Model):
         db.session.commit()
 
 
-class User(db.Model):
-    __tablename__ = "User"
+class Account(db.Model):
+    __tablename__ = "Account"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), primary_key=True, unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
@@ -107,17 +107,17 @@ class User(db.Model):
     passProblems = db.Column(db.String(500), nullable=True)
 
     def __repr__(self):
-        return f"User('{self.username}', '{self.level}', '{self.email}', '{self.password}', '{self.passProblems}')"
+        return f"Account('{self.username}', '{self.level}', '{self.email}', '{self.password}', '{self.passProblems}')"
 
     def insert(self, username: str, email: str, password: str, level: str = 'User', problems: list = None):
         passProblems = json.dumps(problems)
-        user = User(username=username, level=level, email=email, password=password, passProblems=passProblems)
+        user = Account(username=username, level=level, email=email, password=password, passProblems=passProblems)
         db.session.add(user)
         db.session.commit()
 
     def update(self, username: str, level: str = None, email: str = None, password: str = None, problems: list = None):
         passProblems = json.dumps(problems)
-        user = User.query.filter_by(username=username).first()
+        user = Account.query.filter_by(username=username).first()
         if level != None:
             user.level = level
         if email != None:
@@ -129,14 +129,14 @@ class User(db.Model):
         db.session.commit()
 
     def viewAll(self):
-        users = User.query.all()
+        users = Account.query.all()
         return users
 
     def search(self, username: str):
-        user = User.query.filter_by(username=username).first()
+        user = Account.query.filter_by(username=username).first()
         return user
 
     def delete(self, username: str):
-        user = User.query.filter_by(username=username).first()
+        user = Account.query.filter_by(username=username).first()
         db.session.delete(user)
         db.session.commit()
