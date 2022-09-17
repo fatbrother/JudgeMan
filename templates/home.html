@@ -28,6 +28,7 @@
             <div class="div-8">
                 {% for problemSet in problemSets %}
                 <div class="problemLink" href="{{ url_for('problemSet', problemSet['id']) }}">{{ problemSets['title'] }}</div>
+                {% endfor %}
             </div>
         </div>
     </div>
