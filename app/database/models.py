@@ -1,4 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
 from app import db
 import json
 
@@ -50,7 +49,7 @@ class Problem(db.Model):
         problems = Problem.query.all()
         return problems
 
-    def query(self, id: int):
+    def search(self, id: int):
         problem = Problem.query.filter_by(id=id).first()
         return problem
 
@@ -88,7 +87,7 @@ class ProblemSet(db.Model):
         problems = ProblemSet.query.all()
         return problems
 
-    def query(self, id: int):
+    def search(self, id: int):
         problem = ProblemSet.query.filter_by(id=id).first()
         return problem
 
@@ -133,7 +132,7 @@ class User(db.Model):
         users = User.query.all()
         return users
 
-    def query(self, username: str):
+    def search(self, username: str):
         user = User.query.filter_by(username=username).first()
         return user
 
