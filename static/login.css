@@ -102,10 +102,14 @@
     outline: none;
 }
 
+.form-text-area::target-text {
+    background-color: rgba(217, 217, 217, 0.01);
+}
+
 .div-7 {
     display: flex;
     height: 0px;
-    border-color: rgba(0, 0, 0, 0.4399999976158142);
+    border-color: rgba(0, 0, 0, 0.4);
     border-width: 1px;
     border-style: solid;
 }
@@ -147,4 +151,11 @@
     text-decoration: none;
     text-emphasis: none;
     color: rgb(0, 0, 0, 0.5);
+}
+
+.error {
+    margin-top: 20px;
+    margin: 0;
+    padding: 0;
+    color: rgba(255, 0, 0, 0.5);
 }
