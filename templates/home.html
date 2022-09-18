@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='problemSets.css') }}">
 </head>
 
-<body style="width: 100%; margin: 0; padding: 0;">
+<body>
     <div class="div-2">
         <div class="div-3">
             <div class="column">
@@ -17,7 +17,13 @@
             </div>
             <div class="column">
                 <div class="login-register">
-                    <p class="text" href="{{ url_for('login')}}">Login/Register</p>
+                    {% if not is_login %}
+                    <a class="text" href="{{ url_for('account.login')}}">Login/Register</a>
+                    {% else %}
+                    <form method="post">
+                        <input type="submit" class="text" value="Logout">
+                    </form>
+                    {% endif %}
                 </div>
             </div>
         </div>
