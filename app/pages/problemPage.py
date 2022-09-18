@@ -1,14 +1,13 @@
-from contextlib import redirect_stderr
 from flask import Blueprint, render_template, request, redirect, url_for
 from ..database import problems
 
 problem = Blueprint('problem', __name__)
 
-@problem.route('/problem/<int:problemId>', methods=['GET', 'POST'])
-def index(problemId):
+@problem.route('/problemSet/<int:problemSetId>', methods=['GET', 'POST'])
+def index(problemSetId: int):
     if request.method == 'POST':
         if request.form['submit'] == 'submit':
-            return redirect(url_for('test.index', problemId=problemId))
+            return redirect(url_for('test.index', problemSetId=problemSetId))
 
-    problem = problems.search(problemId)
-    return render_template('problem.html', problem=problem)
+    problemSet = problems.search(problemSetId)
+    return render_template('problemSet.html', problemSet=problemSet)

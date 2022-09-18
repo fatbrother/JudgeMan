@@ -17,8 +17,8 @@ class Problem(db.Model):
     def __repr__(self):
         return f"Problem('{self.title}', '{self.taskDescription}', '{self.inputFormat}', '{self.outputFormat}', '{self.sampleInput}', '{self.sampleOutput}', '{self.testCaseNumber}', '{self.AC}', '{self.WA}')"
 
-    def insert(self, title: str, taskDescription: str, inputFormat: str, outputFormat: str, sampleInput: str, sampleOutput: str, testCaseNumber: int, AC: int, WA: int):
-        problem = Problem(title=title, taskDescription=taskDescription, inputFormat=inputFormat, outputFormat=outputFormat,
+    def insert(self, id: int, title: str, taskDescription: str, inputFormat: str, outputFormat: str, sampleInput: str, sampleOutput: str, testCaseNumber: int, AC: int, WA: int):
+        problem = Problem(id=id, title=title, taskDescription=taskDescription, inputFormat=inputFormat, outputFormat=outputFormat,
                            sampleInput=sampleInput, sampleOutput=sampleOutput, testCaseNumber=testCaseNumber, AC=AC, WA=WA)
         db.session.add(problem)
         db.session.commit()
@@ -99,10 +99,10 @@ class ProblemSet(db.Model):
 
 class Account(db.Model):
     __tablename__ = "Account"
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True, nullable=True)
     email = db.Column(db.String(120), primary_key=True, unique=True, nullable=False)
-    password = db.Column(db.String(60), nullable=False)
     username = db.Column(db.String(20), primary_key=True, unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
     level = db.Column(db.String(20), nullable=True)
     passProblems = db.Column(db.String(500), nullable=True)
 
@@ -110,9 +110,10 @@ class Account(db.Model):
         return f"Account('{self.username}', '{self.level}', '{self.email}', '{self.password}', '{self.passProblems}')"
 
     def insert(self, username: str, email: str, password: str, level: str = 'User', problems: list = None):
+        id = len(Account.query.all()) + 1
         passProblems = json.dumps(problems)
         hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
-        user = Account(username=username, level=level, email=email, password=hashedPassword, passProblems=passProblems)
+        user = Account(id=id, username=username, level=level, email=email, password=hashedPassword, passProblems=passProblems)
         db.session.add(user)
         db.session.commit()
 

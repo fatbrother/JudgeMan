@@ -1,39 +1,23 @@
 from flask import url_for, redirect
 from flask_login import UserMixin
-import json
-from app import db, login_manager, bcrypt
-from app.database.models import Account
+from app import login_manager
+from app.database import accounts
 
 class User(UserMixin):
-    def __init__(self, id: int, email: str, username: str, level: str, passProblems: str):
+    def __init__(self, id, email, username, level, passProblems):
         self.id = id
         self.email = email
         self.username = username
         self.level = level
-        self.passProblems = json.loads(passProblems)
+        self.passProblems = passProblems
+
+    def __repr__(self):
+        return f"User('{self.id}', '{self.email}', '{self.username}', '{self.level}', '{self.passProblems}')"
 
 @login_manager.user_loader
-def user_loader(email):
-    userInfo = db.session.query(db.models.User).filter_by(email=email).first()
-    if not userInfo:
-        return None
-    
-    user = User(userInfo)
-
-    return user
-
-@login_manager.request_loader
-def request_loader(request):
-    email = request.form.get('email')
-    user_info = Account.query.filter_by(email=email).first()
-    if user_info == None:
-        return None
-
-    user = User(user_info)
-
-    inputPassword = request.form.get('password')
-    user.is_authenticated = bcrypt.check_password_hash(user.password, inputPassword)
-
+def load_user(user_id):
+    userInfo = accounts.searchById(user_id)
+    user = User(id=userInfo.id, email=userInfo.email, username=userInfo.username, level=userInfo.level, passProblems=userInfo.passProblems)
     return user
     
 @login_manager.unauthorized_handler

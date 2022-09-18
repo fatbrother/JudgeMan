@@ -2,43 +2,36 @@
 <html>
 
 <head>
-    <title>Register</title>
+    <title>Log In</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 
-<body>
+<body class="div">
     <form method="post" class="div-2">
         <div class="div-3">註冊</div>
         <div class="div-4">輸入帳號名稱及密碼</div>
-        <div class="box">
-            <div class="div-5">
-                <div class="div-6">帳號名稱</div>
-                <input type="text" class="form-text-area" placeholder="請輸入帳號" name="username">
-            </div>
-            <div class="div-7"></div>
+        <div class="div-5">
+            <div class="div-6">暱稱</div>
+            <input type="text" class="form-text-area" placeholder="請輸入暱稱" name="username">
         </div>
-        <div class="box">
-            <div class="div-5">
-                <div class="div-6">信箱</div>
-                <input type="text" class="form-text-area" placeholder="請輸入帳號" name="email">
-            </div>
-            <div class="div-7"></div>
+        <div class="div-5">
+            <div class="div-6">電子郵件</div>
+            <input type="text" class="form-text-area" placeholder="請輸入電子郵件" name="email"></input>
         </div>
-        <div class="box">
-            <div class="div-5">
-                <div class="div-6">密碼</div>
-                <input type="password" class="form-text-area" placeholder="請輸入密碼" name="password">
-            </div>
-            <div class="div-7"></div>
+        <div class="div-5">
+            <div class="div-6">密碼</div>
+            <input type="password" class="form-text-area" placeholder="請輸入密碼" name="password"></input>
         </div>
-        <div class="box">
-            <div class="div-5">
-                <div class="div-6">確認密碼</div>
-                <input type="password" class="form-text-area" placeholder="請輸入密碼" name="confirmPassword">
-            </div>
-            <div class="div-7"></div>
+        <div class="div-5">
+            <div class="div-6">確認密碼</div>
+            <input type="password" class="form-text-area" placeholder="請再次輸入密碼" name="confirmPassword"></input>
         </div>
-        <input type="submit" class="div-13" value="註冊", name="submit">
+
+        {% if error != None %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <input type="submit" class="div-11" value="註冊">
     </form>
 </body>
 

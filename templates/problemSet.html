@@ -17,7 +17,11 @@
             </div>
             <div class="column">
                 <div class="login-register">
-                    <p class="text" href="{{ url_for('login')}}">Login/Register</p>
+                    {% if not is_login %}
+                    <a class="text" href="{{ url_for('account.login')}}">Login/Register</a>
+                    {% else %}
+                    <a class="text" href="{{ url_for('account.logout')}}">Logout</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

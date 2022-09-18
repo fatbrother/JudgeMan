@@ -1,5 +1,4 @@
-from distutils.log import error
-from flask import request, render_template, url_for, redirect, flash, Blueprint
+from flask import request, render_template, url_for, redirect, Blueprint
 from flask_login import login_user, logout_user, current_user
 from app import bcrypt
 from ..account.account import User
@@ -34,16 +33,16 @@ def login():
         error = "電子郵件或密碼錯誤"
         return render_template("login.html", error=error)
 
-    user = User(userInfo)
+    user = User(id=userInfo.id, email=userInfo.email, username=userInfo.username, level=userInfo.level, passProblems=userInfo.passProblems)
     login_user(user)
 
-    return redirect(url_for('home'), current_user=current_user)
+    return redirect(url_for('home.index'))
 
 
 @account.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('home.index'))
 
 
 @account.route('/register', methods=['GET', 'POST'])
@@ -59,39 +58,39 @@ def register():
     passProblems = []
 
     if not email:
-        error = 'Please enter your email address'
-        return redirect(url_for('account.register', error=error))
+        error = '請輸入電子郵件'
+        return render_template('register.html', error=error)
 
     if not username:
-        error = 'Please enter your username'
-        return redirect(url_for('account.register', error=error))
+        error = '請輸入使用者名稱'
+        return render_template('register.html', error=error)
 
     if not password:
-        flash('Please enter your password')
-        return redirect(url_for('account.register'))
+        error = '請輸入密碼'
+        return render_template('register.html', error=error)
 
     if not confirmPassword:
-        flash('Please confirm your password')
-        return redirect(url_for('account.register'))
+        error = '請再次輸入密碼'
+        return render_template('register.html', error=error)
 
     if password != confirmPassword:
-        flash('Password and confirm password do not match')
-        return redirect(url_for('account.register'))
+        error = '密碼不相符'
+        return render_template('register.html', error=error)
 
     if accounts.searchByEmail(email):
-        flash('Email already exists')
-        return redirect(url_for('account.register'))
+        error = '電子郵件已被註冊'
+        return render_template('register.html', error=error)
 
     if accounts.searchByUsername(username):
-        flash('Username already exists')
-        return redirect(url_for('account.register'))
+        error = '使用者名稱已被註冊'
+        return render_template('register.html', error=error)
 
-    accounts.update(email=email, password=password,
-                    username=username, level=level, passProblems=passProblems)
+    accounts.insert(email=email, password=password,
+                    username=username, level=level, problems=passProblems)
 
     userInfo = accounts.searchByEmail(email)
-    user = User(id=userInfo.id, email=userInfo.email, password=userInfo.password,
+    user = User(id=userInfo.id, email=userInfo.email,
                 username=userInfo.username, level=userInfo.level, passProblems=userInfo.passProblems)
     login_user(user)
 
-    return redirect(url_for('home'), current_user=current_user)
+    return redirect(url_for('home.index'))
