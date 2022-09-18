@@ -1,1 +1,1 @@
-from judgeLib.judge import judge
+from .judge import judge

@@ -1,6 +1,6 @@
-from judgeLib.compile import compile
-from judgeLib.file import readFile, writeFile
-from judgeLib.run import run
+from .compile import compile
+from .file import readFile, writeFile
+from .run import run
 import os
 
 

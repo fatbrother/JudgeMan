@@ -1,4 +1,4 @@
-from app import db
+from app import db, bcrypt
 import json
 
 class Problem(db.Model):
@@ -102,7 +102,7 @@ class Account(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), primary_key=True, unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
-    username = db.Column(db.String(20), unique=True, nullable=False)
+    username = db.Column(db.String(20), primary_key=True, unique=True, nullable=False)
     level = db.Column(db.String(20), nullable=True)
     passProblems = db.Column(db.String(500), nullable=True)
 
@@ -111,19 +111,21 @@ class Account(db.Model):
 
     def insert(self, username: str, email: str, password: str, level: str = 'User', problems: list = None):
         passProblems = json.dumps(problems)
-        user = Account(username=username, level=level, email=email, password=password, passProblems=passProblems)
+        hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
+        user = Account(username=username, level=level, email=email, password=hashedPassword, passProblems=passProblems)
         db.session.add(user)
         db.session.commit()
 
     def update(self, username: str, level: str = None, email: str = None, password: str = None, problems: list = None):
         passProblems = json.dumps(problems)
+        hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
         user = Account.query.filter_by(username=username).first()
         if level != None:
             user.level = level
         if email != None:
             user.email = email
         if password != None:
-            user.password = password
+            user.password = hashedPassword
         if problems != None:
             user.passProblems = passProblems
         db.session.commit()
@@ -132,7 +134,15 @@ class Account(db.Model):
         users = Account.query.all()
         return users
 
-    def search(self, username: str):
+    def searchById(self, id: int):
+        user = Account.query.filter_by(id=id).first()
+        return user
+
+    def searchByEmail(self, email: str):
+        user = Account.query.filter_by(email=email).first()
+        return user
+    
+    def searchByUsername(self, username: str):
         user = Account.query.filter_by(username=username).first()
         return user
 

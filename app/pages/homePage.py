@@ -1,14 +1,12 @@
-from flask import Blueprint, render_template
-from app.database.models import ProblemSet
+from flask import Blueprint, render_template, request, redirect, url_for
+from ..database import problemSets
 
 home = Blueprint('home', __name__)
 
-@home.route('/')
+@home.route('/',  methods=['GET', 'POST'])
 def index():
-    problemSets = ProblemSet.query.all()
-    return render_template('home.html', problemSets=problemSets)
+    if request.method == 'POST':
+        if request.form['submit'] != None:
+            return redirect(url_for('problem.index', problemId=request.form['submit']))
 
-@home.route('/<string:problemSetName>')
-def problemSetPage(problemSetName):
-    problemSet = ProblemSet.query.filter_by(name=problemSetName).first()
-    return render_template('problemSet.html', problemSet=problemSet)
+    return render_template('home.html', problemSets=problemSets.viewAll())

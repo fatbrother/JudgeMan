@@ -5,12 +5,12 @@ from app import db, login_manager, bcrypt
 from app.database.models import Account
 
 class User(UserMixin):
-    def __init__(self, userImfo: dict):
-        self.id = userImfo['id']
-        self.email = userImfo['email']
-        self.username = userImfo['username']
-        self.level = userImfo['level']
-        self.passProblems = json.loads(userImfo['passProblems'])
+    def __init__(self, id: int, email: str, username: str, level: str, passProblems: str):
+        self.id = id
+        self.email = email
+        self.username = username
+        self.level = level
+        self.passProblems = json.loads(passProblems)
 
 @login_manager.user_loader
 def user_loader(email):
