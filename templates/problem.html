@@ -4,48 +4,50 @@
 <head>
 	<meta charset="utf-8">
 	<title>{{ problem['title'] }}</title>
-	<link rel="stylesheet" href=" {{ url_for('static', filename='problem.css') }}">
+	<link rel="stylesheet" href=" {{ url_for('static', filename='mainStyle.css') }}">
 	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body style="width: 100%; margin: 0; padding: 0;">
-    <div class="div-2">
-        <div class="div-3">
-            <div class="column">
-                <div class="title">
-                    <p class="text">Judge Man</p>
-                </div>
-            </div>
-            <div class="column">
-                <div class="login-register">
-					{% if not is_login %}
-                    <a class="text" href="{{ url_for('account.login')}}">Login/Register</a>
-                    {% else %}
-                    <a class="text" href="{{ url_for('account.logout')}}">Logout</a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-	<div class="div-6">
-		<div class="title">{{ problem.title }}</div>
-		<div class="subtitle">Description</div>
-		<div class="text">
-			{{ problem.taskDescription }}
+	<div class="div-2">
+		<div class="div-3">
+			<div class="column">
+				<div class="title">
+                    <a class="text", href="{{ url_for('home.index')}}">Judge Man</a>
+				</div>
+			</div>
+			<div class="column">
+				<div class="login-register">
+					{% if current_user.is_authenticated %}
+					<a class="text" href="{{ url_for('account.logout')}}">Logout</a>
+					{% else %}
+					<a class="text" href="{{ url_for('account.login')}}">Login/Register</a>
+					{% endif %}
+				</div>
+			</div>
 		</div>
-		<div class="subtitle">Input Format</div>
-		<div class="text">
-			{{ problem.inputFormat }}
+	</div>
+	<div class="div-5">
+		<div class="div-6">
+			<div class="div-7">{{ problem.title }}</div>
+			<div class="subtitle">Description</div>
+			<div class="insideText">
+				{{ problem.taskDescription }}
+			</div>
+			<div class="subtitle">Input Format</div>
+			<div class="insideText">
+				{{ problem.inputFormat }}
+			</div>
+			<div class="subtitle">Output Format</div>
+			<div class="insideText">
+				{{ problem.outputFormat }}
+			</div>
+			<div class="subtitle">Sample Input</div>
+			<div class="insideText">{{ problem.sampleInput }}</div>
+			<div class="subtitle">Sample Output</div>
+			<div class="insideText">{{ problem.sampleOutput }}</div>
+			<div class="subtitle">Submit</div>
 		</div>
-		<div class="subtitle">Output Format</div>
-		<div class="text">
-			{{ problem.outputFormat }}
-		</div>
-		<div class="subtitle">Sample Input</div>
-		<div class="text">{{ problem.sampleInput }}</div>
-		<div class="subtitle">Sample Output</div>
-		<div class="text">{{ problem.sampleOutput }}</div>
-		<div class="subtitle">Submit</div>
 	</div>
 </body>
 

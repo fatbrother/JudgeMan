@@ -126,3 +126,25 @@ body {
     font-weight: bold;
     font-family: "IBM Plex Serif", sans-serif;
 }
+
+.subtitle {
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 1);
+    font-size: 40px;
+    letter-spacing: 0%;
+    text-align: left;
+    font-family: "IBM Plex Serif", sans-serif;
+    font-weight: bold;
+}
+
+.insideText {
+    max-width: 100%;
+    align-self: stretch;
+    width: 1860px;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 1);
+    font-size: 36px;
+    letter-spacing: 0%;
+    text-align: left;
+    font-family: "IBM Plex Serif", sans-serif;
+}
