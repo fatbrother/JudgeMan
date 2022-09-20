@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session, url_for
 from ..database import problems
 
 addProblem = Blueprint('addProblem', __name__)
 
 @addProblem.route('/addProblem')
 def index():
+    session['lastPage'] = url_for('addProblem.index')
     if request.method == 'POST':
         title = request.form['title']
         taskDescription = request.form['taskDescription']

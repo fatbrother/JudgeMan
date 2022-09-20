@@ -1,5 +1,5 @@
 import json
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask_login import current_user
 from ..database import problems, problemSets, accounts
 from ..judgeLib import judge
@@ -8,6 +8,7 @@ problem = Blueprint('problem', __name__)
 
 @problem.route('/problemSet/<int:problemSetId>', methods=['GET', 'POST'])
 def index(problemSetId: int):
+    session['lastPage'] = url_for('problem.index', problemSetId=problemSetId)
     problemSet = problemSets.search(problemSetId)
     problemIds = json.loads(problemSet.problems)
     subProblems = []
@@ -19,6 +20,7 @@ def index(problemSetId: int):
 
 @problem.route('/problem/<int:problemId>', methods=['GET', 'POST'])
 def singleProblem(problemId: int):
+    session['lastPage'] = url_for('problem.singleProblem', problemId=problemId)
     if request.method == 'POST':
         if request.form['submit'] == 'submit':
             if not current_user.is_authenticated:

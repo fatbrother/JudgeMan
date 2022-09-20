@@ -1,6 +1,7 @@
-from flask import request, render_template, redirect, Blueprint
+from flask import request, render_template, redirect, Blueprint, session
 from flask_login import login_user, logout_user
 from app import bcrypt
+from app.pages import homePage
 from ..account.account import User
 from ..database import accounts
 
@@ -8,7 +9,7 @@ account = Blueprint('account', __name__)
 
 
 @account.route('/login', methods=['GET', 'POST'])
-def login(root: str):
+def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -35,7 +36,10 @@ def login(root: str):
                     level=userInfo.level, passProblems=userInfo.passProblems)
         login_user(user)        
 
-        return redirect(root)
+        if session['lastPage'] != None:
+            return redirect(session['lastPage'])
+            
+        return redirect('homePage.index')
 
     return render_template("login.html")
 
