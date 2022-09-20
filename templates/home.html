@@ -1,41 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>JudgeMan</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='mainStyle.css') }}">
-</head>
-
-<body>
-    <div class="div-2">
-        <div class="div-3">
-            <div class="column">
-                <div class="title">
-                    <a class="text", href="{{ url_for('home.index')}}">Judge Man</a>
-                </div>
-            </div>
-            <div class="column">
-                <div class="login-register">
-                    {% if current_user.is_authenticated %}
-                    <a class="text" href="{{ url_for('account.logout')}}">Logout</a>
-                    {% else %}
-                    <a class="text" href="{{ url_for('account.login')}}">Login/Register</a>
-                    {% endif %}
-                </div>
-            </div>
+{% block content %}
+<div class="div-5">
+    <div class="div-6">
+        <div class="div-7">ProblemSet</div>
+        <div class="div-8">
+            {% for problemSet in problemSets %}
+            <a class="problemLink" href="{{ url_for('problem.index', problemSetId=problemSet['id']) }}">{{ problemSet['title'] }}</a>
+            {% endfor %}
         </div>
     </div>
-    <div class="div-5">
-        <div class="div-6">
-            <div class="div-7">ProblemSet</div>
-            <div class="div-8">
-                {% for problemSet in problemSets %}
-                <a class="problemLink" href="{{ url_for('problem.index', problemSetId=problemSet['id']) }}">{{ problemSet['title'] }}</a>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
+</div>
+{% endblock %}

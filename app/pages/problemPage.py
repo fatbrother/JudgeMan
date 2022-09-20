@@ -1,6 +1,8 @@
 import json
 from flask import Blueprint, render_template, request, redirect, url_for
-from ..database import problems, problemSets
+from flask_login import current_user
+from ..database import problems, problemSets, accounts
+from ..judgeLib import judge
 
 problem = Blueprint('problem', __name__)
 
@@ -19,7 +21,34 @@ def index(problemSetId: int):
 def singleProblem(problemId: int):
     if request.method == 'POST':
         if request.form['submit'] == 'submit':
-            return redirect(url_for('test.index', problemId=problemId))
+            if not current_user.is_authenticated:
+                return redirect(url_for('account.login'))
+
+            problem = problems.search(problemId)
+            code = request.form['code']
+            language = request.form['language']
+            testCases = problem.testCases
+            answers = problem.answers
+            AC = problem.AC
+            WA = problem.WA
+            account = accounts.searchById(current_user.id)
+            passProblem = json.loads(account.passProblem)
+
+            for testCase, answer in testCases, answers:
+                result, input, output, answer =  judge(code_text=code, language=language, input=testCase, answer=answer)
+
+                if result == 'AC':
+                    pass
+                else:
+                    WA += 1
+                    problems.update(problemId, AC=AC, WA=WA)
+                    return render_template('test.html', result=result, input=input, output=output, answer=answer)
+
+            AC += 1
+            passProblem.append(problemId)
+
+            problems.update(id=id, AC=AC, WA=WA)
+            accounts.update(id=current_user.id, passProblem=passProblem)
 
     problem = problems.search(problemId)
     sampleInput = json.loads(problem.sampleInput)

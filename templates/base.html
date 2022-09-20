@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JudgeMan</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mainStyle.css') }}">
+</head>
+
+<body>
+    <div class="div-2">
+        <div class="div-3">
+            <div class="column">
+                <div class="title">
+                    <a class="text", href="{{ url_for('home.index')}}">Judge Man</a>
+                </div>
+            </div>
+            <div class="column">
+                <div class="login-register">
+                    {% if current_user.is_authenticated %}
+                    <a class="text" href="{{ url_for('account.logout')}}">Logout</a>
+                    {% else %}
+                    <a class="text" href="{{ url_for('account.login')}}">Login/Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>
