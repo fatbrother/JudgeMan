@@ -28,24 +28,24 @@
         </div>
     </div>
 	<div class="div-6">
-		<div class="title">{{ problem['title'] }}</div>
+		<div class="title">{{ problem.title }}</div>
 		<div class="subtitle">Description</div>
 		<div class="text">
-			{{ problem['description'] }}
+			{{ problem.taskDescription }}
 		</div>
 		<div class="subtitle">Input Format</div>
 		<div class="text">
-			{{ problem['input_format'] }}
+			{{ problem.inputFormat }}
 		</div>
 		<div class="subtitle">Output Format</div>
 		<div class="text">
-			{{ problem['output_format'] }}
+			{{ problem.outputFormat }}
 		</div>
 		<div class="subtitle">Sample Input</div>
-		<div class="text">{{ problem['sample_input'] }}</div>
+		<div class="text">{{ problem.sampleInput }}</div>
 		<div class="subtitle">Sample Output</div>
-		<div class="text">{{ problem['sample_output'] }}</div>
-		<div class="subtitle" href="{{ url_for('submit', problem['id']) }}">Submit</div>
+		<div class="text">{{ problem.sampleOutput }}</div>
+		<div class="subtitle">Submit</div>
 	</div>
 </body>
 

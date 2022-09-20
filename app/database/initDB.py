@@ -23,10 +23,10 @@ with open('problemSets.json', 'w') as f:
     f.write(json.dumps(problemSets, indent=4))
 
 problems = []
-keyWords = ['description', 'input format', 'output format',
+keyWords = ['input format', 'output format',
             'sample input', 'sample output', 'hint',
             '範例輸入', '範例輸出', '提示',
-            '輸入格式', '輸出格式', '題目描述']
+            '輸入格式', '輸出格式']
 for problemSet in problemSets:
     url = base + '\\' + problemSet['title'] + '\\' + 'Description.txt'
     with open(url, encoding='utf-8') as f:
