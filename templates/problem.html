@@ -42,11 +42,16 @@
 			<div class="insideText">
 				{{ problem.outputFormat }}
 			</div>
-			<div class="subtitle">Sample Input</div>
-			<div class="insideText">{{ problem.sampleInput }}</div>
-			<div class="subtitle">Sample Output</div>
-			<div class="insideText">{{ problem.sampleOutput }}</div>
-			<div class="subtitle">Submit</div>
+			{% for index in range(sampleLen) %}
+				<div class="subtitle">Sample Input</div>
+				<pre class="insideText">{{ sampleInput[index] }}</pre>
+				<div class="subtitle">Sample Output</div>
+				<pre class="insideText">{{ sampleOutput[index] }}</pre>
+			{% endfor %}
+			<form method="post" class="code">
+				<textarea name="code" id="code" cols="30" rows="10" placeholder="Enter your code here"></textarea>
+				<input type="submit" value="Submit", class="subtitle">
+			</form>
 		</div>
 	</div>
 </body>

@@ -22,4 +22,7 @@ def singleProblem(problemId: int):
             return redirect(url_for('test.index', problemId=problemId))
 
     problem = problems.search(problemId)
-    return render_template('problem.html', problem=problem)
+    sampleInput = json.loads(problem.sampleInput)
+    sampleOutput = json.loads(problem.sampleOutput)
+    sampleLen = len(sampleInput)
+    return render_template('problem.html', problem=problem, sampleInput=sampleInput, sampleOutput=sampleOutput, sampleLen=sampleLen)
