@@ -6,6 +6,7 @@ from ..judgeLib import judge
 
 problem = Blueprint('problem', __name__)
 
+
 @problem.route('/problemSet/<int:problemSetId>', methods=['GET', 'POST'])
 def index(problemSetId: int):
     session['lastPage'] = url_for('problem.index', problemSetId=problemSetId)
@@ -18,8 +19,9 @@ def index(problemSetId: int):
             subProblems.append(problem)
     return render_template('problemSet.html', problemSet=problemSet, subProblems=subProblems)
 
+
 @problem.route('/problem/<int:problemId>', methods=['GET', 'POST'])
-def singleProblem(problemId: int, result:str = ''):
+def singleProblem(problemId: int, result: str = ''):
     session['lastPage'] = url_for('problem.singleProblem', problemId=problemId)
     if request.method == 'POST':
         if request.form['submit'] == 'submit':
@@ -40,15 +42,16 @@ def singleProblem(problemId: int, result:str = ''):
 
             res = 'AC'
             for testCase, answer in testCases, answers:
-                result, input, output, answer =  judge(code_text=code, language=language, input=testCase, answer=answer)
+                result, input, output, answer = judge(
+                    code_text=code, language=language, input=testCase, answer=answer)
 
                 if result == 'AC':
                     continue
 
                 else:
-                    res=result
+                    res = result
                     break
-            
+
             if res == 'AC':
                 problem.update(AC=AC+1)
                 if problemId not in passProblem:
@@ -57,7 +60,8 @@ def singleProblem(problemId: int, result:str = ''):
             else:
                 problem.update(WA=WA+1)
 
-            return render_template('problem.html', problem=problem, result=result, input=input, output=output, answer=answer)
+            return render_template('problem.html', problem=problem, result=result, sampleInput=sampleInput, sampleOutput=sampleOutput,
+                                   sampleLen=sampleLen, input=input, output=output, answer=answer)
 
     problem = problems.search(problemId)
     sampleInput = json.loads(problem.sampleInput)

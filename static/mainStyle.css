@@ -148,3 +148,21 @@ body {
     text-align: left;
     font-family: "IBM Plex Serif", sans-serif;
 }
+
+.code {
+    width: 100%;
+}
+
+.codeArea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    background-color: black;
+    color: white;
+    font-family: "IBM Plex Serif", sans-serif;
+    font-size: 28px;
+}
+
+.codeArea::placeholder {
+    font: 28px "IBM Plex Serif", sans-serif;
+}

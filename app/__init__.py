@@ -17,3 +17,6 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.session_protection = "strong"
 login_manager.login_view = 'login'
+
+from .pages import registerBlueprints
+registerBlueprints(app)
