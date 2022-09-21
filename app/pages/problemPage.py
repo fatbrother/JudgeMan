@@ -1,4 +1,5 @@
 import json
+from unittest import TestCase
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask_login import current_user
 from ..database import problems, problemSets, accounts
@@ -26,39 +27,34 @@ def singleProblem(problemId: int, result: str = ''):
     if request.method == 'POST':
         if request.form['submit'] == 'submit':
 
-            # if user is not logged in, go to login page
             if not current_user.is_authenticated:
                 return redirect(url_for('account.login'))
 
             problem = problems.search(problemId)
             code = request.form['code']
             language = request.form['language']
-            testCases = problem.testCases
-            answers = problem.answers
-            AC = problem.AC
-            WA = problem.WA
+            testCasePaths = json.loads(problem.testCases)
+            answerPaths = json.loads(problem.answers)
+            ac = problem.AC
+            wa = problem.WA
             account = accounts.searchById(current_user.id)
             passProblem = json.loads(account.passProblem)
 
             res = 'AC'
-            for testCase, answer in testCases, answers:
-                result, input, output, answer = judge(
-                    code_text=code, language=language, input=testCase, answer=answer)
+            for testCase, answer in testCasePaths, answerPaths:
+                res, input, output, answer = judge(
+                    code_text=code, language=language, input_dir=testCase, answer_dir=answer)
 
-                if result == 'AC':
-                    continue
-
-                else:
-                    res = result
+                if result != 'AC':
                     break
 
             if res == 'AC':
-                problem.update(AC=AC+1)
+                problem.update(id=problemId, AC=ac + 1)
                 if problemId not in passProblem:
                     passProblem.append(problemId)
-                    account.update(passProblem=json.dumps(passProblem))
+                    account.update(id=current_user.id, passProblem=json.dumps(passProblem))
             else:
-                problem.update(WA=WA+1)
+                problem.update(id=problemId, WA=wa + 1)
 
             return render_template('problem.html', problem=problem, result=result, sampleInput=sampleInput, sampleOutput=sampleOutput,
                                    sampleLen=sampleLen, input=input, output=output, answer=answer)
