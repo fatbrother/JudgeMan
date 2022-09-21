@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from flask_login import current_user
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from ..database import problemSets
 
 home = Blueprint('home', __name__)

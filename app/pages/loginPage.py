@@ -1,7 +1,6 @@
 from flask import request, render_template, redirect, Blueprint, session
 from flask_login import login_user, logout_user
 from app import bcrypt
-from app.pages import homePage
 from ..account.account import User
 from ..database import accounts
 
@@ -47,7 +46,10 @@ def login():
 @account.route('/logout')
 def logout():
     logout_user()
-    return redirect(request.referrer)
+    if session['lastPage'] != None:
+        return redirect(session['lastPage'])
+            
+    return redirect('homePage.index')
 
 
 @account.route('/register', methods=['GET', 'POST'])
@@ -96,7 +98,9 @@ def register():
                     username=userInfo.username, level=userInfo.level, passProblems=userInfo.passProblems)
         login_user(user)
 
-        # back to last page
-        return redirect(request.referrer)
+        if session['lastPage'] != None:
+            return redirect(session['lastPage'])
+            
+        return redirect('homePage.index')
 
     return render_template("register.html")
