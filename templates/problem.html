@@ -22,8 +22,24 @@
 			<div class="subtitle">Sample Output</div>
 			<pre class="insideText">{{ sampleOutput[index] }}</pre>
 		{% endfor %}
+		{% if problem.hint %}
+			<div class="subtitle">Hint</div>
+			<div class="insideText">
+				{{ problem.hint }}
+			</div>
+		{% endif %}
+		{% if result != None %}
+			{% if result == 'AC' %}
+			<div class="subtitle" style="color:green">Result</div>
+			{% else %}
+			<div class="subtitle" style="color:red">Result</div>
+			<pre class="insideText">{{ input }}</pre>
+			<pre class="insideText">{{ output }}</pre>
+			{% endif %}
+		{% endif %}
+
 		<form method="post" class="code">
-			<textarea name="code" id="code" cols="30" rows="10" placeholder="Enter your code here"></textarea>
+			<textarea name="code" cols="30" rows="10" placeholder="Enter your code here"></textarea>
 			<input type="submit" value="Submit", name="submit", class="subtitle">
 		</form>
 	</div>

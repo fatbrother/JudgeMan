@@ -19,10 +19,12 @@ def index(problemSetId: int):
     return render_template('problemSet.html', problemSet=problemSet, subProblems=subProblems)
 
 @problem.route('/problem/<int:problemId>', methods=['GET', 'POST'])
-def singleProblem(problemId: int):
+def singleProblem(problemId: int, result:str = ''):
     session['lastPage'] = url_for('problem.singleProblem', problemId=problemId)
     if request.method == 'POST':
         if request.form['submit'] == 'submit':
+
+            # if user is not logged in, go to login page
             if not current_user.is_authenticated:
                 return redirect(url_for('account.login'))
 
@@ -36,21 +38,26 @@ def singleProblem(problemId: int):
             account = accounts.searchById(current_user.id)
             passProblem = json.loads(account.passProblem)
 
+            res = 'AC'
             for testCase, answer in testCases, answers:
                 result, input, output, answer =  judge(code_text=code, language=language, input=testCase, answer=answer)
 
                 if result == 'AC':
-                    pass
+                    continue
+
                 else:
-                    WA += 1
-                    problems.update(problemId, AC=AC, WA=WA)
-                    return render_template('test.html', result=result, input=input, output=output, answer=answer)
+                    res=result
+                    break
+            
+            if res == 'AC':
+                problem.update(AC=AC+1)
+                if problemId not in passProblem:
+                    passProblem.append(problemId)
+                    account.update(passProblem=json.dumps(passProblem))
+            else:
+                problem.update(WA=WA+1)
 
-            AC += 1
-            passProblem.append(problemId)
-
-            problems.update(id=id, AC=AC, WA=WA)
-            accounts.update(id=current_user.id, passProblem=passProblem)
+            return render_template('problem.html', problem=problem, result=result, input=input, output=output, answer=answer)
 
     problem = problems.search(problemId)
     sampleInput = json.loads(problem.sampleInput)
