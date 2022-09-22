@@ -8,19 +8,25 @@
 		<div class="insideText">
 			{{ problem.taskDescription }}
 		</div>
+		{% if problem.inputFormat %}
 		<div class="subtitle">Input Format</div>
 		<div class="insideText">
 			{{ problem.inputFormat }}
 		</div>
+		{% endif %}
+		{% if problem.outputFormat %}
 		<div class="subtitle">Output Format</div>
 		<div class="insideText">
 			{{ problem.outputFormat }}
 		</div>
+		{% endif %}
 		{% for index in range(sampleLen) %}
 			<div class="subtitle">Sample Input</div>
-			<pre class="insideText">{{ sampleInput[index] }}</pre>
+			<pre><code class="language-">{{ sampleInput[index] }}
+			</code></pre>
 			<div class="subtitle">Sample Output</div>
-			<pre class="insideText">{{ sampleOutput[index] }}</pre>
+			<pre><code class="language-">{{ sampleOutput[index] }}
+			</code></pre>
 		{% endfor %}
 		<form method="post" class="code">
 			<textarea name="code" id="code" cols="30" rows="10" placeholder="Enter your code here"></textarea>
@@ -28,4 +34,34 @@
 		</form>
 	</div>
 </div>
+
+<script>
+	const copyButtonLabel = "Copy Code";
+	let blocks = document.querySelectorAll("pre");
+
+	blocks.forEach((block) => {
+	// only add button if browser supports Clipboard API
+		if (navigator.clipboard) {
+			let button = document.createElement("button");
+			button.innerText = copyButtonLabel;
+			button.addEventListener("click", copyCode);
+			block.appendChild(button);
+		}
+	});
+
+	async function copyCode(event) {
+	const button = event.srcElement;
+	const pre = button.parentElement;
+	let code = pre.querySelector("code");
+	let text = code.innerText;
+	await navigator.clipboard.writeText(text);
+	
+	button.innerText = "Code Copied";
+	
+	setTimeout(()=> {
+		button.innerText = copyButtonLabel;
+	},1000)
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js"></script>
 {% endblock %}
