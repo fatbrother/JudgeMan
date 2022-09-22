@@ -188,12 +188,15 @@ button:hover{
     width: 100%;
     height: 100%;
     resize: none;
-    background-color: black;
+    border-radius: 10px;
+    background-color: #2d2d2d;
     color: white;
     font-family: "IBM Plex Serif", sans-serif;
     font-size: 28px;
+    padding: 20px;
 }
 
 .codeArea::placeholder {
+    color: white;
     font: 28px "IBM Plex Serif", sans-serif;
 }
