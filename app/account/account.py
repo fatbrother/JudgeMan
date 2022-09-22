@@ -11,9 +11,6 @@ class User(UserMixin):
         self.level = level
         self.passProblems = passProblems
 
-    def __repr__(self):
-        return f"User('{self.id}', '{self.email}', '{self.username}', '{self.level}', '{self.passProblems}')"
-
 @login_manager.user_loader
 def load_user(user_id):
     userInfo = accounts.searchById(user_id)
