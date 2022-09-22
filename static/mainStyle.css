@@ -148,3 +148,34 @@ body {
     text-align: left;
     font-family: "IBM Plex Serif", sans-serif;
 }
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+pre[class*="language-"] {
+    position:relative;
+    overflow: auto;
+    margin:5px 5px 5px 5px;
+    padding:1.75rem 1rem 1.75rem 1rem;
+    border-radius:10px;
+}
+
+button{
+    position:absolute;
+    top:5px;
+    right:5px;
+
+    font-size:.9rem;
+    padding:.15rem;
+    background-color:#828282;
+    color:1e1e1e;
+    border:ridge 1px #7b7b7c;
+    border-radius:5px;
+    text-shadow:#c4c4c4 0 0 2px;
+}
+
+button:hover{
+    cursor:pointer;
+    background-color:#bcbabb;
+}
