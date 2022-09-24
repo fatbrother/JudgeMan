@@ -5,11 +5,12 @@ class Problem(db.Model):
     __tablename__ = "Problem"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    taskDescription = db.Column(db.String(500), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
     inputFormat = db.Column(db.String(500), nullable=False)
     outputFormat = db.Column(db.String(500), nullable=False)
     sampleInput = db.Column(db.String(500), nullable=False)
     sampleOutput = db.Column(db.String(500), nullable=False)
+    hint = db.Column(db.String(500), nullable=False)
     testCasePaths = db.Column(db.String(500), nullable=False)
     answerCasePaths = db.Column(db.String(500), nullable=False)
     AC = db.Column(db.Integer, nullable=False)
