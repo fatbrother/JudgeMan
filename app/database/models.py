@@ -13,7 +13,7 @@ class Problem(db.Model):
     testCasePaths = db.Column(db.String(500), nullable=False)
     answerCasePaths = db.Column(db.String(500), nullable=False)
     AC = db.Column(db.Integer, nullable=False)
-    WA = db.Column(db.Integer, nullable=False)
+    WA = db.Column(db.Integer, nullable=False)    
 
     def __repr__(self):
         return f"Problem('{self.title}', '{self.taskDescription}', '{self.inputFormat}', '{self.outputFormat}', '{self.sampleInput}', '{self.sampleOutput}', '{self.testCasePaths}', '{self.answerCasePaths}', '{self.AC}', '{self.WA}')"

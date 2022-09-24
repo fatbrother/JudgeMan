@@ -1,7 +1,9 @@
 import os
+from pathlib import Path
 import json
 
-base = r'C:\Users\uchih\Desktop\JudgeMan\judge_girl copy'
+base = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute())
+
 problemSets = []
 with open(base + '\\problemSetId.txt') as f:
     for line in f:
