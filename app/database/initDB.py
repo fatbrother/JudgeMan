@@ -20,7 +20,15 @@ with open(base+'\\problems.json', 'r', encoding='UTF-8') as f:
             id=problem['id'], 
             title=problem['title'],
             description=problem['description'],
-            
+            inputFormat=problem['inputFormat'],
+            outputFormat=problem['outputFormat'],
+            sampleInput=problem['sampleInput'],
+            sampleOutput=problem['sampleOutput'],
+            hint=problem['hint'],
+            testCasePaths='[]',
+            answerCasePaths='[]',
+            AC=problem['AC'],
+            WA=problem['WA']
         )
 
 # with open(base+'\\problemSets.json', 'r', encoding='UTF-8') as f:
