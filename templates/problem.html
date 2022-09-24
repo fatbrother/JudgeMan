@@ -34,6 +34,8 @@
 				{{ problem.hint }}
 			</div>
 		{% endif %}
+
+	
 		{% if result %}
 			{% if result == 'AC' %}
 			<div class="subtitle" style="color:green">{{ result }}</div>
@@ -43,7 +45,6 @@
 			<pre class="insideText">{{ output }}</pre>
 			{% endif %}
 		{% endif %}
-
 		<form method="post" class="code">
 			<textarea name="code" class="codeArea" cols="30" rows="10" placeholder="Enter your code here"></textarea>
 			<input type="submit" value="Submit", name="submit", class="subtitle">
