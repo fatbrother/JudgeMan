@@ -10,20 +10,26 @@ class Problem(db.Model):
     outputFormat = db.Column(db.String(500), nullable=False)
     sampleInput = db.Column(db.String(500), nullable=False)
     sampleOutput = db.Column(db.String(500), nullable=False)
-    testCaseNumber = db.Column(db.Integer, nullable=False)
+    testCasePaths = db.Column(db.String(500), nullable=False)
+    answerCasePaths = db.Column(db.String(500), nullable=False)
     AC = db.Column(db.Integer, nullable=False)
     WA = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f"Problem('{self.title}', '{self.taskDescription}', '{self.inputFormat}', '{self.outputFormat}', '{self.sampleInput}', '{self.sampleOutput}', '{self.testCaseNumber}', '{self.AC}', '{self.WA}')"
+        return f"Problem('{self.title}', '{self.taskDescription}', '{self.inputFormat}', '{self.outputFormat}', '{self.sampleInput}', '{self.sampleOutput}', '{self.testCasePaths}', '{self.answerCasePaths}', '{self.AC}', '{self.WA}')"
 
-    def insert(self, id: int, title: str, taskDescription: str, inputFormat: str, outputFormat: str, sampleInput: str, sampleOutput: str, testCaseNumber: int, AC: int, WA: int):
+    def insert(self, id: int, title: str, taskDescription: str, inputFormat: str, outputFormat: str, sampleInput: list, sampleOutput: list, testCasePaths: list, answerCasePaths: list, AC: int, WA: int):
+        sampleInputInJson = json.dumps(sampleInput)
+        sampleOutputInJson = json.dumps(sampleOutput)
+        testCasePathsInJson = json.dumps(testCasePaths)
+        answerCasePathsInJson = json.dumps(answerCasePaths)
+
         problem = Problem(id=id, title=title, taskDescription=taskDescription, inputFormat=inputFormat, outputFormat=outputFormat,
-                           sampleInput=sampleInput, sampleOutput=sampleOutput, testCaseNumber=testCaseNumber, AC=AC, WA=WA)
+                           sampleInput=sampleInputInJson, sampleOutput=sampleOutputInJson, testCasePaths=testCasePathsInJson, answerCasePaths=answerCasePathsInJson, AC=AC, WA=WA)
         db.session.add(problem)
         db.session.commit()
 
-    def update(self, id: int, title: str = None, taskDescription: str = None, inputFormat: str = None, outputFormat: str = None, sampleInput: str = None, sampleOutput: str = None, testCaseNumber: int = None, AC: int = None, WA: int = None):
+    def update(self, id: int, title: str = None, taskDescription: str = None, inputFormat: str = None, outputFormat: str = None, sampleInput: str = None, sampleOutput: str = None, testCasePaths: list = [], answerCasePaths: list = [], AC: int = None, WA: int = None):
         problem = Problem.query.filter_by(id=id).first()
         if title != None:
             problem.title = title
@@ -34,11 +40,13 @@ class Problem(db.Model):
         if outputFormat != None:
             problem.outputFormat = outputFormat
         if sampleInput != None:
-            problem.sampleInput = sampleInput
+            problem.sampleInput = json.dumps(sampleInput)
         if sampleOutput != None:
-            problem.sampleOutput = sampleOutput
-        if testCaseNumber != None:
-            problem.testCaseNumber = testCaseNumber
+            problem.sampleOutput = json.dumps(sampleOutput)
+        if testCasePaths != []:
+            problem.testCasePaths = json.dumps(testCasePaths)
+        if answerCasePaths != []:
+            problem.answerCasePaths = json.dumps(answerCasePaths)
         if AC != None:
             problem.AC = AC
         if WA != None:
