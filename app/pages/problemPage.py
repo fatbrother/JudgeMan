@@ -6,7 +6,6 @@ from ..judgeLib import judge
 
 problem = Blueprint('problem', __name__)
 
-
 @problem.route('/problemSet/<int:problemSetId>', methods=['GET', 'POST'])
 def index(problemSetId: int):
     session['lastPage'] = url_for('problem.index', problemSetId=problemSetId)
@@ -20,9 +19,9 @@ def index(problemSetId: int):
     return render_template('problemSet.html', problemSet=problemSet, subProblems=subProblems)
 
 
-@problem.route('/problem/<int:problemId>', methods=['GET', 'POST'])
-def singleProblem(problemId: int, result: str = ''):
-    session['lastPage'] = url_for('problem.singleProblem', problemId=problemId)
+@problem.route('/problemSet/<int:problemSetId>/problem/<int:problemId>', methods=['GET', 'POST'])
+def singleProblem(problemSetId: int, problemId: int, result: str = ''):
+    session['lastPage'] = url_for('problem.singleProblem', problemSetId=problemSetId, problemId=problemId)
     if request.method == 'POST':
         if request.form['submit'] == 'submit':
 
@@ -30,30 +29,33 @@ def singleProblem(problemId: int, result: str = ''):
                 return redirect(url_for('account.login'))
 
             problem = problems.search(problemId)
+            problemTitle = problem.title
             code = request.form['code']
             language = request.form['language']
             testCasePaths = json.loads(problem.testCases)
             answerPaths = json.loads(problem.answers)
-            ac = problem.AC
-            wa = problem.WA
+            acCount = problem.AC
+            waCount = problem.WA
             account = accounts.searchById(current_user.id)
             passProblem = json.loads(account.passProblem)
+            problemSetTitle = problemSets.search(problemSetId).title
+            basicPath = 'problemSet/{}/{}/testCases/'.format(problemSetTitle, problemTitle)
 
-            res = 'AC'
-            for testCase, answer in testCasePaths, answerPaths:
-                res, input, output, answer = judge(
-                    code_text=code, language=language, input_dir=testCase, answer_dir=answer)
+            result = str()
+            for testCasePath, answerPath in zip(testCasePaths, answerPaths):
+                result, input, output, answer = judge(
+                    code_text=code, language=language, input_dir=basicPath+testCasePath, answer_dir=basicPath+answerPath)
 
                 if result != 'AC':
                     break
 
-            if res == 'AC':
-                problem.update(id=problemId, AC=ac + 1)
+            if result == 'AC':
+                problem.update(id=problemId, AC=acCount + 1)
                 if problemId not in passProblem:
                     passProblem.append(problemId)
                     account.update(id=current_user.id, passProblem=json.dumps(passProblem))
             else:
-                problem.update(id=problemId, WA=wa + 1)
+                problem.update(id=problemId, WA=waCount + 1)
 
             return render_template('problem.html', problem=problem, result=result, sampleInput=sampleInput, sampleOutput=sampleOutput,
                                    sampleLen=sampleLen, input=input, output=output, answer=answer)
