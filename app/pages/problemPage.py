@@ -52,11 +52,11 @@ def singleProblem(problemSetId: int, problemId: int, result: str = ''):
             problemSetTitle = problemSets.search(problemSetId).title
 
             base = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute())
-            basicPath = '{}/problemSet/{}/{}/testCases/'.format(base, problemSetTitle, problemTitle)
+            url = base+'\\problemSet\\'+problemSetTitle+'\\'+str(problem.id)+'. '+problemTitle+'\\testCases\\'
 
             for testCasePath, answerPath in zip(testCasePaths, answerPaths):
                 result, input, output, answer = judge(
-                    code_text=code, language=language, input_dir=basicPath+testCasePath, answer_dir=basicPath+answerPath)
+                    code_text=code, language=language, input_dir=url+testCasePath, answer_dir=url+answerPath)
 
                 if result != 'AC':
                     break
@@ -68,7 +68,5 @@ def singleProblem(problemSetId: int, problemId: int, result: str = ''):
                     account.update(id=current_user.id, passProblem=json.dumps(passProblem))
             else:
                 problem.update(id=problemId, WA=waCount + 1)
-
-            return basicPath
 
     return render_template('problem.html', problem=problem, sampleInput=sampleInput, sampleOutput=sampleOutput, sampleLen=sampleLen)
