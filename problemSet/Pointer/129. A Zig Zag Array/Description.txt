@@ -1,0 +1,38 @@
+Task Description
+Prepare a two dimensional zig-zag array using a free buffer and a pointer array. Note that the numbers of columns in rows of a zig-zag array may be different. The ingredients of a zig-zag array are as follow.
+An integer row that indicates the number of rows of this two dimensional array.
+An integer array column[] that specifies the number of columns in that row.
+An integer buffer, int buffer[10000]; which will be sufficient to hold all elements.
+An array of integer pointers. int *array[]; This array has the number of row elements.
+Now you need to implement the following function, so that after calling prepare_array, we can use array[i][j] to access the elements in this prepared two dimensional zig-zag array.
+void prepare_array(int buffer[], int *array[], int row, int column[]);
+We will test your function using a code segment like the following.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+#include <stdio.h>
+#include "prepare_array.h"
+ int main() {
+    int row = 4;
+    int column[4] = {10, 20, 30, 10};
+    int *array[50];
+    int buffer[10000];
+    prepare_array(buffer, array, row, column);
+    for (int i = 0; i < 4; i++)
+     for (int j = 0; j < column[i]; j++)
+       array[i][j] = i * 100 + j;
+    return 0;
+}
+Hint
+If we properly set array[i] to point to a cell in buffer, array[i][j] will be the j-th cell from this location.

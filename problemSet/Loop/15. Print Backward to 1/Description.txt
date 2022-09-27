@@ -1,0 +1,19 @@
+Task Description
+Write a program to read a positive integer n
+and then print n
+backward to 1
+.
+Input Format
+There is one line in the input. The first line has the integer n
+.
+Output Format
+There are n
+lines in the output, according to the description.
+Sample Input
+5
+Sample Output
+5
+4
+3
+2
+1

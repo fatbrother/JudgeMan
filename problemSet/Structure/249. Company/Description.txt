@@ -1,0 +1,53 @@
+Task Description
+Write a program to determine the relation between two employees in a company. Every employee is described by a record like the following.
+撰寫管理公司員工之間的關係的程式，每一個員工的記錄格式如下所附：
+struct employee {
+  int id;
+  char first_name[32];
+  char last_name[32];
+  int boss_id;
+};
+The id is a unique identification number of an employee. The first_name and last_name are the names of an employee. The boss_id is the identification number of the boss of the employee. Two employees have one of the following relation.
+If an employee A can follow the "boss" relation to an employee to another employee B, then A is a subordinate of B, and B is a supervisor of A.
+If A and B have a common supervisor C, then A and B are colleague
+If none of the above is true, then A and B are unrelated.
+其中每一個員工都擁有自己獨一無二的 id 編號，而 first_name 和 last_name 則是員工的名字，最後一個 boss_id 則是指該名員工的上司編號。兩名員工之間的關係分成以下三種：
+如果員工 A 可以藉由 boss 關係找到 B，則表示 B 為 A 的上司，意即 A 是 B 的下屬。
+如果 A 和 B 有共同的上司，則 A 和 B 是同事。
+如果上述觀係都不成立，則 A 和 B 之間沒有關係。
+此外，這種關係是遞移的。例如，A 是 B 的上司，且 B 是 C 的上司，則 A 是 C 的上司。同理，B 是 A 的下屬，且 C 是 B 的下屬，則 C 是 A 的下屬。
+Input
+The first line of the input is the number of employees n
+, which is no more than 32. The next n
+lines are the information of the employees. The next line is the number of queries m
+. Each of the next m
+has the names of two employees. Since m
+could be quite large so you must process a query once you read it. These two names will be different.
+第一行會有一個整數 n
+表示有多少名員工，保證不多於 32 名員工，接下來會有 n
+行，每一行上會有一個員工資訊，分別為員工的 id, first_name, last_name。接著會有一個整數 m
+，表示接下來會有 m
+個詢問關係，接下來會有 m
+，每一行上會有兩個人名，保證詢問的兩個人名都不相同。
+Output
+The output has m
+lines. Each line indicates the relation between the two employees.
+對於每個詢問輸出一行關係。
+Sample input
+6
+100 John Smith 200
+200 Adam Joshson 300
+300 Jane Washington 300
+400 Mary Miller 300
+500 Eric Page 500
+600 James Clark 500
+4
+John Smith Jane Washington
+Jane Washington Adam Joshson
+Adam Joshson Mary Miller
+Mary Miller James Clark
+Sample output
+subordinate
+supervisor
+colleague
+unrelated

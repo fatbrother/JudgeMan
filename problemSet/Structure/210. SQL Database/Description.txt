@@ -1,0 +1,33 @@
+Task Description
+編寫一個程式來模擬一個資料庫服務器。程式首先會先讀取數據到資料庫，然後一次執行一個查詢命令。
+Input
+輸入第一部分為資料。第一行為資料筆數 n
+，n
+不超過 50
+。以下 n
+行一行一筆資料。資料內容由以下欄位組成。
+lastname，以字串儲存，長度不超過 80 字元。
+firstname，以字串儲存，長度不超過 80 字元。
+ID，以字串儲存，長度不超過 80 字元。
+salary，以整數儲存。
+age，以整數儲存。
+輸入第二部分是 SQL 查詢命令。命令格式如下：field 可以是 lastname、firstname、ID、salary 或 age。他們可以以任何順序出現並重複。欄位出現的數目至少為一，至多為八。condition 符合的資料才會被輸出。
+select field1 field2 ... fieldn where condition
+一個 condition 包括 field operator constant。field 為任意欄位。如果比較欄位是字串，operator 可能是 ==、!=。如果比較欄位是數字，operator 可能是 ==、> 或 <。另外 condition 的 constant 長度不超過 80 字元。
+Output
+輸出為查詢結果。對於每一筆查詢，如果結果有很多筆資料，輸出順序請依照資料的輸入順序。
+Sample Input
+4
+Liu Pangfeng A123456789 80000 40
+Wu Janet B123456789 79999 30
+Liu Kevin C123456789 0 10
+Liu Eric C123456789 0 7
+2
+select lastname firstname ID where salary > 1000
+select firstname lastname salary lastname where lastname == Liu
+Sample Output
+Liu Pangfeng A123456789
+Wu Janet B123456789
+Pangfeng Liu 80000 Liu
+Kevin Liu 0 Liu
+Eric Liu 0 Liu

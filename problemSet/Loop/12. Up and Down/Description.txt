@@ -1,0 +1,18 @@
+Task Description
+Write a program to read a positive integer n, then print a sequence of 2n−1 integers from 1 to n, and then from n−1 to 1.
+Input Format
+There is one line in the input. The first line has the integer n.
+Output Format
+There are 2n−1 lines in the output, according to the description.
+Sample Input
+5
+Sample Output
+1
+2
+3
+4
+5
+4
+3
+2
+1

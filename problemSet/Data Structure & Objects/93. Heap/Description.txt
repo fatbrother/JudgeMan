@@ -1,0 +1,33 @@
+Task Description
+Build a heap data structure. A heap should support the following functions:
+heap.h
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+#ifndef HEAP_H
+#define HEAP_H
+#define MAXHEAP 100
+ struct Heap{
+    int ary[MAXHEAP];
+    int num;
+};
+ void initialize(struct Heap *heap);
+int removeMin(struct Heap *heap);
+void add(struct Heap *heap, int i);
+int isFull(struct Heap *heap);
+int isEmpty(struct Heap *heap);
+#endif
+The maximum number of elements in a heap is defined as MAXHEAP, which you could define as 100 in heap.h. Now you need to turn in two files, heap.h and heap.c. The heap.h should include the definition of struct Heap, MAXHEAP, and the function declaration of initialize, removeMin, add, isFull, and isEmpty. The file heap.c contains the implementations of these functions.
+Note that removeMin always removes and return the minimum element in the heap, and the add function simply adds an element (a positive integer) into the heap. For example, one can add 1, 3, 5, and 1, into the heap in any order, and the following four removeMin will return 1, 1, 3, and 5 in this order. Note that this problem is NOT about performance so you do not need to use binary heap or other fancy data structures to do it. A simple array implementation should be enough. You should submit the heap.c and heap.h separately.

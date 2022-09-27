@@ -1,0 +1,114 @@
+Status
+Statistics
+Solution
+Problem Description
+Given a binary tree please print all paths from the root to all leaves. A leaf is a node without any child node, and a path is a sequence of node connecting two nodes. For example, in the figure below there are three leaves -- 1, 8 and 15. The path from the root to the leaf 1 is 9 7 1.
+p109
+You need to implement a function print_all_paths with the following prototype, where you will be given a pointer to the root of the tree.
+1
+void print_all_paths(struct node *root);
+The declaration of struct node is as follows. You do not need to declare it -- you only need to include a node.h header file to use it.
+node.h
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+#ifndef _NODE_H
+#define _NODE_H
+ struct node {
+    struct node *left;
+    struct node *right;
+    int data;
+};
+ void print_all_paths(struct node *root);
+ #endif
+Note that we will separately compile your submission so you should include stdio.h, node.h, and any other header that you will use. Also you are free to write any helper function in your submission.
+The constraints on the parameters are as follow.
+The length of a path, i.e., the depth of the tree, is no more than 1000.
+Input
+The input tree will be given as a pointer to the root.
+Output
+The output are paths from the root to all leaves. You should output a path as a sequence of nodes (indicated by their data) from the root to the leaf. Two adjacent nodes in a path should be separated by a space character. You should print paths in a left-to-right order.
+main.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include "node.h"
+ void print_all_paths(struct node *root);
+ struct node *insert_bs_tree(struct node *root, int data)
+{
+    struct node *current;
+    if (root == NULL)
+    {
+        current = (struct node *)malloc(sizeof(struct node));
+        assert(current != NULL);
+        current->data = data;
+        current->left = NULL;
+        current->right = NULL;
+        return current;
+    }
+     if (data < root->data)
+        root->left = insert_bs_tree(root->left, data);
+    else
+        root->right = insert_bs_tree(root->right, data);
+    return root;
+}
+ int main(void)
+{
+    int n;
+    struct node *root = NULL;
+     while (scanf("%d", &n) != EOF)
+        root = insert_bs_tree(root, n);
+     print_all_paths(root);
+}
+Sample Input
+9 7 1 8 15
+Sample output
+9 7 1
+9 7 8
+9 15

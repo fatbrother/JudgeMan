@@ -1,0 +1,37 @@
+Task Description
+從一段英數夾雜的字串中，擷取整數輸出。
+Input Format
+有多組測資，每組測資一行，字串長度不超過 1000，出現的整數 x
+滿足 −231≤x≤231−1
+Output Format
+將每一個整數輸出一行。
+Sample Input
+P0C002NTUCSIE2015Week2EXAMPROBLEM1
+Sample Output
+0
+2
+2015
+2
+1
+Hint
+#include <stdio.h>
+#include <string.h>    // strlen(s)
+ int main() {
+    char s[1024];
+    while (scanf("%s", s) == 1) {
+        int n = (int) strlen(s);    // strlen("CSIE") = 4, actually use "CSIE\0" in memory.
+        for (int i = 0; i < n; i++) {
+            char c = s[i];   
+            /*
+                input "CSIE",
+                s[0] = 'C', s[1] = 'S', ...
+            */
+            /* add you code here */
+        }
+        /* add you code here */
+    }
+    return 0;
+}
+多組測資 意即一個測資檔案會有多個測資。
+P0C002NTUCSIE2015Week2EXAMPROBLEM1
+2015Y09M20D02PM

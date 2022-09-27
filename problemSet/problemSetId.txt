@@ -1,0 +1,17 @@
+#1  Basic IO and Arithmetic
+#2  Comparison and Logic
+#3  if-then-else switch
+#4  Loop
+#5  Array
+#6  Function
+#-1  Floating Point Numbers
+#7  Pointer
+#8  Character
+#9  String
+#10  Extended Data Type & Bit Operation
+#11  Recursion
+#12  Structure
+#13  File IO
+#14  Data Structure & Objects
+#15  Stdlib & Preprocessing
+#100  Advanced

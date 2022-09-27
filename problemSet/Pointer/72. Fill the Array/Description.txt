@@ -1,0 +1,43 @@
+Task Description
+Write a program to fill an array with integers. We will be given an array ptr of n pointers to integers. The first element of ptr points to the first element in an integer array, and the last element of ptr points to the last element. Now we need to write an integer to every element of this integer array according to the following rules.
+If an integer in the array is pointed by a pointer within the array ptr, then its value should be the index of that pointer within the array.
+If an integer in the array is not pointed by a pointer within the array ptr, its value should be the sum of the two values of the two nearest elements to its left and to its right in the array that are pointed by pointers within the array ptr.
+You should implement the following function to assign values according to description above. The parameter ptr is the array of pointers, and n is the number of pointers in ptr. You only need to write the fill_array function.
+1
+void fill_array(int *ptr[], int n);
+p72.png
+Test main.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+#include <stdio.h>
+#include "fill_array.h"
+int main() {
+    int arr[100] = {};
+    int *ptr[100];
+    int n = 6, m = 0;
+    int A[100] = {0, 5, 6, 9, 3, 12};
+    for (int i = 0; i < n; i++) {
+        ptr[i] = &arr[A[i]];
+        if (A[i] > m)    m = A[i];
+    }
+    fill_array(ptr, n);
+    for (int i = 0; i <= m; i++)
+        printf("%d%c", arr[i], " \n"[i==m]);
+    return 0;
+}
+Note
+2019/9/13 Update: The initial values of the integer array is arbitrary.

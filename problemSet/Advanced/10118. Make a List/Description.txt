@@ -1,0 +1,161 @@
+Status
+Statistics
+Solution
+題目描述
+Morris 正在解某一道題，輸入的每一組測資只會需要一個串列 (List)，該筆測資運行結束後便會刪除串列。現在需要請你協助 Morris 建立這一個串列。
+utils.h
+這部份不需要變動。
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+#ifndef __UTILS_H
+#define __UTILS_H
+ int sp_rand();
+void sp_srand(long long t);
+ typedef struct Node {
+    int v;
+    struct Node *next;
+} Node;
+ void rm_list(Node *head);
+Node* mk_list(int n);
+ #endif
+utils.c
+#include "utils.h"
+ static long long seed = 1;
+int sp_rand() {
+       return (seed = (seed * 9301 + 49297) % 233280);
+}
+void sp_srand(long long t) {
+    seed = t;
+}
+main.c
+這部份不需要變動。
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+#include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
+ int main() {
+    int n;
+    long long s;
+     scanf("%lld", &s);
+    sp_srand(s);
+    while (scanf("%d", &n) == 1) {
+        Node *list = mk_list(n);
+        Node *u = list;
+        for (int i = 0; i < n; ) {
+            long long sum = 0;
+            int cnt = 1;
+            while (u && cnt < 100000) {
+                sum += u->v * cnt;
+                u = u->next, cnt++;
+                i++;
+            }
+            printf("%lld\n", sum);
+        }
+        rm_list(list);
+    }
+    return 0;
+}
+list.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+#include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
+ Node* mk_list(int n) {
+    Node *head;
+    // ...
+    for (int i = 0; i < n; i++) {
+        Node *u;
+        // ...
+        u->v = sp_rand(), u->next = NULL;
+        // ...
+    }
+    return head;
+}
+void rm_list(Node *head) {
+    // ...
+}
+輸入格式
+輸入第一行會有一個亂數種子
+S
+S
+，接著會有數行，每一行上會有一個整數
+N
+N
+，請產生一個長度為
+N
+N
+個串列。你可以假設
+N≤2000000
+N
+，同時串列不會進行刪除操作。
+輸出格式
+輸出串列結果。
+範例輸入
+514
+1
+2
+3
+範例輸出
+58598 ->
+127215 -> 79852 ->
+222509 -> 178626 -> 29563 ->
+編譯參數
+gcc -std=c99 -O2 -c list.c
+gcc -std=c99 -O2 -c utils.c
+gcc -std=c99 -O2 list.o utils.o main.c -lm

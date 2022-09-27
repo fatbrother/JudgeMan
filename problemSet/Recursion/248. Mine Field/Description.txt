@@ -1,0 +1,42 @@
+Task Description
+Write a program to find the mines. There is a nine by nine minefield, in which each cell could have a mine. Now you have the number of mines of all (up to eight) neighboring cells and the cell itself, and you need to determine the locations of all mines. For example, if you know the numbers of mines as follows.
+1 1 2 1 1 1 1 1 0
+2 2 3 2 2 3 2 2 0
+2 2 3 2 2 3 3 3 1
+2 3 2 2 1 2 3 3 2
+2 3 1 2 2 3 5 4 3
+4 6 3 3 3 4 5 4 3
+5 7 4 3 3 4 4 4 3
+6 9 6 4 2 2 1 3 3
+4 6 4 3 1 1 0 2 2
+Then the locations of mines will be like the following.
+0 0 0 0 0 0 0 0 0
+0 1 0 1 0 0 1 0 0
+0 1 0 0 1 0 1 0 0
+0 0 0 0 0 0 0 1 0
+1 0 1 0 0 0 0 1 0
+1 0 0 0 1 1 1 1 0
+1 1 1 0 0 1 0 0 1
+1 1 1 0 0 0 0 0 1
+1 1 1 0 1 0 0 0 1
+Note that we do not guarantee that there are solutions. If there is no solution, output "no solution\n". If there are multiple solutions, output the one that has the minimum value, i.e., if you consider the solution as an 81-bit unsigned integer, where bits are from top to bottom, from left to right.
+Sample input
+1 1 2 1 1 1 1 1 0
+2 2 3 2 2 3 2 2 0
+2 2 3 2 2 3 3 3 1
+2 3 2 2 1 2 3 3 2
+2 3 1 2 2 3 5 4 3
+4 6 3 3 3 4 5 4 3
+5 7 4 3 3 4 4 4 3
+6 9 6 4 2 2 1 3 3
+4 6 4 3 1 1 0 2 2
+Sample output
+0 0 0 0 0 0 0 0 0
+0 1 0 1 0 0 1 0 0
+0 1 0 0 1 0 1 0 0
+0 0 0 0 0 0 0 1 0
+1 0 1 0 0 0 0 1 0
+1 0 0 0 1 1 1 1 0
+1 1 1 0 0 1 0 0 1
+1 1 1 0 0 0 0 0 1
+1 1 1 0 1 0 0 0 1

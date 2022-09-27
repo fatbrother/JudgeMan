@@ -1,0 +1,17 @@
+Task Description
+Write a program to report the number of times a number N appears in another number M. These appearances may overlap.
+Limits
+10≤N≤99
+1000000≤M≤9999999
+Input
+Write a program to report the number of times a number N appears in another number M. The number N is between 10 and 99, and the number M is between 1000000 and 9999999, inclusively.
+Output
+The output has only one number, namely the number of times N appears in M.
+Sample input
+90 9090999
+Sample output
+2
+Sample input
+11 1110111
+Sample output
+4

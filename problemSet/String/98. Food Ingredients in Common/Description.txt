@@ -1,0 +1,21 @@
+Task Description
+A Food has many ingredients. For example, a cake is made of egg, flour, sugar, and butter and an omelet is made of egg, bacon, and ham. As a result the common ingredients of cake and omelet is egg. Now write a program to determine the common ingredients of given two foods.
+Input
+The first line of the input is n, the number of foods. Each of the next n lines starts with the food, followed by a number i, then number of ingredients, then followed by the names of the i different ingredients. All names of food and ingredients consist of lower case letter only. The next line is m, the number of queries. Each of the following m line has the names of two foods.
+Output
+The output has m lines. The i-th line lists the names of common ingredients for the i-th query. You must output the names in dictionary order. If there is no common ingredients for a query, you must output “nothing”. It is guaranteed that no ingredient is called “nothing”.
+Limits
+n is positive and no more than 100
+i is positive and no more than 10
+The length of food and ingredient names are positive and no more than 64.
+Sample input
+3
+cake 4 egg flour sugar butter
+omelet 4 egg bacon ham butter
+bread 1 flour
+2
+cake omelet
+omelet bread
+Sample output
+butter egg
+nothing

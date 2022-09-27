@@ -1,0 +1,39 @@
+Task Description
+Write a program to recognize lakes. We are given a N
+by M
+picture, and each pixel indicates whether that cell is land or water. A lake is defined as a set of water cells that are connected. Two cells are connected if they have the same x
+coordinate, and their y
+coordinates differ by exactly 1, or they have the same y
+coordinate, and their x
+coordinates differ by exactly 1. The size of a lake is the number of water cells in it.
+Input
+There first line of input has N
+and M
+(1≤N,M≤400
+), the dimension of the picture. Each of the next N
+line has M
+numbers. A 1 indicates a water cell and a 0 indicates a land cell.
+Output
+The out has L
+lines, where L
+is the number of lakes in the picture, which is at most N⋅M/2+1
+. The i
+-th line has the size of i
+-th largest lake.
+Sample input
+10 8
+1 1 1 1 1 1 1 1
+1 0 0 0 0 0 0 1
+1 0 0 1 1 0 0 1
+1 0 1 1 1 1 0 1
+1 0 0 0 0 1 0 1
+1 0 1 0 0 1 0 1
+1 0 1 1 1 1 0 1
+1 0 0 1 1 0 0 1
+1 0 0 0 0 0 0 1
+1 1 1 1 1 1 1 1
+Sample output
+32
+15
+Poem
+我環顧四週，追尋流水的方向， 我雖不能像上帝一樣，在水面行走， 但是我思念的腳步，卻沒有不能到達的地方， 因為這一步，這一生的結束， 就是下一步，下一世的開始。

@@ -1,0 +1,24 @@
+Task Description
+Write a program to determine the day for a given day. We will first have the year and the day of January first. For example, January first of 2012 is a Sunday. Then we will have the month and day of today. For example, today is November thirteenth. Please determine the day of today, which is a Tuesday.
+Input
+The first line has the year and the day of January first. In our example, that will be 2012 0. Note that we use 0 for Sunday, 1 for Monday, etc. The second line is the number of test cases n
+. n
+is at least 1 and at most 10. Each of the following n
+lines has the month and day. In our example, it will be 11 13. If the month is incorrect, you should output -1. If the month is correct but the day is incorrect, you should output -2.
+Output
+The is n
+output lines, and each line has an integer, which is the day of the test case. Here we use 0 for Sunday, 1 for Monday, etc.
+Sample input
+2012 0
+5
+11 13
+11 14
+11 15
+13 1
+1 200
+Sample output
+2
+3
+4
+-1
+-2

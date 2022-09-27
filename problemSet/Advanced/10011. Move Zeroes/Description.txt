@@ -1,0 +1,40 @@
+Status
+Statistics
+Solution
+背景
+台大生存的第二周，還能撐多久，聽不懂、聽不到。如果中秋連假後不見，不用找了。
+Problem
+輸入一個 n
+個整數的序列 A
+，請把序列中的 0 搬到序列尾端，並且不改變其他非零元素的順序。
+1≤n≤100000
+Input Format
+輸入只有一組測資，每一組第一行會有一個整數 n
+，接下來會有 n
+個整數 Ai
+。
+Output Format
+輸出 n
+個整數以空白隔開。
+Sample Input
+5
+0 1 0 3 12
+Sample Output
+1 3 12 0 0
+Bonus
+如果一開始把數字存在陣列中，如何使用 O(1)
+來完成呢？在算法中命名為 in-place algorithm。
+#include <stdio.h>
+#define MAXN 100005
+int A[MAXN];
+int main() {
+    int n, i;
+    while (scanf("%d", &n) == 1) {
+        for (i = 0; i < n; i++)
+            scanf("%d", &A[i]);
+        /* add your code */
+        for (i = 0; i < n; i++)
+            printf("%d%c", A[i], " \n"[i==n-1]);
+    }
+    return 0;
+}

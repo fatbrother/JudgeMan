@@ -1,0 +1,16 @@
+Task Description
+Given a set of positive integers, compute their least common multiplier. For example, if you are given 2, 3, 4, and 5, then the least common multiplier is 60, because 60 is the smallest multiplier of 2, 3, 4, and 5.
+給一個正整數集合，請計算集合的最小公倍數。例如給定 2, 3, 4, 5，它們的最小公倍數為 60，60 是可以被 2, 3, 4, 5 整除的最小的正整數。
+Input
+The input has a line of positive integers. You must process all integers in this line.
+輸入只有一行，這一行上有數個正整數。
+Output
+The output has the least common multiplier of input integers. Note that it is guaranteed that all the computation can be done in the range of int.
+輸出一行一個整數，保證答案一定在 32-bit 內。
+Sample input
+2 3 4 5
+Sample output
+60
+Hint
+It is easy to see that the product of the least common multiplier and the greatest common divisor of two positive integers is the product of these two positive integers. For example, lcm(6,15)×gcd(6,15)=30×3=6×15
+.

@@ -1,0 +1,6 @@
+3. Print Two Numbers
+4. Add Three Numbers
+5. Surface Area and Volume
+6. Print Three Digits
+27. Surface Area and Volume of a Box
+283. Chicken, Rabbit, and Crab in a Cage

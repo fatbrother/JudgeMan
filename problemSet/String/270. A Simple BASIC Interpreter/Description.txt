@@ -1,0 +1,63 @@
+Task Description
+Write a simple BASIC interpreter. A simple basic program has two parts -- a variable declaration part and a statement part. The variable declaration part is always the first line (line 0) in the program. It has all the variable declaration and their initial values, and ends with "END". For example the following is an example of variable declaration part. It declares 8 variables and gives them initial values.
+N = 2 F = 2 ONE = 1 TWO = 2 R = 0 S = 0 ZERO = 0 HUNDRED = 100 END
+The rest of a simple BASIC program is the statement part, starting with line 1. Each line is a statement. There are five possible statements.
+A GOTO statement transfers controls to another line. For example, the following command transfers control to line 1.
+GOTO 1
+An IF statement transfers control to another line if the condition is true, or to the next line if the condition is not true. For example the following command transfer control to line 11 if N is greater than HUNDRED. The condition can only take the form of "variable1 op variable2", where variable1 and variable2 are two variables and op is "==", "!=", ">", "<", ">=", or "<=".
+IF N > HUNDRED GOTO 11
+An assignment statement assign an expression to a variable. For example the following statement assigns N with the sum of N and ONE. The expression can only take the form of "variable1 op variable2", where variable1 and variable2 are two variables and op is "+", "-", "*", "/", or "%".
+N = N + ONE
+A PRINT statement prints the value of a variable and a new line. For example the following statement prints the value of N in a line.
+PRINT N
+A STOP statement stops the execution of the simple BASIC program.
+Limits
+Lengths of variables are between 1 to 7.
+There are at most 100 variables and 1000 lines in the program.
+A variable name consists of uppercase letters and/or digits.
+Input
+There input is a simple BASIC program.
+Output
+The output is the results of all PRINT statements.
+Sample Input
+N = 2 F = 2 ONE = 1 TWO = 2 R = 0 S = 0 ZERO = 0 HUNDRED = 100 END
+IF N > HUNDRED GOTO 11
+F = TWO + ZERO
+R = N % F
+IF R == ZERO GOTO 9
+F = F + ONE
+S = F * F
+IF S <= N GOTO 3
+PRINT N
+N = N + ONE
+GOTO 1
+STOP
+Sample Output
+3
+5
+7
+11
+13
+17
+19
+23
+29
+31
+37
+41
+43
+47
+53
+59
+61
+67
+71
+73
+79
+83
+89
+97
+NOTES
+First you need to prepare two arrays -- one for the names of the variables and the second for the current values of the variables. After processing the first line you will know all the names and intial values of all variables.
+Next you need to process and store every BASIC program statement because you may need to go to any line number. You can use a array to store what kind of statement each line is. And in addition for a GOTO statement you need to remember which line it will go, and for an assignment you need to remember the target of the assignment, the operands and the operator of the expression, etc.
+After you have process all the statement, you can just set line number to 1 and start doing each statement, according to the information stored in the previous step.

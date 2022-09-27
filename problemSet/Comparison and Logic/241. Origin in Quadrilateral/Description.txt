@@ -1,0 +1,98 @@
+Task Description
+Given a convex quadrilateral Q
+, please determine if the origin (0,0)
+is with Q
+. For example, if Q
+has four corners (2,1)
+, (−1,2)
+, (−2,−1)
+, and (−1,−3)
+then the answer is yes. If Q
+is (12,1)
+, (9,2)
+, (8,−1)
+, and (9,−3)
+then the answer is no.
+給一個凸四邊形 Q
+的四個頂點座標，請問原點 (0,0)
+是否在四邊形內部，如果原點在四邊形內部，輸出 1，反之，請輸出 0。
+p241-example 1: origin in Q
+p241-example 2: origin not in Q
+Input
+The input consists of eight integers, a,b,c,d,e,f,g
+, and h
+, representing the four corners (a,b),(c,d),(e,f)
+, and (g,h)
+in counterclockwise order. It is guaranteed that the four sides of the Q
+will not be parallel to either x or y axis, and will not contain the origin. The absolute value of all numbers is no more than 100.
+輸入包含八個整數 a,b,c,d,e,f,g,h
+，按照逆時針順序給定座標 (a,b),(c,d),(e,f),(g,h)
+。請注意：四邊形的邊不一定平行於座標兩軸，座標的絕對值小於等於 100
+。
+Output
+The output is either 1 or 0, representing that the origin is within or not within Q
+.
+Sample Input 1
+2 1 -1 2 -2 -1 -1 -3
+Sample Output 1
+1
+Sample Input 2
+12 1 9 2 8 -1 9 -3
+Sample Output 2
+0
+Hint 1
+In computational geometry of the plane, the cross product is used to determine the sign of the acute angle defined by three points p1=(x1,y1)
+, p2=(x2,y2)
+and p3=(x3,y3)
+. It corresponds to the direction of the cross product of the two coplanar vectors defined by the pairs of points p1,p2
+and p1,p3
+, i.e., by the sign of the expression P=(x2−x1)(y3−y1)−(y2−y1)(x3−x1)
+... Cross product Computational geometry - wiki
+For sample input 1, we get four vectors
+→
+a
+=(2,1),
+→
+b
+=(−1,2),
+→
+c
+=(−2,−1),
+→
+d
+=(−1,−3)
+.
+Origin in Q
+if and only if it must satisfy that
+→
+a
+×
+→
+b
+=2⋅2−1⋅(−1)=5>0
+,
+→
+b
+×
+→
+c
+=(−1)⋅(−1)−2⋅(−1)=3>0
+,
+→
+c
+×
+→
+d
+=(−2)⋅(−3)−(−1)⋅(−1)=3>0
+, and
+→
+d
+×
+→
+a
+=(−1)⋅(1)−(−3)⋅(2)=5>0
+Hint 2
+Ray casting algorithm O(n)
+- Wiki / Convex Polygon O(logn)
+Hint 3
+Area summation method (Note: Be careful about arithmetic overflow)

@@ -1,0 +1,30 @@
+Status
+Statistics
+Solution
+Description
+Write a program to compute the number of ways to go from the lower left corner of a matrix to upper right corner. The matrix has r
+rows and c
+columns. You can only move one cell to another cell, and only to the right or to the top. Also there are obstacles in the matrix and you cannot go into any cell that is obstacle . Please compute the number of ways you can go. Note that you are strongly suggested to think in "recursion" to solve this problem.
+Limits
+Both r
+and c
+are no more than 12
+.
+Input Format
+There are r+1
+lines in the input. The first line has r
+and c
+. The next r
+lines have the status of the matrix. A 1 indicates a cell you can go through, and a 0 is an obstacle. Both the lower left and upper right corners are 1's.
+Sample input
+8 3
+1 1 1
+1 1 1
+0 1 1
+1 1 1
+0 1 1
+0 0 1
+1 1 1
+1 1 1
+Sample output
+3

@@ -1,0 +1,98 @@
+Task Description
+Write a program to count words using struct. We will write several functions to process strings. The first function will keep tracks of string it has seen. The prototype is as follows.
+1
+2
+3
+4
+5
+6
+struct string_count {
+  char seen[80];
+  int count;
+};
+ int compare_and_add(char *string, struct string_count strings[]);
+Function compare_and_add will compare string with seen stored in strings, and updates the count in strings accordingly. Note that if compare_and_add finds a match, it will return 1 otherwise, it will return 0. The second function will sort the strings according to their frequencies. After we have seen all strings we can print the number of times each string appears in non-decreasing order. Your function must sort strings according to the number of times that string appears. If there is a tie in the number of times two strings appear, the smaller string appears first (according to strcmp). We need the following function to do this.
+1
+void sort(struct string_count strings[]);
+Finally we need a function to print the strings stored in strings. Each line of the output begins with the number of times a string appears, then a space, then the string itself.
+1
+void print(struct string_count strings[]);
+A typical scenario may look like this:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+/* your uploaded code will be here */
+int main() {
+        struct string_count strings[20];
+        int i;
+        for( i=0 ; i<20 ; i++ )
+                strings[i].count = 0;
+        compare_and_add( "This", strings );
+        compare_and_add( "is", strings );
+        compare_and_add( "an", strings );
+        compare_and_add( "apple,", strings );
+        compare_and_add( "and", strings );
+        compare_and_add( "this", strings );
+        compare_and_add( "is", strings );
+        compare_and_add( "a", strings );
+        compare_and_add( "book.", strings );
+        sort( strings );
+        print( strings );
+        return 0;
+}
+You must submit something like the following:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+#include <stdio.h>
+#include <string.h>
+struct string_count {
+        char seen[80];
+        int count;
+};
+int compare_and_add(char *string, struct string_count strings[]) {
+        ...
+}
+void sort(struct string_count strings[]) {
+        ...
+}
+void print(struct string_count strings[]) {
+        ...
+}
+And the program should have the following output:
+1 This
+1 a
+1 an
+1 and
+1 apple,
+1 book.
+1 this
+2 is

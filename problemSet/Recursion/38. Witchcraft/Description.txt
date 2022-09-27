@@ -1,0 +1,32 @@
+Task Description
+Write a program to help a witch find out the correct composition of a secret lotion. The witch has three kinds of ingredients: alligator legs, bat eyes, and cat skulls, which we will refer to as a
+, b
+, and c
+. These three ingredients has three different levels of magic power, which we will refer to as A
+, B
+, and C
+respectively. If we put just the right amount of these ingredients together so that the sum of their magic power is exactly D
+, then we will be able to make the secret lotion. If we cannot put together just the right amount of magic power, we cannot make the lotion.
+Now given the the amounts of a
+, b
+, and c
+, determine if the witch can make the lotion.
+Input
+Each input has N
+input cases, which appears first in the input. The next N
+lines each is an input case. Each input case is a line of 7 integers. The first number is the amount of magic power desired (D
+), and the next three numbers are the units of supply of the three ingredients the witch has (a,b,c)
+, and the last three numbers are the levels of magic power of these three ingredients (A,B,C)
+. All the numbers are non-negative integers and can be stored in int.
+Output
+The output has N
+lines, each for a input case. If the witch is able to make the lotion using the supplies she has, please output "yes", otherwise output "no".
+Sample input
+2
+1134 100 100 100 7 13 17
+1134 4 5 6 100 200 300
+Sample output
+yes
+no
+Notes
+Note that you cannot use array or pointer in this homework. Everything needs to be done in simple variables. We strongly encourage you to use the recursion method to solve this problem.

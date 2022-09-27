@@ -1,0 +1,164 @@
+Task Description
+Write a program to simulate memory allocation. Recall that we can use malloc to allocate memory. An allocated memory has a starting address and a length, and these allocated memory will not overlap. We want to simulate, after a series of allocations, where the free memory are. Consider the following program:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+#include"memory.h"
+ int main() {
+        Memory myMemory;
+        initMemory(&myMemory, 100);
+        printMemory(&myMemory);
+        allocateMemory(&myMemory, 50, 10);
+        printMemory(&myMemory);
+        allocateMemory(&myMemory, 70, 10);
+        printMemory(&myMemory);
+        allocateMemory(&myMemory, 0, 10);
+        printMemory(&myMemory);
+        allocateMemory(&myMemory, 30, 10);
+        printMemory(&myMemory);
+        return 0;
+}
+This program uses a memory object. There are three functions for the memory object.
+initMemory(Memory *memory, int n)
+will initialize a memory of size n
+. 1≤n≤1000000000
+allocateMemory(Memory *memory, int start, int length)
+allocates a memory block with a starting address and a length. 0≤start<start+length≤n
+printMemory(Memory *memory)
+prints the available free blocks for the current memory.
+The previous program should produce the following output. Initially the entire memory is free so the only free block starts from 0 and is of length 100. After the first allocation starting at 50 and of length 10, there will be two free blocks now -- one starts at 0 with length 50, and the other starts at 60 with length 40. The memory allocation continues so your memory object should record what memory blocks are still free, so that the prtintMemory can print them correctly.
+==========
+start 0, length 100
+==========
+start 0, length 50
+start 60, length 40
+==========
+start 0, length 50
+start 60, length 10
+start 80, length 20
+==========
+start 10, length 40
+start 60, length 10
+start 80, length 20
+==========
+start 10, length 20
+start 40, length 10
+start 60, length 10
+start 80, length 20
+I strongly suggest using a linked list to record the free memory blocks. Whenever we have a memory allocations, we can traverse the list, find the necessary block to update. Note that you may need to insert a new free memory block because one might allocate in the middle of a block. You also need to remove a free block since it may be allocated completely.
+You need to implement the following functions:
+1
+2
+3
+void initMemory(Memory *memory, int length);
+void printMemory(Memory *memory);
+void allocateMemory(Memory *memory, int start, int length);
+The bonus problem is to extend the previous memory object so that it supports free function. This function will release a memory block.
+void freeMemory(Memory *memory, int start, int length);
+0≤start<start+length≤n
+The main program may look like this now:
+main.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+#include "memory.h"
+ int main() {
+        Memory myMemory;
+        initMemory(&myMemory, 100);
+        printMemory(&myMemory);
+        allocateMemory(&myMemory, 50, 10);
+        printMemory(&myMemory);
+        allocateMemory(&myMemory, 70, 10);
+        printMemory(&myMemory);
+        allocateMemory(&myMemory, 0, 10);
+        printMemory(&myMemory);
+        allocateMemory(&myMemory, 30, 10);
+        printMemory(&myMemory);
+        freeMemory(&myMemory, 50, 5);
+        printMemory(&myMemory);
+        freeMemory(&myMemory, 70, 10);
+        printMemory(&myMemory);
+        freeMemory(&myMemory, 30, 10);
+        printMemory(&myMemory);
+        freeMemory(&myMemory, 0, 10);
+        printMemory(&myMemory);
+        return 0;
+}
+Now the output should be like this.
+==========
+start 0, length 100
+==========
+start 0, length 50
+start 60, length 40
+==========
+start 0, length 50
+start 60, length 10
+start 80, length 20
+==========
+start 10, length 40
+start 60, length 10
+start 80, length 20
+==========
+start 10, length 20
+start 40, length 10
+start 60, length 10
+start 80, length 20
+==========
+start 10, length 20
+start 40, length 15
+start 60, length 10
+start 80, length 20
+==========
+start 10, length 20
+start 40, length 15
+start 60, length 40
+==========
+start 10, length 45
+start 60, length 40
+==========
+start 0, length 55
+start 60, length 40
+You need to implement the additional function:
+1
+void freeMemory(Memory *memory, int start, int length);
+Notice: In order to avoid linking error, you do have to implement freeMemory even if you don't want to get the bonus points. In this case, just write an empty function like this:
+1
+2
+3
+void freeMemory(Memory *memory, int start, int length) {
+    /* to do */
+}

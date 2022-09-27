@@ -1,0 +1,155 @@
+Task Description
+Build a library to process set of numbers from 0 to 63 Since a long long int has 64 bits, we can use a bit to present a number in the set. If the bit is 1 then the corresponding number is in the set, otherwise it is not in the set. You need to implement the following functions for set.
+void init(Set *set)
+This function set the set to be empty.
+void add(Set *set, int i)
+This function adds i into the set.
+void has(Set set, int i)
+This function prints a message to indicate if i
+is in a set. For example, if a
+is {3,5,2}
+and i
+is 3
+, then it will print set has 3. If a
+is {3,5,2}
+and i
+is 13
+, then it will print set does not have 13.
+Set setUnion(Set a, Set b)
+This function returns the union of sets a
+and b
+. For example, if a
+is {3,5,2}
+and b
+is {3,7,9}
+, then the union of a
+and b
+is {3,5,2,7,9}
+.
+Set setIntersect(Set a, Set b)
+This function returns the intersection of sets a
+and b
+. For example, if a
+is {3,5,2}
+and b
+is {3,7,9}
+, then the intersection of a
+and b
+is {3}
+.
+Set setDifference(Set a, Set b)
+This function returns the difference between sets a
+and b
+. For example, if a
+is {3,5,2}
+and b
+is {3,7,9}
+, then the difference of a
+and b
+is {5,2,7,9}
+.
+main.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+#include <stdio.h>
+#include "set.h"
+ int main()
+{
+  Set a, b, c;
+   init(&a);
+  add(&a, 3);
+  add(&a, 5);
+  add(&a, 2);
+   init(&b);
+  add(&b, 3);
+  add(&b, 7);
+  add(&b, 9);
+   c = setUnion(a, b);
+  has(c, 2);
+  has(c, 3);
+  has(c, 5);
+  has(c, 7);
+  has(c, 9);
+   c = setIntersect(a, b);
+  has(c, 2);
+  has(c, 3);
+  has(c, 5);
+  has(c, 7);
+  has(c, 9);
+   c = setDifference(a, b);
+  has(c, 2);
+  has(c, 3);
+  has(c, 5);
+  has(c, 7);
+  has(c, 9);
+   return 0;
+}
+set.h
+1
+2
+3
+4
+5
+6
+7
+typedef unsigned long long Set;
+void init(Set *set);
+void add(Set *set, int i);
+void has(Set set, int i);
+Set setUnion(Set a, Set b);
+Set setIntersect(Set a, Set b);
+Set setDifference(Set a, Set b);
+Sample Output
+set has 2
+set has 3
+set has 5
+set has 7
+set has 9
+set does not have 2
+set has 3
+set does not have 5
+set does not have 7
+set does not have 9
+set has 2
+set does not have 3
+set has 5
+set has 7
+set has 9

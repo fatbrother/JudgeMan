@@ -1,0 +1,32 @@
+Task Description
+Given a set of N
+numbers, please find the following according to the remainder when divided by another positive number m
+.
+The sum of these numbers
+The maximum of these numbers
+The minimum of these numbers
+For example, when m=2
+then you need to find the sums of all odd and the sum of all even numbers, the maximum of even numbers and the maximum of all odd numbers, and the minimum of all odd numbers and the minimum of all even numbers. It is guaranteed that there will be at least one number corresponding to all the possible m
+(from 0
+to m−1
+) remainders.
+Input Format
+The first line of the input data consists of two integers N
+and m
+, where 0≤N≤10000
+and 1≤m≤1000
+. The next line contains N
+non-negative integers to be processed, and each integer is less then or equal to 10000
+.
+Output Format
+You should output m
+lines. The i'th line must consists of three numbers, which are the sum, maximum and minimum of those numbers whose remainders are i−1
+modulo m
+respectively.
+Sample Input
+6 3
+0 1 2 4 7 14
+Sample Output
+0 0 0
+12 7 1
+16 14 2

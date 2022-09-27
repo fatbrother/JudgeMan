@@ -1,0 +1,23 @@
+Task Description
+Write a program to determine if two words are similar. Two words are similar if the one of the following two conditions is true.
+The lengths of the two strings are the same, and one string can be obtained by switching two consecutive characters in the other string. For example, best and bets are similar.
+The lengths of the two strings differ by 1, and shorter string can be obtained by deleting one character from the longer string. For example, best and bet are similar.
+Two strings are equal.
+Now given a set of pairs of strings, determine whether if they are similar. The first line of the input is the number of pairs of string, n
+. The length of string is no more than 80. Each pair of string has two lines. The output has n
+lines. If the i-th pair is similar, the output is yes. Otherwise the output is no.
+Sample Input
+4
+best
+bets
+bet
+best
+bet
+bat
+sample
+sample
+Sample Output
+yes
+yes
+no
+yes

@@ -1,0 +1,32 @@
+Task Description
+寫一個程式計算從 n
+個不同物品中取不超過 m
+個物品的方法總數。可以先寫一個計算 C(n,k)
+的函式，之後計算 C(n,k)
+, k
+由 0
+到 m
+的和即可。
+F(n,m)=
+m
+∑
+i=0
+(
+n
+i
+)
+Input
+輸入只有一行 n
+及 m
+。
+Output
+輸出是 n
+個不同物品中取不超過 m
+個物品的方法總數。
+Limits
+0<n<15
+0≤m≤n
+Sample Input
+5 2
+Sample Output
+16

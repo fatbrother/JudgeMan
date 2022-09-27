@@ -1,0 +1,18 @@
+Task Description
+Write a program to keep track of your expenses. You will be given a sequence of expenses. Each expense consists of year, month, date, category, and amount. Year, month, date, and amount are positive integers, and the category is a string. After reading these expenses, you need to make a summary report about your expense for every day. The report will be sorted in ascending date order, and in each day the expenses are sorted in category based on alphabetic order. However, the expenses for the same day and the same category should be combined.
+Each input line is an expense. Each expense has year, month, date, category, and amount. All year, month, date are positive integer. The category is a string of length at most 32. There will be at least 1 and at most 10000 expenses. You should process all expenses until EOF.
+The output is a summary report according to the description above.
+批改娘曰 Execution time > 1 second 即斬 !!
+Sample input
+2012 1 1 food 23
+2012 1 1 food 3
+2012 10 10 rent 3000
+2010 10 1 food 34
+2012 1 2 food 5
+2012 10 10 food 10
+Sample output
+2010 10 1 food 34
+2012 1 1 food 26
+2012 1 2 food 5
+2012 10 10 food 10
+2012 10 10 rent 3000

@@ -1,0 +1,6 @@
+9. Score of an Integer
+215. Chicken, Rabbit and Crab
+80. Triangle
+240. Square, Diamond, and Rectangle
+10. Power
+202. Mixed Fractions

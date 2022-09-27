@@ -1,0 +1,15 @@
+15. Print Backward to 1
+12. Up and Down
+13. Print a Repeated Pattern
+73. 3n, 3n + 1, and 3n + 2
+88. AB Numbers
+54. Number of Appearance
+97. Bicycle and Parking Lot
+232. What day is Today?
+244. Lottery
+234. Factorization
+242. Three Circles
+36. Calender
+204. House of Mirrors
+203. Bouncing Balls
+55. The Robots

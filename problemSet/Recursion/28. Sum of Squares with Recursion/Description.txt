@@ -1,0 +1,12 @@
+Task Description
+Write a program to compute the sum of squares from 1 to n with a recursive function. You should NOT use loops.
+Limits
+n is positive and no more than 1000.
+Input Format
+There are one line in the input. The first line has n.
+Output Format
+There are one lines in the output. The first line has the sum of squares from 1 to n.
+Sample Input
+5
+Sample Output
+55

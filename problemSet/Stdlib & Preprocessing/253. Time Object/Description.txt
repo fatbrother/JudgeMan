@@ -1,0 +1,48 @@
+Task Description
+Write an object for time. A time consists of a hour, minute, and second. You need to supply the following functions.
+撰寫記錄時間的物件，時間記錄包含小時、分鐘以及秒，你還必須完成下述的函數：
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+#ifndef MWTIME
+#define MWTIME
+ typedef struct Time {
+    int hour;
+    int minute;
+    int second;
+} Time;
+ void initTime(Time *time);
+void setTime(Time *time, int hour, int minute, int second);
+void addTime(Time *time, int hour, int minute, int second);
+void printTime(Time *time);
+#endif
+The initTime is to set the time to 00:00:00.
+The setTime is to set the time in 24 hour format.
+The addTime is to add a amount of time. This may cause overflow. For example, if you add two hours to 11pm then your will get 1am.
+The printTime is to output the time. If the symbol H24 is defined, then you need to print the time in 24 hour format. For example, if the time is 15 after 3pm, then you should output 15:15:00. If the H24 symbol is not defined, you should print 03pm:15:00.
+函數有下列幾種：
+函數 initTime 將物件初始化時間為 00:00:00。
+函數 setTime 以 24 小時制設定時間單位。
+函數 addTime 增加時間量，這可能會造成溢出，例如晚間 11pm 增加 2 個小時會到跨日的 1am。
+函數 printTime 會要求輸出兩種格式，若有定義 H24 則程式要輸出 24 小時制格式，例如 15:15:00。反之，若沒有定義 24 小時制，則輸出 12 小時制格式，如 03pm:15:00。
+特別小心
+參考 wiki 12-hour clock
+00:15:30 在 12 小時制下，應顯示 12am:15:30
+12:15:30 在 12 小時制下，應顯示 12pm:15:30
+編譯參數
+$ gcc -std=c99 -O2 -c main.c
+$ gcc -std=c99 -O2 -c time.c -o h12.o
+$ gcc -std=c99 -O2 -c time.c -o h24.o -DH24 -DinitTime=initTime24 -DsetTime=setTime24 -DaddTime=addTime24 -DprintTime=printTime24
+$ gcc -std=c99 -O2 main.o h12.o h24.o
+$ ./a.out

@@ -1,0 +1,28 @@
+Task Description
+Write a program to simulate two bouncing balls in a box. Let's assume that there is a box of width X and height Y, and two balls moving within the box. The initial positions of these two balls are different and given as (x1,y1) and (x2,y2) respectively, and 1<x1,x2<X, 1<y1,y2<Y. The moving direction of these balls are given as (dx1,dy1) and (dx2,dy2). The balls move 1 unit at a second and they always move in 45 degree angle, therefore all dx and dy are either 1 or −1. For example, suppose (x1,y1) is (3,4) and (dx1,dy1) is (−1,1) then after one second the first ball will move to (2,5).
+The ball will bounce when it hits the wall of the box. Since the ball always moves in 45 degree angle, it is easy to compute its path. For example, suppose (x1,y1) is (2,4) and (dx1,dy1) is (−1,1) then the position of the first ball is (2,4),(1,5),(2,6),... etc. If the ball hits a corner, it bounces back the way it came in.
+The balls may hit each other and bounce back. We determine if two balls hit into each other by checking whether their positions are the same after they move into their new locations. For example, suppose (x1,y1) is (3,4) and (dx1,dy1) is (−1,1), and (x2,y2) is (3,6) and (dx1,dy1) is (−1,−1), The first ball will go to (3,4),(2,5),(1,4), ... and the second ball will go to (3,6),(2,5),(1,6), ..., etc.
+Note that by our rules two balls exchanging positions do not collide. I know this is against physics but I do not want to make this problem complicated, so bear with me.
+Limits
+5<X,Y<300
+Input
+The input are X,Y,x1,y1,x2,y2,dx1,dy1,dx2,dy2, and the number of seconds you need to simulate.
+Output
+The output is the final position of these two balls, in x1, y1, x2, y2 order.
+Sample input
+20
+20
+3
+4
+3
+6
+-1
+1
+-1
+-1
+2
+Sample output
+1
+4
+1
+6

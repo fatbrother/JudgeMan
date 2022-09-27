@@ -1,0 +1,23 @@
+Task Description
+Write a program to read a positive integer n
+and a sequence of n
+positive integers, then print the sequence in 2
+lines. The first line is for odd numbers, and the second line is for even numbers.
+Limits
+n
+is no more than 1000
+.
+Input Format
+There are two lines in the input. The first line has the integer n
+. The second line has the n
+positive integers.
+Output Format
+There are two lines in the output, according to the description.
+Sample Input
+5
+3 6 7 9 20
+Sample Output
+3 7 9
+6 20
+特別注意
+若在行尾輸出 多餘的空白字元，你將會得到 Wrong Answer

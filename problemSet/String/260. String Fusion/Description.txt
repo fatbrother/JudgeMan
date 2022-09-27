@@ -1,0 +1,22 @@
+Task Description
+Write a program to do string "fusion". The fusion is similar to string concatenation but it will combine the suffix of the first string and the prefix of the second string if they are the same. For example if you fuse "abcd" with "cdef" then you will get "abcdef". Also the fusion will try to fuse as many characters as possible. For example, if you fuse "abccc" with "cccde" then you will get "abcccde", not "abccccde", nor "abcccccde".
+Input
+The input consists of a series of (at least two) nonempty strings consisting of lower case letters, and you need to fuse the next one to the result of previous fusion. You must process all string until EOF. Each string and all the intermediate results have no more than 127 characters.
+Output
+The final fusion result.
+Sample Input
+a
+b
+c
+bcde
+bcde
+cdefghi
+ghi
+ghi
+ghijk
+abcdefghijklmn
+zzz
+zzzz
+abc
+Sample Output
+abcdefghijklmnzzzzabc

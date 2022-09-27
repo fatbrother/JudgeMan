@@ -1,0 +1,29 @@
+Task Description
+Given a binary tree, traverse it in this HLHR order.
+An HLHR order is to traverse the root of the tree first, then traverse the left subtree (if exists) in HRHL order, then traverse the root again, then traverse the right subtree (if exists) in HRHL order.
+Similarly, an HRHL order is to traverse the root of the tree first, then traverse the RIGHT subtree (if exists) in HLHR order, then traverse the root again, then traverse the LEFT subtree (if exists) in HLHR order.
+Now given a binary tree, traverse it and print the data in this binary tree in HLHR order. Each data will be printed in a line. The tree is given in a format as in homework 11.
+tree
+Input Format
+The input has only one line that represents a tree in the format mentioned above, and the tree is non-empty. The length of input is no more than
+4000
+.
+Output Format
+You should output one integer per line whenever you visit a node. See sample I/O for clarification.
+Sample Input
+((10,20),(30,40))
+Sample Output
+100
+30
+20
+20
+30
+10
+10
+100
+70
+40
+40
+70
+30
+30

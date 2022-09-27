@@ -1,0 +1,436 @@
+Status
+Statistics
+Solution
+題目描述
+二元搜尋樹（Binary Search Tree），也稱二叉搜索樹、有序二元樹（ordered binary tree），排序二元樹（sorted binary tree），是指一棵空樹或者具有下列性質的二元樹：
+若任意節點的左子樹不空，則左子樹上所有結點的值均小於它的根結點的值；
+任意節點的右子樹不空，則右子樹上所有結點的值均大於它的根結點的值；
+任意節點的左、右子樹也分別為二元搜尋樹。
+沒有鍵值相等的節點（no duplicate nodes）。
+1
+2
+3
+4
+5
+6
+7
+void insert(Node*& root, int data) {  
+    if (!root)      root = new Node(data);
+    else if (data < root->data)    
+        insert(root->left, data);  
+    else if (data > root->data)    
+        insert(root->right, data);
+}
+通常一開始學到二元搜尋樹，會先教插入算法，現在的這個問題很簡單，只是稍微要求效率。
+輸入格式
+輸入有多組測資，每一組，第一行有一個數字
+N
+N
+(
+0<N<131072
+0
+)，接下來會建入
+N
+N
+個數字
+M
+M
+(signed 32-bit) ，沒有數字會重複。
+輸出格式
+對於每一組測資，輸出一行的前序走訪。
+範例輸入
+5
+0 1 2 4 3
+5
+0 2 4 1 3
+5
+3 1 4 2 0
+5
+1 4 2 0 3
+5
+0 4 3 2 1
+範例輸出
+0 1 2 4 3
+0 2 1 4 3
+3 1 0 2 4
+1 0 4 2 3
+0 4 3 2 1
+編譯參數
+gcc main.c basic_node.c bst_node.c object.c -std=c99
+main.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+#include <stdio.h>
+#include <stdlib.h>
+ #include "node.h"
+ void dfsPrint(bstNode *u) {
+    if (u == NULL)    return;
+    u->print(u);
+    dfsPrint(u->getLson(u));
+    dfsPrint(u->getRson(u));
+    FREE(bstNode, u);
+}
+void demo(bNode *u)  {
+    if (u == NULL)    return;
+    u->print(u);
+    demo(u->getLson(u));
+    demo(u->getRson(u));   
+    FREE(bNode, u);
+}
+int main() {
+/*
+    bNode *t, *u;
+    t = NEW(bNode);
+    u = NEW(bNode);
+    t->setLson(t, u);
+    u->setRson(u, NEW(bNode));
+    demo(t);
+    */
+    int N;
+    while (scanf("%d", &N) == 1 && N) {
+        int *A = (int *) malloc(sizeof(int)*N);
+        for(int i = 0; i < N; i++)
+            scanf("%d", &A[i]);
+        bstNode *root = buildBST(A, N);
+        dfsPrint(root);
+        puts("");
+        free(A);
+    }
+    return 0;
+}
+node.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+#ifndef _NODE_H
+#define _NODE_H
+ #include "object.h"
+ #define NodeMembers(TYPE) \
+    Object proto; \
+    int (*init)(struct TYPE*); \
+    void (*destroy)(struct TYPE*); \
+    struct TYPE* (*getLson)(struct TYPE*); \
+    struct TYPE* (*getRson)(struct TYPE*); \
+    void (*setLson)(struct TYPE*, struct TYPE*); \
+    void (*setRson)(struct TYPE*, struct TYPE*); \
+    struct TYPE *lson, *rson; \
+    void (*print)(struct TYPE*)
+ typedef struct bNode {
+    NodeMembers(bNode);
+} bNode;
+ typedef struct bstNode {
+    NodeMembers(bstNode);
+    void *extra;
+} bstNode;
+ bstNode* buildBST(int A[], int n);
+ extern Object bNodeProto;
+extern Object bstNodeProto;
+#endif
+basic_node.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+#include "node.h"
+#include <stdio.h>
+ bNode* bNode_getLson(bNode *self) {
+    return self->lson;
+}
+bNode* bNode_getRson(bNode *self) {
+    return self->rson;
+}
+void bNode_print(bNode *self) {
+    printf("%p L %p R %p\n", self, self->lson, self->rson);
+}
+void bNode_setLson(bNode *self, bNode *u) {
+    self->lson = u;
+}
+void bNode_setRson(bNode *self, bNode *u) {
+    self->rson = u;
+}
+ int bNode_init(bNode *self) {
+    self->getLson = bNode_getLson;
+    self->getRson = bNode_getRson;
+    self->setLson = bNode_setLson;
+    self->setRson = bNode_setRson;
+    self->print = bNode_print;
+    self->lson = NULL, self->rson = NULL;
+    return 1;
+}
+void bNode_destroy(bNode *obj) {
+}
+ Object bNodeProto = {
+    .init = bNode_init,
+    .destroy = bNode_destroy
+};
+bst_node.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "node.h"
+ bstNode* bstNode_getLson(bstNode *self) {
+    return self->lson;
+}
+bstNode* bstNode_getRson(bstNode *self) {
+    return self->rson;
+}
+void bstNode_setLson(bstNode *self, bstNode *u) {
+    self->lson = u;
+}
+void bstNode_setRson(bstNode *self, bstNode *u) {
+    self->rson = u;
+}
+void bstNode_print(bstNode *self) {
+    printf("%d ", *(int *)(self->extra));
+}
+ int bstNode_init(bstNode *obj) {
+    obj->getLson = bstNode_getLson;
+    obj->getRson = bstNode_getRson;
+    obj->setLson = bstNode_setLson;
+    obj->setRson = bstNode_setRson;
+    obj->print = bstNode_print;
+    obj->extra = (void *) malloc(sizeof(int));
+    return 1;
+}
+void bstNode_destroy(bstNode *obj) {
+    free(obj->extra);
+}
+ Object bstNodeProto = {
+    .init = bstNode_init,
+    .destroy = bstNode_destroy
+};
+ bstNode* buildBST(int A[], int n) {
+    /* add your code */
+}
+object.h
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+#ifndef _object_h
+#define _object_h
+ typedef struct {
+    int (*init)(void *self);
+    void (*destroy)(void *self);
+} Object;
+ int Object_init(void *self);
+void Object_destroy(void *self, Object proto);
+void *Object_new(int size, Object proto);
+ #define NEW(T) Object_new(sizeof(T), T##Proto)
+#define FREE(T, t) Object_destroy(t, T##Proto)
+ #endif
+object.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "object.h"
+#include <assert.h>
+ void Object_destroy(void *self, Object proto) {
+    Object *obj = self;
+    if (proto.destroy != NULL)
+        proto.destroy(self);
+    if (obj)
+        free(obj);
+}
+int Object_init(void *self) {
+    return 1;
+}
+void *Object_new(int size, Object proto) {
+    if (!proto.init)
+        proto.init = Object_init;
+    if (!proto.destroy)
+        proto.destroy = Object_destroy;
+     Object *el = calloc(1, size);
+    *el = proto;
+     if(!el->init(el)) {
+        el->destroy(el);
+        return NULL;
+    } else {
+        return el;
+    }
+}
+後記
+參考 Learn C The Hard Way
+上述寫法用在 Singleton 比較好，用來寫 node 過於肥大。free() 的時候請特別小心，這會與當初 malloc 一整塊空間一起回收，別總是利用限有的空間配置！

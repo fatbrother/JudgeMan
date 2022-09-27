@@ -1,0 +1,21 @@
+Task Description
+Write a program to read a positive integer n
+and a sequence of n
+intergers, then print the sequence reversely.
+Limits
+n
+is no more than 1000
+.
+Input Format
+There are two lines in the input. The first line has the integer n
+. The line has n
+integers.
+Output Format
+There are one lines in the output, according to the description.
+Sample Input
+5
+1 4 8 9 10
+Sample Output
+10 9 8 4 1
+特別注意
+若在行尾輸出 多餘的空白字元，你將會得到 Wrong Answer

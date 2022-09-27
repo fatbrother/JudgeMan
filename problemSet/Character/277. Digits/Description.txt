@@ -1,0 +1,37 @@
+Status
+Statistics
+Solution
+Task description
+Write a program to print digits from 0 to 9. An 6 by 9 font is illustrated here. Note that all digits can be represented by the 7 segments -- three horizontal and four vertical. The middle horizontal segment will be in the middle of the height, and the height is guaranteed to be an odd number, like 9 we have here. Also notice that there is a vertical spacing between this digit and the next one. The dark squares will be printed with the digit, and the white space will be printed as ASCII space ' '.
+p277. 7 segments
+Input
+Each line of the input has the string of digits, the width of the font, then the height of the font. You must process all data until EOF.
+Output
+The output is the 7-segment form of all digits in the string.
+Limits
+The length of the string is no more than 10. The width of the font is between 4 and 9. The height is between 5 and 15, and must be an odd number.
+Sample Input
+0123456789 6 9
+8888 8 11
+Sample Output
+// 請忽略這一行，只是為了下一行對齊得格式，內部問題尚未解決。   
+ 000         222   333         555   666   777   888   999
+0   0     1     2     3 4   4 5     6     7   7 8   8 9   9
+0   0     1     2     3 4   4 5     6     7   7 8   8 9   9
+0   0     1     2     3 4   4 5     6     7   7 8   8 9   9
+             222   333   444   555   666         888   999
+0   0     1 2         3     4     5 6   6     7 8   8     9
+0   0     1 2         3     4     5 6   6     7 8   8     9
+0   0     1 2         3     4     5 6   6     7 8   8     9
+ 000         222   333         555   666         888
+ 88888   88888   88888   88888
+8     8 8     8 8     8 8     8
+8     8 8     8 8     8 8     8
+8     8 8     8 8     8 8     8
+8     8 8     8 8     8 8     8
+ 88888   88888   88888   88888
+8     8 8     8 8     8 8     8
+8     8 8     8 8     8 8     8
+8     8 8     8 8     8 8     8
+8     8 8     8 8     8 8     8
+ 88888   88888   88888   88888

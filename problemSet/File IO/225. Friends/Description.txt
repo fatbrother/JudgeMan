@@ -1,0 +1,44 @@
+Task Description
+編寫一個程式決定朋友關係，首先我們需要定義什麼是人，我們假設最多處理 10000 人，最多有 10000 對朋友。每一個人都有一個介於 0 和 9999 的整數編號，以及不超過 31 個字元的名字。我們以如下的結構表示。
+1
+2
+3
+4
+struct person {
+    unsigned int id;
+    char name[32];
+};
+根據一般定義朋友是彼此的，所以我們用下面的結構來描述兩位朋友。
+1
+2
+3
+4
+struct friends {
+    unsigned id1;
+    unsigned id2;
+};
+假設你有一個包含所有朋友訊息的二進制檔案 friends 檔案，friends 依序包含以下的資料。
+系統中的人數 P
+，佔四個位元組
+P
+個 struct person 的內容
+系統中的朋友對數 F
+，佔四個位元組
+F
+個 struct friends 的內容
+請參考範例 friends。檔案 friends 有 4 個人的資訊 - John, Mary, Tom, Jack. 而且 Mary 和 John 是朋友，Tom 和 Mary 是朋友。
+Input
+輸入每行為一個命令，包含兩個朋友，只含有 end 的一行表示輸入的結束。另外你必須讀入一個包含 struct friends 結構的二進制檔案 friends。
+Output
+如果輸入兩個名字為朋友，也就是說，存在一個 struct friends 的內容與兩個名字相符，則輸出 yes，否則輸出 no。
+Sample input
+John Mary
+Tom Mary
+Jack Tom
+end
+Sample output
+yes
+yes
+no
+Hint
+參考 friends 格式下載 here

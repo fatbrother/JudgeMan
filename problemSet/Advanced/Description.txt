@@ -1,0 +1,31 @@
+10005. Parse Integer
+10006. Sum of Integers
+10007. Count of Segments
+10008. Coins and Paper Moneny
+10009. Reduce a Fraction
+10010. Conquering cities and towns
+10011. Move Zeroes
+10016. Structure - Fraction
+10018. Find a Duplicate Number
+10020. Tricky Quadratic Function
+10021. Walking on the Safe Side
+10029. Where is My Life
+10030. Real Fake Thing
+10031. Fast 64-bits Modular Arithmetic
+10032. String Subset
+10039. Baby Boos
+10040. Dictionary & Substring
+10045. Function Invocation
+10046. Derangement
+10052. Expected Value Syntax Parser
+10053. Row-Column Game
+10056. Sort Table
+10059. Complex Number
+10118. Make a List
+10017. Fast Dynamic Nearest Neighbors Search
+10049. Gal Game
+10066. Gal Game II
+10069. Build a Binary Search Tree
+10078. Matryoshka Doll
+10079. Tiny Command Tool
+10043. Advanced Function Pointer

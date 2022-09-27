@@ -1,0 +1,45 @@
+Task Description
+Write a program to read a binary file of student records, and produce a HTML file for display. The definition of the student record is as in the textbook (on page 219). The HTML file should use a table to contain all the fields of a student as a row. You should produce an HTML file that looks like the following. A sample HTML file has been attached to this article.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+typedef struct {
+    char name[20];
+    int id;
+    char phone[10];
+    float grade[4];
+    int birth_year;
+    int birth_month;
+    int birth_day;
+} Student;
+name1 id1 phone number1 grades1 year1, month1, day1
+name2 id2 phone number2 grades2 year2, month2, day2
+The name of the input student file and the name out the output HTML file should be given from stdin. Hint: Since there will be multiple records in the binary file and the number of records is unknown, you should process record and output HTML source code one by one but not store them into a fix-sized array.
+Input Format
+The first line of the input is the name of binary file, and the second line of the input is the output HTML file. Each file names have no more than 80 characters. The binary file contains an array of struct student.
+Output Format
+Output your HTML file formatted like the following:
+<table border="1">
+<tbody>
+<tr>
+<td>%s</td>
+<td>%d</td>
+<td>%s</td>
+<td>%f, %f, %f, %f</td>
+<td>%d, %d, %d</td>
+</tr>
+</tbody>
+</table>
+Sample Input
+students.bin students.html
+Sample Output
+Please referrer to the attached file
+Hint
+參考 students.bin 下載 here
+參考 students.html 下載 here

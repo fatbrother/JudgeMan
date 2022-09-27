@@ -1,0 +1,59 @@
+Status
+Statistics
+Solution
+題目描述
+期望值表達式有兩種規則，如下所示：
+⟨expr⟩→integer
+⟨
+
+直接表示成一個整數，或者
+⟨expr⟩→(p⟨
+expr
+1
+⟩⟨
+expr
+2
+⟩)
+⟨
+
+回傳
+E(⟨expr⟩)=p×(⟨
+expr
+1
+⟩+⟨
+expr
+2
+⟩)+(1−p)×(⟨
+expr
+1
+⟩−⟨
+expr
+2
+⟩)
+E
+Created with Raphaël 2.1.4
+main()
+read line
+parser(string expr)
+expr(0) is a digit
+return string2int(expr)
+call parser(P)
+call parser(expr1)
+call parser(expr2)
+return combine result P, expr1, expr2
+yes
+no
+輸入格式
+有多組測資，每組測資一行。
+輸出格式
+對於每組測資計算期望值，四捨五入至小數點第二位。
+範例輸入
+7
+(.5 3 9)
+(0.3 2 (1 1 -10))
+(1.0 (1.0 (1.0 -1 -2) (1.0 -1 -2)) (1.0 (1.0 1 2) 2))
+範例輸出
+7.00
+3.00
+5.60
+-1.00

@@ -1,0 +1,174 @@
+Task Description
+Redo homework 9 with a tree data structure. Instead of employee id now we have a pointer pointing to the boss of an employee, as suggested by the following definition. Note that two different employees may have the same boss, but one employee will only have one boss. The total number of employees is no more than 32. If an employee has no boss, then his/her boss pointer will point to himself/herself.
+employee.h
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
+ typedef struct employee {
+  char first_name[32];
+  char last_name[32];
+  struct employee *boss;
+} Employee;
+ int relation(Employee *employee1, Employee *employee2);
+#endif
+Now implement the following function that returns the relation of employee1 to employee2.
+employee.c
+1
+2
+3
+4
+5
+#include "employee.h"
+ int relation(Employee *employee1, Employee *employee2) {
+    //
+}
+main.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+#include "employee.h"
+ typedef struct me {
+    int id;
+    char first_name[32];
+    char last_name[32];
+    int boss_id;
+} employee;
+ void readName(employee *e) {
+    scanf("%s %s", e->first_name, e->last_name);
+}
+ int nameToIndex(employee *e, employee A[], int n) {
+    for (int i = 0; i < n; i++) {
+        if (!strcmp(A[i].first_name, e->first_name) &&
+            !strcmp(A[i].last_name, e->last_name))
+            return i;
+    }
+    return -1;
+}
+int main() {
+    int n, m;
+    employee A[32];
+    Employee B[32];
+    const char out[4][32] = {"subordinate", "supervisor", "colleague", "unrelated"};
+    while (scanf("%d", &n) == 1) {
+        for (int i = 0; i < n; i++) {
+            scanf("%d", &A[i].id);
+            readName(&A[i]);
+            scanf("%d", &A[i].boss_id);
+        }
+         for (int i = 0; i < n; i++) {
+            strcpy(B[i].first_name, A[i].first_name);
+            strcpy(B[i].last_name, A[i].last_name);
+            B[i].boss = NULL;
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (A[i].boss_id == A[j].id)
+                    B[i].boss = &B[j];
+            }
+        }
+        scanf("%d", &m);
+        employee x, y;
+        for (int i = 0; i < m; i++) {
+            readName(&x);
+            readName(&y);
+            int ix = nameToIndex(&x, A, n), iy = nameToIndex(&y, A, n);
+            assert(ix != -1);
+            assert(iy != -1);
+            printf("%d\n", relation(&B[ix], &B[iy]));
+        }
+    }
+    return 0;
+}
+Again we need the following definition.
+If employee1 can follow the "boss" relation to employee2, then return 1.
+If employee2 can follow the "boss" relation to employee1, then return 2.
+If employee1 and employee2 have a common supervisor, then return 3.
+If none of the above is true, then return 4.
+Sample Input
+6
+100 John Smith 200
+200 Adam Joshson 300
+300 Jane Washington 300
+400 Mary Miller 300
+500 Eric Page 500
+600 James Clark 500
+4
+John Smith Jane Washington
+Jane Washington Adam Joshson
+Adam Joshson Mary Miller
+Mary Miller James Clark
+Sample Output
+1
+2
+3
+4

@@ -1,0 +1,13 @@
+14. Print the Sequence Backward
+16. Even and Odd
+74. Mn, Mn + 1, ... Mn + M - 1
+17. Column Average
+18. Larger than Neighbors
+33. Intersections
+195. Tic-Tac-Toe
+99. Bingo
+32. Longest Double Palindrome
+49. Sum, Maximum and Minimum
+265. Minimum Containing Box
+271. Multiply Polynomials
+235. Pachinko

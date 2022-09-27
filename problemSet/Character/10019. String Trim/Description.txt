@@ -1,0 +1,17 @@
+Task Description
+將一個字串的首尾空白移除後輸出。
+Input format
+每一行會有一個字串 S
+且 |S|≤100
+。
+Output format
+對每一個字串 S
+移除首尾空白後輸出。
+Sample input
+1 2 3
+      Presentation Error
+Sample output
+1 2 3
+Presentation Error
+測試 Presentation Error Judge
+測試完畢！現在應該是正常的，空白字元 whitespace (不只有 ' ' 為空白字元)，請利用 #include <ctype.h> 中的 isspace() 取代 s[i] == ' ' 的使用。

@@ -1,0 +1,38 @@
+Task Description
+Write a function to determine the value of a metal block. The function prototype is as follows.
+1
+int value(int type, int width, int height, int length);
+The value of a metal block is determined by its type, width, height, and length. We have six types of metals: gold, silver, copper, lead, iron, and titanium. The unit price of these metals are 30,10,4,5,3,9
+respectively. A block must be cut into cubes of the same dimension before it can be sold, and no material should be left after cutting. For example, a 4
+by 8
+by 2
+block can only be sold in 2
+by 2
+by 2
+or 1
+by 1
+by 1
+cubes. However, the price of a cubic is equal to the square of its volume multiplied by the unit price. As a result, the price of a 2 by 2 by 2 gold cubic is 8×8×30=1920
+, and the maximum value of a 4 by 8 by 2 gold block is therefore 1920×8=15360
+.
+Now given the type, width, height, and length of a block, determine its maximum value.
+Input
+The type parameter indicates the type of the metal block. If the type is 79
+, then the metal is gold. The rest are 47,29,82,26,22
+, for silver, copper, lead, iron, and titanium. The width, height, and length are the dimensions of the block.
+Output
+You need to check the input type. If the input type is not a valid metal code, you must return -1. Then you need to check the dimension. The width, height, and length all fit into an int. However, if any of the three dimension is zero or negative, your function must return -2. Otherwise return the maximum value of this metal block. We guarantee that the answer can be stored in an int.
+Sample input
+value(79, 4, 8, 2)
+Sample output
+15360
+Sample input
+value(100, -4, 8, 2)
+Sample output
+-1
+Sample input
+value(79, 0, 8, 2)
+Sample output
+-2
+Notes
+You only need to submit the function. No main program is necessary because TA will write it to test your function. The judge program will call your value() function and pass the four parameters, then read the result through its return value, so it's no need to read input data or output any messages in the value() function. Note that you cannot use array or pointer in this homework. Everything needs to be done in simple variables.

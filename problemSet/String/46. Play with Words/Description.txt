@@ -1,0 +1,55 @@
+Task Description
+Write a program to play with words. Your program should support the following commands.
+insert left x
+Insert character x
+at the beginning of a word.
+insert right x
+Insert a character x
+at the end of a word.
+insert k x
+Insert character x
+as the k
+-th character of this word.
+delete left
+Delete a character at the beginning of a word.
+delete right
+Delete a character at the end of a word.
+delete k
+Delete the k
+-th character from the word.
+Where x
+is a character other than spaces, and k
+is a number starting from 1. Initially there is nothing in this word, and after the following command the word should be bbaac.
+command word
+insert left a a
+insert left a aa
+insert left b baa
+insert right a baaa
+insert right c baaac
+insert left b bbaaac
+delete right bbaaa
+insert 4 c bbacaa
+delete 5 bbaca
+delete 4 bbaa
+insert 5 c bbaac
+Input
+The input data contains a sequence of commands described above. All commands are valid. For example, if your program receives a delete 5 command, we ensure that the word would has at least 5 characters for now.
+Output
+After processing the input commands, Your program should find out all of the longest consecutive sequence with the same character from left to right and output the character of each sequence in order, then output the length of the sequences at the end. All data should be separated by a single space.
+Sample input
+insert left a
+insert left a
+insert left b
+insert right a
+insert right c
+insert left b
+delete right
+insert 4 c
+delete 5
+delete 4
+insert 5 c
+Sample output
+b a 2
+Hint
+由於 C2015 回報測資太難，測資難度已經刪減。對於 N>50000
+的處理方式，可以參考解答 Solution 頁面。

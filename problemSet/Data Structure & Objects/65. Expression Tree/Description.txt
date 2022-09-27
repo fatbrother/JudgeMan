@@ -1,0 +1,24 @@
+Status
+Statistics
+Solution
+Problem Description
+Write a program to compute an expression using a tree. Consider the expression 4 + x * 7. We will use the following recursive definition to express this expression tree.
+A positive integer or a variable is an expression tree.
+( operator left-tree right-tree ) is also an expression tree if operator is one of the '+', '-', '*', or '/', and both left-tree and right-tree are expression trees.
+Following this definition, we can use ( + 4 ( * x 7 ) ) to denote the previous expression. Now given an expression tree and the values of all variables, compute the value of this expression.
+Input
+The first line of the input is the expression tree, which is less than 1000 characters. Note that every two adjacent elements of an expression tree are separated by a space. The name of the variables are valid C variable names, with no more than 32 characters. The next n
+lines (n≤50
+), where n
+is the number of variables in the expression tree, indicates the value of the variable, in a form as variable = v, also separated by a space.
+Output
+The output is the value of the expression tree.
+Sample input
+( + 4 ( * x 7 ) )
+x = 5
+Sample output
+39
+Hint
+C 語言變數命名規則
+採用英文二十六的大小寫字母為主 ('a-z', 'A-Z')，另加上數字 '0-9'、底線符號 '_' 及金錢符號 '$'
+不以數字開頭

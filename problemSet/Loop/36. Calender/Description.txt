@@ -1,0 +1,36 @@
+Task Description
+Write a program to print a calendar. You will have a year, a month, and the day of the first of the month. Then you need to print a calendar for that month. Note that you need to determine if the given year is a leap year when it is February.
+Input Format
+The input has three numbers: year, month, and the day of the first day of that month. For example, if you have 2007 9 6, it means you need to print out a calendar of September 2007, with the additional information that the first day of September is a Saturday. If the day is 0
+, it means Sunday. We ensure that the year is between 1000
+and 3000
+inclusively.
+Output Format
+The output is a calendar of that month. First line is Su Mo Tu We Th Fr Sa\n to indicate the days. Then every number will be printed as %3d -- the 3 indicates the width of the number, and the numbers are enclosed by two =====================\n. Note that you cannot put trailing spaces at the end of each line, nor put extra \n at the end of the output. Also, note that if the input is not valid, such as 2007 13 9, print an invalid\n.
+Sample input
+2007 9 6
+Sample Output
+// 請忽略這一行，只是為了下一行對齊得格式，內部問題尚未解決。
+ Su Mo Tu We Th Fr Sa
+=====================
+                    1
+  2  3  4  5  6  7  8
+  9 10 11 12 13 14 15
+ 16 17 18 19 20 21 22
+ 23 24 25 26 27 28 29
+ 30
+=====================
+Sample input
+2007 13 9
+Sample Output
+invalid
+C-string representation
+" Su Mo Tu We Th Fr Sa\n"
+"=====================\n"
+"                    1\n"
+"  2  3  4  5  6  7  8\n"
+"  9 10 11 12 13 14 15\n"
+" 16 17 18 19 20 21 22\n"
+" 23 24 25 26 27 28 29\n"
+" 30\n"
+"=====================\n"

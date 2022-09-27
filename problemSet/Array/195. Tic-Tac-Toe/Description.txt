@@ -1,0 +1,36 @@
+Task Description
+Now write a program to determine the outcome of a Tic-Tac-Toe game. You will be given the number of moves N
+, then a series of N
+moves. Each move is a (x,y)
+position. First the black player will scan through the move until it finds a legal move, then he plays the move. Next the white player will do the same. Note that any illegal moves are simply disregarded. This process stops when any player wins, or there are no more moves left, and it is a draw. For example, if the moves are (−1,100)
+, (0,0)
+, (0,0)
+, (20,30)
+, (1,1)
+then the first move of black is (0,0)
+, and the first move of white is (1,1)
+.
+Your program must determine who wins or it is a draw. The illegal moves are not counted in the number of moves, so the moves made by blacks are always 1, 3, 5, 7, 9, and the white is always 2, 4, 6, 8.
+寫程式決定一場井字遊戲的獲勝者。井字遊戲為 3×3
+的格子上，雙方輪流下一子，不能下在已經下過的位置，直到其中一方連成一線 (水平、垂直和對角線)。這一題我們假設盤面位置 (x,y)
+必須滿足 0≤x,y≤2
+。若位置不在盤面中或存在其他棋子，則此操作視為不合法。
+給定一序列 N
+次操作，每一次將棋子放置 (x,y)
+，黑手和白色輪流下一步，每一子只能下在合法位置，若發現操作中有不合法位置，該手會拋棄這個位置，並等待到下一個合法位置。如果所有操作結束時，發生盤面未填滿且不存在其中一方獲勝，則視為平手 (draw)。
+Input format
+The first line contains number 0≤N≤1000
+. There are N
+lines followed, each of them contains two integers x
+and y
+, indicating the current player make a move on (x,y)
+.
+Output format
+Print a line contains Black wins. or White wins. or There is a draw..
+Sample Input
+3
+1 1
+0 0
+0 2
+Sample Output
+There is a draw.

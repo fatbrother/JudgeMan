@@ -1,0 +1,78 @@
+Task Description
+Write a program to determine whether we can use up all materials in making goods. There are three kinds of materials A
+, B
+, and C
+, and there are also three kinds of good, D
+, E
+, and F
+. To make a D
+we need DA
+units of material A
+, DB
+units of material B
+, and DC
+units of materials C
+. Similarly for E
+we need EA
+, EB
+and EC
+units of materials A
+, B
+, C
+, and for F
+we need FA
+, FB
+, and FC
+units of materials A
+, B
+, and C
+. Now given the units of materials A
+, B
+, and C
+available, could we make goods D
+, E
+and F
+, and use up ALL materials? Note that we do not need to make every kind of goods.
+Input
+The first line of the input has DA
+, DB
+, and DC
+. The second line of the input has EA
+, EB
+, and EC
+, and the third line has FA
+, FB
+, and FC
+. Then the next line has n
+, the number of test cases. Each test case has a
+, b
+, and c
+in a line, as the units of available material A
+, B
+and C
+in this test case. All numbers are integers between 1
+and 10
+.
+Output
+The output has n
+lines. If in a test case we can use up all materials, then output "yes\n". Otherwise output "no\n".
+Sample Input
+1 1 2
+2 3 1
+1 2 4
+5
+1 1 1
+1 1 2
+6 8 6
+10 10 10
+4 6 7
+Sample Output
+no
+yes
+yes
+no
+yes
+Hint
+Could you use recursion to transform this problem in to many smaller and similar problems?
+Limitation
+In this problem, the use of keyword for, while, goto, are forbidden.

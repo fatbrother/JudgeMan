@@ -1,0 +1,40 @@
+Task Description
+Write a function to determine the number and types of intersections in a city. We use a n
+by n
+integer array to represent a city. A one in the array indicates a road, and a zero in the array indicates a building. There are four kinds of intersection of roads.
+A cell is an intersection if it is one, and all of its four neighbors are also one.
+A cell is a T-junction if it is 1
+and exactly three of its neighbors are 1
+.
+A cell is a turn if it is 1
+and exactly two of its neighbors are 1
+, and these two neighbors do not form a straight line that goes through the cell.
+A cell is a dead end if it is 1
+, and exactly one of its neighbors is 1
+. Now given the matrix, please compute the number of intersections, T
+-junctions, turns and dead ends.
+Limits
+n
+is no more than 100
+.
+Input Format
+There are n+1
+lines in the input. The first line has n
+. Each of the next lines has n
+integers. These integers are either 0
+or 1
+.
+Output Format
+There are four lines in the output. These four lines has the number of intersections, T-junctions, turns and dead ends, respectively.
+Sample Input
+5
+1 1 1 1 1
+1 0 1 0 1
+1 1 1 1 1
+1 0 1 0 1
+1 1 1 0 1
+Sample Output
+1
+3
+4
+1

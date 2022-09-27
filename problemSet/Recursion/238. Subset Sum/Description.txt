@@ -1,0 +1,18 @@
+Task Description
+Given a set of different positive integers, write a program to compute the numbers of ways to select a subset so that the sum of the integers of in the subsets is exactly a given integer k. For example, given a set {1, 2, 3} and k = 3, then there are only two subsets whose sum is k, namely {1, 2} and {3}. If k is 5 then the only subset is {2, 3}. If k is 7 then there are no such subsets.
+Input
+The first line of the input is n, the number of numbers. n is at least 1 and at most 15. The next line has n positive integers in the set. Each of the following line has an integer k. You must process all k until EOF.
+Output
+Each output corresponds to a number k.
+Sample input
+3
+1 2 3
+3
+5
+7
+Sample output
+2
+1
+0
+Hint
+Consider the first number in the set. If we choose this number, then what kind of problem do we have? If we do not choose this number then what kind of problem do we have?

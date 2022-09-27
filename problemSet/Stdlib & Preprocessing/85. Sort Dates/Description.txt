@@ -1,0 +1,37 @@
+Task Description
+Write a program to sort dates. A date consists of year, month, and day. A date is smaller than another date if it comes before the other. For example, (1989,12,31)
+is smaller than (1990,1,1)
+. Note that there are a large number of dates so using bubble sort will simply be a waste of time. You should use qsort to speed things up.
+Input Format
+Input file contains a integer n
+(1≤n≤1,000,000
+), which indicates the number of dates to be sort. And the following n
+lines each contains three integers, Y
+, M
+and D
+, which represent the year, month and day of the date.
+Output Format
+Output the sorted dates line by line.
+Sample Input
+10
+2009 4 9
+2009 2 16
+2010 4 1
+2010 10 23
+2009 9 1
+2009 11 21
+2009 10 12
+2010 3 27
+2009 1 4
+2009 11 12
+Sample Output
+2009 1 4
+2009 2 16
+2009 4 9
+2009 9 1
+2009 10 12
+2009 11 12
+2009 11 21
+2010 3 27
+2010 4 1
+2010 10 23

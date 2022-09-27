@@ -1,0 +1,16 @@
+Task Description
+將輸入的數字加總起來，讀到 EOF (End-of-File) 後輸出總和。
+Input Format
+每個整數 x
+滿足 −231≤x≤231−1
+，總和保證在 sign-32bit 內。
+Output Format
+將每一個整數輸出一行。
+Sample Input
+2015
+9
+20
+Sample Output
+2044
+Hint
+如何本機測試？打開執行檔，手動輸入完後按下 Ctrl + Z + Enter 或者直接使用 ./a.out <test.in 測試。

@@ -1,0 +1,16 @@
+Task Description
+Write a program that counts the number of digits, letters, vowels, and consonants in a string s
+.
+計算字串中數字、字母、母音和子音的數量。
+Limits
+The length of string s
+is no more than 100.
+Input Format
+There is one line in the input. The first line has the string s
+.
+Output Format
+There is one line in the output. The first line has the four numbers as in the description.
+Sample Input
+string_123
+Sample Output
+3 6 1 5

@@ -1,0 +1,42 @@
+Task Description
+Write a program to count the number of integers that are 3n
+, 3n+1
+, and 3n+2
+respectively.
+統計有多少數字被 3
+除餘 0
+、餘 1
+、餘 2
+。
+Input format
+The first line has the number of input integers n
+. Each of the following n
+lines has an input integer.
+Output format
+Output the numbers of integer that are 3n
+, 3n+1
+, 3n+2
+.
+Sample input 1
+5
+1
+2
+3
+4
+5
+Sample output 1
+1 2 2
+Sample input 2
+10
+3
+1
+4
+1
+5
+9
+2
+6
+5
+3
+Sample output 2
+4 3 3

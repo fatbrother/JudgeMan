@@ -1,0 +1,58 @@
+Task Description
+Write a function max to find the largest number in a 5
+by 5
+integer array. The prototype of max is as follows.
+int max(int array[5][5]);
+The main program is as follows.
+#include <stdio.h>
+#include "max.h"
+ int main() {
+    int i, j;
+    int array[5][5];
+    for (i = 0; i < 5; i++)
+        for (j = 0; j < 5; j++)
+              scanf("%d", &(array[i][j]));
+      printf("%d\n", max(array));
+    return 0;
+}
+Input Format
+There are five lines in the input. Each line has five integers.
+Output Format
+There is one line in the output. The line has the maximum value in the matrix.
+Sample Input
+1 2 3 4 5
+7 -7 7 7 7
+8 9 -10 11 2
+45 8 9 45 3
+0 0 0 0 0
+Sample Output
+45
+Compile
+Command Line
+gcc main.c max.c -std=c99
+Dev-C++
+設定編譯參數 Tools > Compiler Options > Add the following commands when calling the linker > -static-libgcc -std=c99 max.c
+回到 main.c 執行編譯 F11
+Hint
+max.h
+打上 function header 以及相關的設定。
+int max(int array[5][5]);
+max.c
+撰寫程式碼後對應上傳。
+#include "max.h"
+int max(int array[5][5]) {
+    /* add your code */
+}
+main.c
+這個檔案無法更改也無須上傳。
+#include <stdio.h>
+#include "max.h"
+ int main() {
+    int i, j;
+    int array[5][5];
+    for (i = 0; i < 5; i++)
+        for (j = 0; j < 5; j++)
+              scanf("%d", &(array[i][j]));
+      printf("%d\n", max(array));
+    return 0;
+}

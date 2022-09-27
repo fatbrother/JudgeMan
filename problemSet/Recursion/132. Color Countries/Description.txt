@@ -1,0 +1,44 @@
+Task Description
+Write a program to color the countries in a map. Imaging that you have a map, with N
+countries in it. Your job is to color each country with a color, so that if two countries are adjacent, they will not have the same color. This problem will be trivial if the number of colors, denoted by C
+, is unlimited, so we will limit the number of colors you can use. Note that there could be multiple sets of solution, and you only need to out one. If here is no solution, you only need to output "no solution.\n".
+Input Format
+The first line of the input has the number of countries, N
+, and the number of colors you can use, C
+, and the number of pairs of adjacent countries, P. Each country has an unique index from 0 to N−1
+. The next P
+lines describe pairs of countries that are adjacent, and each line has two indices of two adjacent countries. Both N
+and C
+are positive. N
+is no more than 20 and C
+is no more than 8.
+Output Format
+If there is a solution, output the color you assign to each country according to their indices. You should output exact N
+lines, with i-th line being the color assignment of the country indexed as i - 1. Assignments are numbered from 1 to C
+.
+If there is no solution, output "no solution.\n".
+Sample Input 1
+5 3 7
+0 1
+0 4
+1 2
+1 3
+1 4
+2 3
+3 4
+Sample Output 1
+1
+2
+3
+1
+3
+Sample Input 2
+4 3 6
+0 1
+0 2
+0 3
+1 2
+1 3
+2 3
+Sample Output 2
+no solution.

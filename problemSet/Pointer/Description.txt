@@ -1,0 +1,6 @@
+23. Maximum in Pointer Array
+206. Card Shuffling
+72. Fill the Array
+190. Function Evaluation
+129. A Zig Zag Array
+100. Snake Order

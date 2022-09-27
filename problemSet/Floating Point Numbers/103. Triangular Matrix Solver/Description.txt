@@ -1,0 +1,18 @@
+Task Description
+Write a program to solve a system of equations. In particular we are given an n by n upper triangular matrix A and a n by 1 vector y, and we would like to find another n by 1 vector x so that Ax=y. Since A is upper triangular, i.e., all the elements below the diagonal are zero, we can use a simple procedure called backward substitution to get the vector x. Since An,n×xn=yn, so we conclude that xn=yn/An,n. Since we know xn now, we can easily compute xn−1, then xn−2, and so on, until we finally compute x1.
+Input
+The first line of the input has the number of rows and columns n. n is between 1 and 16. Each of the following n lines has n double numbers in A. Each of the following n lines has the numbers in y. Note that all elements of matrix and vector are double numbers.
+Output
+The output has n lines. Each line is a number in x. You should output the double numbers in %f\n format.
+Sample input
+3
+1.0 2.0 3.0
+0.0 2.0 1.0
+0.0 0.0 4.0
+2.0
+3.0
+-4.0
+Sample output
+1.000000
+2.000000
+-1.000000

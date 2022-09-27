@@ -1,0 +1,30 @@
+Task Description
+Write a program to compute the minimum distance among all pairs of a set of strings. The distance between two strings is defined recursively as follows.
+If one string is empty, then the distance is the length of the other string. For example, the distance between "" and "apple" is 5.
+If the first character of the two strings are the same, then their distance is recursively defined as the distance between the two strings after removing the first character. For example, the distance between "apple" and "applepie" is the distance between "pple" and "pplepie".
+If the first character of the two strings are not the same, then their distance is recursively defined as 1 plus the minimum of the following two distances. The distance between the first string and the second string after removing the first character. The distance between the first string after removing the first character and the second string. For example, the distance between "orange" and "apple" is 1 plus, the minimum of the distance between "orange" and "pple", and the distance between "range" and "apple".
+Input
+You must process all input until EOF. There will be at least 2 and no more than 100 strings, containing only letters. The lengths of all strings are between 1 and 10.
+輸入直到檔案結束，至少 2 個、至多 100 個字串，每個字串長度最多 10 個英文字母，輸入的第 i
+行，其字串 ID 為 i
+。
+Output
+The minimum distance and the IDs of the strings in the minimum distance pair.
+If there are two pairs with same distance, the pair with smaller 1000∗ID1+ID2
+would be considered as smaller. The ID of the first string is 1, and the ID of the second string is 2, and so on.
+輸出包含三個整數 edit_distance(stringID1,stringID2),ID1,ID2
+，若有多組最小距離解，請輸出 ID 字典順序最小的那一對。
+Sample Input
+lemon
+apple
+orange
+applepie
+bigapple
+banana
+lemonjuice
+apples
+coconut
+strawberry
+lemons
+Sample Output
+1 1 11

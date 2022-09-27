@@ -1,0 +1,48 @@
+Task Description
+Write a function that finds the maximum value pointed by elements of a pointer array.
+1
+int max(int *iptr[], int n);
+This function returns the maximum integer pointed by the pointers in the array iptr. Note that each element in iptr is a pointer to an integer.
+The main program is as follows.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+#include <stdio.h>
+#include "max.h"
+ int main() {
+    int n, i;
+    int array[100];
+    int *iptr[100];
+    scanf("%d", &n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &(array[(i + 3) % n]));
+        iptr[i] = &(array[(i + 3) % n]);
+    }
+    printf("%d\n", max(iptr, n));
+    return 0;
+}
+Limits
+n≤100
+Input Format
+There are two lines in the input. The first line has n
+. The second line has n
+integers.
+Output Format
+There is one lines in the output. The first line has the maximum integer as in the description.
+Sample Input
+5
+0 20 -3 4 5
+Sample Output
+20

@@ -1,0 +1,24 @@
+Task Description
+Write a program to factorize a polynomial. We will be given a polynomial f(x)=x3+ax2+bx+c
+, where all a,b,c
+are all integers between -100000 and 100000. Now we want to factorize f(x)
+as (x+d)(x+e)(x+f)
+, where d
+, e
+, and f
+are all integers, and d≤e≤f
+.
+Input
+A line containing a
+, b
+, and c
+.
+Output
+A line containing d
+, e
+, and f
+.
+Sample input
+12 47 60
+Sample output
+3 4 5

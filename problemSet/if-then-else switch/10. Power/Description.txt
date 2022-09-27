@@ -1,0 +1,16 @@
+Task Description
+Write a program to compute the i-th power of n, where n is an integer, and i is a positive integer from 1 to 5 inclusively.
+Input Format
+There are two lines in the input. The first line has the integer n. The second line has the integer i.
+Output Format
+There are one line in the output. The line has the i-th power of n.
+Sample Input
+-2
+2
+Sample Output
+4
+Sample Input
+-4
+1
+Sample Output
+-4

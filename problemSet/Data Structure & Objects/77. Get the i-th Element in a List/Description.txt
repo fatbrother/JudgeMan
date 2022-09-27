@@ -1,0 +1,25 @@
+Task Description
+Now you have a linked list, write a function to get the i
+-th element in this list. The function has the following prototype:
+struct node *getNode(struct node *head, unsigned int i);
+You only need to implement this function. This function will return a pointer that points to the i
+-th element in the linked list, with i=0
+being the last element and the indices are counted in reverse order. If i
+is too large for the list, you should return NULL. The list won't be empty, and the last node's pointer next will point to NULL.
+Please include this line #include "node.h" when submitting.
+The content in node.h is like the following:
+node.h
+1
+2
+3
+4
+5
+6
+7
+8
+#ifndef _NODE_H
+#define _NODE_H
+ struct node {
+       struct node *next;
+};
+ #endif

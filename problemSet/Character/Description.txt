@@ -1,0 +1,6 @@
+75. Count Letters
+106. Divisible
+24. Vowel, Consonant, and Digit
+220. Sentence Count
+277. Digits
+10019. String Trim

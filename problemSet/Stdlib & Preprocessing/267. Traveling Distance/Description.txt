@@ -1,0 +1,31 @@
+Task Description
+Write a program to compute the total distance to travel through a set of cities. The distance is defined as the sum of the square of the difference between the x
+coordinates, and the square of the difference between the y coordinates. For example, the distance between (3,2)
+and (1,3)
+is 5. Now we first have to determine the order we want to travel. We will start from the origin (0,0)
+, and sort the cities according to their distance to the origin. If there are two cities that have the same distance to the origin, the we will go to the one with the smaller x
+coordinate first. If x
+coordinate is still the same, we will go to the one with smaller y
+coordinate first. For example, if you are given the cities at (1,−1),(1,1),(−1,1),(3,4),(4,3),(2,2)
+, then the order to visit will be (−1,1),(1,−1),(1,1),(2,2),(3,4)
+, and (4,3)
+. Note that (1,−1)
+and (−1,1)
+have the same distance but we will go to (−1,1)
+first. Now we start moving from the origin to the cities. The first trip is from the origin to (−1,1)
+, with distance 2. Then we go from (−1,1)
+to (1,−1)
+, with distance 8. After traversing all the cities, the total distance will be 23.
+Input
+You must process all input until EOF. There will be no more than 100000 cities. It is strongly suggested that you should use qsort so that the cities can be sorted fast enough. All the distance computation can be done in int.
+Output
+The final distance.
+Sample Input
+1 -1
+1 1
+-1 1
+3 4
+4 3
+2 2
+Sample Output
+23

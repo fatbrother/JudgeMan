@@ -1,0 +1,38 @@
+Status
+Statistics
+Solution
+Write a function to evaluate f(x,y)=4∗x−6∗y for a lot of x and y. The prototype of the function is as follows.
+1
+int evaluate_f(int *iptr[], int n, int *index);
+Each pointer in iptr points to an array of two integers. The first integer is x, and the second integer is y. The length of the pointer array is n, so there are n pairs of x and y that you need to evaluate f(x,y). Compute these f(x,y) and return the maximum as the return value of evaluate_f. Also you need to set index so that it becomes the index into iptr where the maximum happens. If the maximum value can be evaluated from multiple (x,y) pairs, set the index to be the smallest among them. For example, if the x and y pointed by iptr[3] and iptr[5] both have the maximum f(x,y)=100, then evaluate_f should return 100 and index should be set to 3. Variable n is always positive.
+Input format
+n > 0
+Sample Input
+We may test your program in the following code:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+#include <stdio.h>
+#include "evaluate_f.h"
+ int main(){
+  int a[] = { 9, 7 };
+  int b[] = { 3, 2 };
+  int c[] = { 3, 2 };
+  int d[] = { 9, 7 };
+  int *iptr[] = { a, b, c, d };
+  int max, index;
+  max = evaluate_f(iptr, 4, &index);
+  printf("%d %d\n", max, index);
+}
+Sample Output
+0 1

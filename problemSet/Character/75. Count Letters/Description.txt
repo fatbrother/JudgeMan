@@ -1,0 +1,38 @@
+Task Description
+Write a program to compute the number of different letters in a string.
+Your program should first read the string using scanf(), then compute the number of different letters in this string. Note that 'a' and 'A' are the same.
+The output consists of 26 lines, and each line has the number of times that letter appears in the string.
+Input format
+A single line contains a string S without any space character (except the new line character at the end).
+|S|≤100
+Output format
+Output the number of times that each letter appears, each in a line.
+Sample input
+a33bc44d---666AB7C%%D
+Sample output
+2
+2
+2
+2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0

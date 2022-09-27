@@ -1,0 +1,39 @@
+Task Description
+Given three rectangles whose sides are parallel to either x
+-axis or y
+-axis, please compute the area of the shape that is covered by at least one of these three rectangles. The three rectangles can overlap in any way you can imagine, however, this is as the same as computing the union of three sets.
+給予 3 個平行兩座標軸的矩形，請計算至少被其中一個矩形覆蓋的面積，相當於計算聯集後的面積。
+Input Format
+There are 3 lines in the input data. In each line there are 4 integers l,b,r,t
+representing a rectangle, where (l,b)
+is the coordinate of the bottom-left vertex, and (r,t)
+is the coordinate of the top-right vertex. The width and height of each rectangle are between 1
+and 20000
+respectively.
+輸入只有 3 行，每一行上會有 4 個整數，分別表示左下角和右上角座標，保證每個矩形的長寬介於 1 到 20000 之間。
+Output Format
+You should output the area specified above in a single line.
+輸出一行一個整數。
+Sample Input 1
+0 2 3 5
+1 0 4 3
+2 1 5 4
+Sample Output 1
+20
+Sample Input 2
+1 0 3 2
+2 3 4 5
+0 1 5 4
+Sample Output 2
+19
+Hint
+Denote the cardinality of set A
+as |A|
+, the union of sets A
+and B
+as A+B
+, and the intersection of sets A
+and B
+as AB
+, we have |A+B+C|=|A|+|B|+|C|−|AB|−|AC|−|BC|+|ABC|
+.

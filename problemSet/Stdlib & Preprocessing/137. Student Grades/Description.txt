@@ -1,0 +1,25 @@
+Task Description
+Professor P is very confused by the recent grading system changes. Instead of using 0 to 100 as grades, the university decides to use an A+ to F system. Professor P decides to give the students the 0-100 grades as usual, but he needs a program to convert the 0-100 grades and compute the average.
+This program will read grades from stdin until EOF, prints each grade, and compute the average. However, professor P expects that this program will behave differently.
+If a #define HUNDRED is defined, this program will behave like before. The program will print all grades, then compute the average grade using integer arithmetic. On the other hand,
+if a #define APLUS is defined. This program will behave very differently. First every grade will be converted to a rank from A+ to F. Each rank has a corresponding grade between 0 and 4.3, which we will define as rank grade. You program will then compute the average rank grade. Finally, each rank has another 0-100 grade, which we will define as 100 grade. You will compute the average 100 grade as well.
+grade rank rank grade 100 grade
+90-100 A+ 4.3 95
+85-89 A 4.0 87
+80-84 A- 3.7 82
+77-79 B+ 3.3 78
+73-76 B 3.0 75
+70-72 B- 2.7 70
+67-69 C+ 2.3 68
+63-66 C 2.0 65
+60-62 C- 1.7 60
+0-59 F 0 50
+Sample Input
+66 33 99
+Sample Output if a #define HUNDRED is defined
+66 33 99 66.0
+Sample Output if a #define APLUS is defined
+C F A+ 2.1 70.0
+編譯參數
+$ gcc a.c -std=c99 -O2 -DHUNDRED -o test1
+$ gcc a.c -std=c99 -O2 -DAPLUS -o test2

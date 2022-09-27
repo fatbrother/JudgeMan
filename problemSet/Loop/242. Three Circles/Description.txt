@@ -1,0 +1,36 @@
+Task Description
+You are given three circles, C1,C2
+, and C3
+. The center of C1
+is at (x1,y1)
+, and its radius is r1
+. The centers and radius of C2
+and C3
+are defined similarly. A point (x,y)
+is within a circle if its distance is less than or equal to the radius of the circle. For example, Both (1,0)
+and (0,0)
+are within the circle that centered at (0,0)
+and has radius 1. Now given the centers and radius of the three circles, please find the number of points (x,y)
+where both x
+, and y
+are integers, that are within odd number of circles. Note that the circles can overlap arbitrarily, however, the radius is no more than 10. As a result you must be careful about how to test points, so that your program will run fast, and without doing unnecessary testing.
+Input format
+The first line of the input is the number of input cases. Each input case has three lines and each line has the x
+, y
+, coordinates of a circle, followed by the radius. The radius is no more than 10.
+Output format
+For each test case output the number of points (x,y)
+where both x
+, and y
+are integers, that are within odd number of circles.
+Sample input
+2
+0 0 1
+0 0 2
+2 0 1
+0 0 1
+1000000 0 1
+0 1000000 1
+Sample output
+11
+15

@@ -1,0 +1,76 @@
+Status
+Statistics
+Solution
+期末無關，請迴避
+題目描述
+俄羅斯套娃有許多不同的大小，小的可以放置在大的之中，定義結構如下：
+doll.h
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+#ifndef _DOLL_H
+#define _DOLL_H
+ typedef struct Doll {
+    char top, bottom;
+    struct Doll *interior;
+} Doll;
+ Doll *newDoll(char top, char bottom);
+void package(Doll *outer, Doll *inter);
+const char* doll_c_str(Doll *doll);
+ #endif
+其中
+Doll.top
+Doll
+和
+Doll.bottom
+Doll
+蓋子和底座的樣式，用一個字元表示。
+Doll *newDoll(char top, char bottom);
+初始化一個俄羅斯娃娃，其中蓋子樣式 top、底座樣式 bottom。
+void package(Doll *outer, Doll *inter);
+將一個小的俄羅斯娃娃放進大的裡面。
+const char* doll_c_str(Doll *doll);
+將一個俄羅斯娃娃內部訊息用括弧表示法輸出，回傳字串的起始位置。
+main.c (test)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+#include "doll.h"
+ #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ int main() {
+    Doll *dolls[3];
+    dolls[0] = newDoll('<', '~');
+    dolls[1] = newDoll('(', ')');
+    dolls[2] = newDoll('@', '>');
+    package(dolls[1], dolls[2]);
+    package(dolls[0], dolls[1]);
+    printf("%s\n", doll_c_str(dolls[0]));
+    return 0;
+}
+Sample Output
+<(@>)~

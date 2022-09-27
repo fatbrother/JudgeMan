@@ -1,0 +1,54 @@
+Task Description
+Write a program to reconstruct a binary search tree and find the distances of some key pairs. You will be given the keys and their level number in the binary search tree. The level of a tree node is recursively defined as follows.
+The level of the root is 1
+If a node is not the root, then its level is the level of its parent plus 1.
+We will ask you to compute the distance of each key pair in the following input. Now given the keys, their level numbers, and key pairs to evaluate, you must reconstruct the binary search tree, and output the distance for each key pair.
+p134
+寫一個程式重建一棵二元搜尋樹，並計算二元搜尋樹上給定的兩個節點之間的距離。
+Input
+The first line of the input is the number of tree nodes (N
+). Each of the next N
+lines has the key, then the level number of the key. Then there is a number P
+, with P
+pairs of keys in the following. You may assume that all keys are different. Also the two keys in every key pair are different. Keys and level numbers are all integers between −231
+and 231−1
+. N≤1000
+輸入的第一行為一個整數 n
+，代表此樹上的節點總數。接下來有 n
+行，每行是一個節點的資訊，有兩個整數 d
+和 l
+，分別代表該節點所存放的資料和該節點所在的層級 (註：層級的定義是與根節點的距離加上一，所以根節點本身的層級為 1)。輸入保證資料沒有重複，範圍在 int 之內，且能建回唯一一棵合法的二元搜尋樹。
+接有一個整數 p
+，代表詢問的次數。之後有 p
+行，每行有兩個整數 a
+, b
+，代表兩個節點的資料。 a
+, b
+保證存在樹上並且相異。
+Output
+The output has P
+lines. The i
+-th line is the distance of The output has N
+lines. The i
+-th line has the i
+-th key in pre-order tree traversal.
+請輸出 a
+, b
+兩點之間的距離。
+Sample Input
+7
+6 1
+3 2
+4 4
+1 3
+2 4
+7 2
+5 3
+3
+3 6
+5 7
+2 4
+Sample Output
+1
+3
+4

@@ -1,0 +1,80 @@
+Task Description
+寫一個程式模擬書架。假設你有 255 本書和一個可容納 8 本書的書架。255 本書每本有一個由 1 到255 的號碼，且一開始書都在書櫃裡。8 本書的書架在桌上，且一開始是空的。當我們想看一本書的時候，我們會先在書架上找，如果找到，我們就取出來看，看完就塞回書架的最右邊。如果書架上找不到，我們就從書櫃裡找出來看，看完後一樣塞回書架的最右邊。但此時書架上可能已經有 8 本書了，此時我們就將書架中最左邊的書放回書櫃，將書架上的書向左挪，空出最右邊放我們剛看完的書。請模擬一段時間之後書架的情形。
+由於一本書的號碼最大到 255，我們可以用 8 個位元來表示。同時一個 long long int 有8個位元組，剛好可以用來模擬 8 本書的書架。
+Input
+輸入為一介於 1 到 255 的整數序列，代表我們看書的順序。程式必須處理所有的輸入直到 EOF。
+Output
+輸出為 8 個整數，代表左到右最後書架中的書的編號，如果書架該位置沒有書則輸出 0。
+Sample input
+1 2 3 4 5 6 7 8 6 10 23 7 4
+Sample output
+3 5 8 6 10 23 7 4
+Notice
+這題有病 by Morris
+當然，你可以偷偷使用優化輸入的技巧。
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+#include <stdio.h>
+int hasEOF = 0;
+int readchar() {
+    static int N = 1<<20;
+    static char buf[1<<20];
+    static char *p = buf, *end = buf;
+    if(p == end) {
+        if((end = buf + fread(buf, 1, N, stdin)) == buf) {
+            hasEOF = 1;
+            return EOF;   
+        }
+        p = buf;
+    }
+    return *p++;
+}
+int ReadInt(int *x) {
+    char c, neg;
+    while((c = readchar()) < '-')    {if(c == EOF) return 0;}
+    neg = (c == '-') ? -1 : 1;
+    *x = (neg == 1) ? c-'0' : 0;
+    while((c = readchar()) >= '0')
+        *x = (*x << 3) + (*x << 1) + c-'0';
+    *x *= neg;
+    return 1;
+}
+int main() {
+    int x;
+    while (ReadInt(&x)) {
+        // add your code
+    }   
+    // output your answer
+    return 0;
+}

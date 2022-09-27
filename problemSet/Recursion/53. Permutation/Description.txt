@@ -1,0 +1,45 @@
+Task Description
+Write a program to output all permutations of N
+numbers. The permutations must be outputted in sorted order according to the first number, then the second number, and so on.
+Input Format
+The first line of the input gives the integer N
+(0<N≤9
+). The second line contains N
+numbers separated in a space to be processed. The N
+numbers are guaranteed to be distinct.
+Output Format
+The output should be consisted of M
+lines where M
+is the number of different permutations of the given N
+numbers. Each line consists of N
+numbers separated by a space representing a unique permutation. Be aware of the order of those permutations.
+Sample Input
+4
+30 10 20 40
+Sample Output
+10 20 30 40
+10 20 40 30
+10 30 20 40
+10 30 40 20
+10 40 20 30
+10 40 30 20
+20 10 30 40
+20 10 40 30
+20 30 10 40
+20 30 40 10
+20 40 10 30
+20 40 30 10
+30 10 20 40
+30 10 40 20
+30 20 10 40
+30 20 40 10
+30 40 10 20
+30 40 20 10
+40 10 20 30
+40 10 30 20
+40 20 10 30
+40 20 30 10
+40 30 10 20
+40 30 20 10
+Hint
+Suppose we have 4 numbers, 10, 20, 30, and 40. The problem of finding all the permutations of these 4 numbers can be divided into four smaller problems. The first problem is to find all the permutations of 20, 30, and 40, then place a 10 in front of each one of the permutations found. Similarly we can place a 20 in front of all permutations of 10, 30, and 40, a 30 in front of all permutations of 10, 20, and 40, and a 40 in front of all permutations of 10, 20, and 30. These are the permutations we are looking for.

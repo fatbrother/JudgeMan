@@ -1,0 +1,30 @@
+Task Description
+Given some strings, sort them by strcmp and strcpy/qsort then output.
+Input format
+There are strings in the input, one per line, with no more than 32 characters each. Note that there could be spaces in each line, so you should use fgets or gets to read the input. And you should determine the number of strings using the return value NULL of fgets/gets. The number of strings is no more than 64.
+Output format
+The sorted strings, one per line.
+Sample input
+There are strings in the input,
+one per line, with no more than
+32 characters each. Note that
+there could be spaces in each
+line, so you should use fgets
+or gets to read the input. And
+you should determine the number
+of strings using the return
+value NULL of fgets/gets.  The
+number of strings is no more
+than 64.
+Sample output
+32 characters each. Note that
+There are strings in the input,
+line, so you should use fgets
+number of strings is no more
+of strings using the return
+one per line, with no more than
+or gets to read the input. And
+than 64.
+there could be spaces in each
+value NULL of fgets/gets.  The
+you should determine the number

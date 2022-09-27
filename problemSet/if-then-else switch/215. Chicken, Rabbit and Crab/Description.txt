@@ -1,0 +1,22 @@
+Task Description
+There are chicken, rabbit, and crab in a cage. Now given the total number of animals s, the total number of legs f, and the total number of tails of these animals t, please compute the numbers of the chicken, rabbit, and crab, respectively.
+We assume that a chicken has two legs and one tail, a rabbit has four legs and one tail, and a crab has EIGHT legs and NO tail. If there is no solution, your program should output 0.
+寫一個程式來解決一下問題。
+有雞、兔子和螃蟹在同一個籠子裡。 現給定這些動物的總數(s)、動物腳的總數(f)及動物尾巴的總數(t)，(0<=s, f, t<=2^31-1) 請計算兔子、雞、螃蟹的數量。
+如果給定的數字不可能有解，程式應該輸出 0。
+Limit
+0≤s,f,t≤231−1
+Input Format
+Input will consist of one problem instance. Each instance will consist of one line. The first line will be three non-negative integers s,f,t.
+Output Format
+If there is a solution, your program should output the numbers of chickens, rabbits, and crabs. Otherwise, your program should output 0.
+Sample input
+9 48 5
+Sample output
+2
+3
+4
+Sample input
+9 48 20
+Sample output
+0

@@ -1,0 +1,109 @@
+Status
+Statistics
+Solution
+背景
+某 M 需要小夥伴，批改娘改一改就系統就 crash 掉，題目描述都不見了 ... 某 M 不小心把 multiply 拼成 multipy :3 累了
+題目描述
+分別實作分數約分、加減乘除五個函數。
+系統會自動加入 main.c，只需要上傳 fraction.h 和 fraction.c 即可。
+本地編譯參數為
+gcc main.c fraction.c -std=c99 -O2
+若使用 Dev-C++ 的同學，可以利用 Tools > Compile Options > General > 勾選 Add the following commands when calling the linker: -static-libgcc -std=c99 fraction.c
+main.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+#include <stdio.h>
+#include "fraction.h"
+ int main() {
+    int cmd, x, y, z, w;
+    Frac a, b, c;
+    scanf("%d", &cmd);
+    scanf("%d %d %d %d", &x, &y, &z, &w);
+    a = normal(x, y), b = normal(z, w);
+    if (cmd == 1) {
+        c = add(a, b);
+    } else if (cmd == 2) {
+        c = subtract(a, b);
+    } else if (cmd == 3) {
+        c = multipy(a, b);
+    } else if (cmd == 4) {
+        c = divide(a, b);
+    }
+    printf("%lld / %lld\n", c.a, c.b);
+    return 0;
+}
+fraction.h
+1
+2
+3
+4
+5
+6
+7
+8
+typedef struct {
+    long long a, b;
+} Frac;
+Frac normal(long long, long long);
+Frac add(Frac, Frac);
+Frac subtract(Frac, Frac);
+Frac multipy(Frac, Frac);
+Frac divide(Frac, Frac);
+fraction.c
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+#include "fraction.h"
+ Frac normal(long long a, long long b) {
+    /* add your code */
+}
+Frac add(Frac x, Frac y) {
+    /* add your code */
+}
+Frac subtract(Frac x, Frac y) {
+    /* add your code */
+}
+Frac multipy(Frac x, Frac y) {
+    /* add your code */
+}
+Frac divide(Frac x, Frac y) {
+    /* add your code */
+}
+Sample Input
+1
+0 1 50 30
+Sample Output
+5 / 3

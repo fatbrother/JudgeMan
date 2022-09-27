@@ -1,0 +1,24 @@
+Task Description
+Please write a program to calculate the lottery prize. Each lottery number is an 8-digit integer. You will have three special prize numbers and three first-prize numbers. We determine the prize according to the following rules.
+A number matching a special prize number receives 2000000 dollars.
+A number matching a first prize number receives 200000 dollars.
+A number whose last 7 digits match the last 7 digits of a first prize number receives 40000 dollars.
+A number whose last 6 digits match the last 6 digits of a first prize number receives 10000 dollars.
+A number whose last 5 digits match the last 5 digits of a first prize number receives 4000 dollars.
+A number whose last 4 digits match the last 4 digits of a first prize number receives 1000 dollars.
+A number whose last 3 digits match the last 3 digits of a first prize number receives 200 dollars.
+Input
+The first three lines of the input are the special prize numbers. The second three lines are the first prize number. The rest of the input is the lottery numbers, one per line. All the numbers are positive integers between 10000000 and 99999999. You must process all numbers until the end of the file.
+Output
+The output is the sum of the dollars from all lottery numbers.
+Sample input
+55138690
+14764045
+41175733
+68787608
+77978391
+11071074
+12378391
+68787608
+Sample output
+204000

@@ -1,0 +1,15 @@
+28. Sum of Squares with Recursion
+38. Witchcraft
+238. Subset Sum
+104. Material Composition
+230. The Knapsack
+53. Permutation
+223. Tiles
+29. From One Corner to Another
+30. From One Corner to Another with Obstacles
+266. Edit Eistance
+58. Lakes
+132. Color Countries
+248. Mine Field
+261. Puzzle Equation
+50036. Pick up Numbers

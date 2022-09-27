@@ -1,0 +1,15 @@
+Task Description
+Write a program to sort numbers according to the number of 1 in their binary representation. For example, 3 is greater than 64 because 3 has two 1's and 64 has only 1. If two numbers has the same number of 1's then the one with larger decimal value is greater. For example, both 6 and 3 has two 1's, and because 6 is larger than 3 in decimal, 6 is larger.
+Input
+A set of positive integers less than 263
+, one per line. You must process them until EOF. The number of integers is no more than 1000.
+Output
+The increasing sequence of the input integers, one per line.
+Sample Input
+3
+6
+64
+Sample Output
+64
+3
+6
