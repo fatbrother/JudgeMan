@@ -14,7 +14,9 @@ class User(UserMixin):
 @login_manager.user_loader
 def load_user(user_id):
     userInfo = accounts.searchById(user_id)
-    user = User(id=userInfo.id, email=userInfo.email, username=userInfo.username, level=userInfo.level, passProblems=userInfo.passProblems)
+    if not userInfo:
+        return None
+    user = User(userInfo.id, userInfo.email, userInfo.username, userInfo.level, userInfo.passProblems)
     return user
     
 @login_manager.unauthorized_handler
