@@ -1,6 +1,9 @@
 import json
+import os
+from pathlib import Path
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask_login import current_user
+
 from ..database import problems, problemSets, accounts
 from ..judgeLib import judge
 
@@ -47,7 +50,9 @@ def singleProblem(problemSetId: int, problemId: int, result: str = ''):
             account = accounts.searchById(current_user.id)
             passProblem = json.loads(account.passProblems)
             problemSetTitle = problemSets.search(problemSetId).title
-            basicPath = 'problemSet/{}/{}/testCases/'.format(problemSetTitle, problemTitle)
+
+            base = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute())
+            basicPath = '{}/problemSet/{}/{}/testCases/'.format(base, problemSetTitle, problemTitle)
 
             for testCasePath, answerPath in zip(testCasePaths, answerPaths):
                 result, input, output, answer = judge(
@@ -63,5 +68,7 @@ def singleProblem(problemSetId: int, problemId: int, result: str = ''):
                     account.update(id=current_user.id, passProblem=json.dumps(passProblem))
             else:
                 problem.update(id=problemId, WA=waCount + 1)
+
+            return basicPath
 
     return render_template('problem.html', problem=problem, sampleInput=sampleInput, sampleOutput=sampleOutput, sampleLen=sampleLen)

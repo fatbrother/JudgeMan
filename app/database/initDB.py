@@ -42,3 +42,23 @@ def init():
                     title=problemSet['title'],
                     problems=problemSet['problemId']
                 )
+
+    for problemSet in ps.viewAll():
+        problemIds = json.loads(problemSet.problems)
+        for problemId in problemIds:
+            problem = p.search(problemId)
+            
+            testCasePaths = []
+            answerCasePaths = []
+            problemTitle = problem.title
+            if problemTitle[-1] in '.,?!':
+                problemTitle = problemTitle[:-1]
+            url = base+'\\problemSet\\'+problemSet.title+'\\'+str(problem.id)+'. '+problemTitle+'\\testCases\\'
+
+            for testCase in os.listdir(url):
+                if testCase[-4:] == '.out':
+                    answerCasePaths.append(testCase)
+                else:
+                    testCasePaths.append(testCase)
+
+            p.update(problemId, testCasePaths=testCasePaths, answerCasePaths=answerCasePaths)
