@@ -9,18 +9,18 @@ def readFile(file_dir: str) -> str:
 
 def writeFile(file_dir: str, text: str) -> None:
     with open(file_dir, 'w') as f:
-        f.write(text)
+        lines = text.split('\r')
+        f.write(arrange(lines))
 
 
 def arrange(lines: list[str]) -> str:
-    # clean up the empty lines in the end of the file
-    while lines[-1] == '\n':
-        lines.pop()
+    for index, line in enumerate(lines):
+        lines[index] = line.strip()
 
-    # clean up the empty lines in the beginning of the file
-    while lines[0] == '\n':
-        lines.pop(0)
-
-    lines[-1].strip()
+    for index, line in enumerate(lines):
+        if line == '':
+            lines.pop(index)
+        else:
+            lines[index] = line + '\n'
 
     return ''.join(lines).encode('utf-8', 'ignore').decode('utf-8')

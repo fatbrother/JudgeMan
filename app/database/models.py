@@ -118,7 +118,7 @@ class Account(db.Model):
     def __repr__(self):
         return f"Account('{self.username}', '{self.level}', '{self.email}', '{self.password}', '{self.passProblems}')"
 
-    def insert(self, username: str, email: str, password: str, level: str = 'User', problems: list = None):
+    def insert(self, username: str, email: str, password: str, level: str = 'User', problems: list = []):
         id = len(Account.query.all()) + 1
         passProblems = json.dumps(problems)
         hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -126,17 +126,19 @@ class Account(db.Model):
         db.session.add(user)
         db.session.commit()
 
-    def update(self, username: str, level: str = None, email: str = None, password: str = None, problems: list = None):
-        passProblems = json.dumps(problems)
-        hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
-        user = Account.query.filter_by(username=username).first()
+    def update(self, id: int, username: str = None, level: str = None, email: str = None, password: str = None, problems: list = None):
+        user = Account.query.filter_by(id=id).first()
+        if username != None:
+            user.username = username
         if level != None:
             user.level = level
         if email != None:
             user.email = email
         if password != None:
+            hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
             user.password = hashedPassword
         if problems != None:
+            passProblems = json.dumps(problems)
             user.passProblems = passProblems
         db.session.commit()
 

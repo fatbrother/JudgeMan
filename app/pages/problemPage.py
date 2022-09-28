@@ -26,7 +26,7 @@ def index(problemSetId: int):
 def singleProblem(problemSetId: int, problemId: int, result: str = ''):
     session['lastPage'] = url_for('problem.singleProblem', problemSetId=problemSetId, problemId=problemId)
 
-    result = ''
+    result, input, output, answer = '', '', '', ''
     problem = problems.search(problemId)
     sampleInput = json.loads(problem.sampleInput)
     sampleOutput = json.loads(problem.sampleOutput)
@@ -62,11 +62,11 @@ def singleProblem(problemSetId: int, problemId: int, result: str = ''):
                     break
 
             if result == 'AC':
-                problem.update(id=problemId, AC=acCount + 1)
+                problems.update(id=problemId, AC=acCount + 1)
                 if problemId not in passProblem:
                     passProblem.append(problemId)
-                    account.update(id=current_user.id, passProblem=json.dumps(passProblem))
+                    accounts.update(id=current_user.id, problems=passProblem)
             else:
-                problem.update(id=problemId, WA=waCount + 1)
+                problems.update(id=problemId, WA=waCount + 1)
 
-    return render_template('problem.html', problem=problem, sampleInput=sampleInput, sampleOutput=sampleOutput, sampleLen=sampleLen)
+    return render_template('problem.html', problem=problem, sampleInput=sampleInput, sampleOutput=sampleOutput, sampleLen=sampleLen, result=result, input=input, output=output, answer=answer)
