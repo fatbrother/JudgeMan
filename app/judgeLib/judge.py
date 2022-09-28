@@ -1,3 +1,4 @@
+import time
 from .compile import compile
 from .file import readFile, writeFile
 from .run import run
@@ -5,10 +6,9 @@ import os
 
 
 # this func return the result of judging and IO and expect of the program
-def judge(file_dir: str = None, code_text: str = None, language: str = None, input_dir: str = None, input: str = None, answer_dir: str = None, answer: str = None, timeLimit: float = 1.0, memoryLimit: int = 512) -> tuple[str, str | None, str | None, str | None]:
+def judge(file_dir: str = None, code_text: str = None, language: str = None, input_dir: str = None, input: str = None, answer_dir: str = None, answer: str = None, timeLimit: float = 1, memoryLimit: int = 512) -> tuple[str, str | None, str | None, str | None]:
     res = ''
 
-    need_delete = False
     if file_dir is None:
         if language is None:
             res = 'language is needed'
@@ -45,13 +45,10 @@ def judge(file_dir: str = None, code_text: str = None, language: str = None, inp
 
     # run
     if res == '':
-        print(file_dir)
         exe_dir = file_dir.split('.')[0] + '.exe'
-        print('exe_dir:', exe_dir)
         if os.path.exists(exe_dir):
             output = run(exe_dir, input, timeLimit, memoryLimit)
         else:
-            print('False')
             output = 'CE'
 
         if output == 'TLE':
@@ -73,17 +70,20 @@ def judge(file_dir: str = None, code_text: str = None, language: str = None, inp
         writeFile(txt_dir, output)
         output = readFile(txt_dir)
 
-        if output == answer:
-            res = 'AC'
-        else:
-            res = 'WA'
+        res = 'AC' if output == answer else 'WA'
 
     # clean up the file
-    if os.path.exists(exe_dir):
+    try:
         os.remove(exe_dir)
-    if os.path.exists(file_dir) and need_delete:
+    except:
+        pass
+    try:
         os.remove(file_dir)
-    if os.path.exists(txt_dir):
+    except:
+        pass
+    try:
         os.remove(txt_dir)
+    except:
+        pass
 
     return res, input, output, answer

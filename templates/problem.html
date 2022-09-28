@@ -21,34 +21,44 @@
 		</div>
 		{% endif %}
 		{% for index in range(sampleLen) %}
-			<div class="subtitle">Sample Input</div>
-			<pre><code class="language-">{{ sampleInput[index] }}
+		<div class="subtitle">Sample Input</div>
+		<pre><code class="language-">{{ sampleInput[index] }}
 			</code></pre>
-			<div class="subtitle">Sample Output</div>
-			<pre><code class="language-">{{ sampleOutput[index] }}
+		<div class="subtitle">Sample Output</div>
+		<pre><code class="language-">{{ sampleOutput[index] }}
 			</code></pre>
 		{% endfor %}
 		{% if problem.hint %}
-			<div class="subtitle">Hint</div>
-			<div class="insideText">
-				{{ problem.hint }}
-			</div>
+		<div class="subtitle">Hint</div>
+		<div class="insideText">
+			{{ problem.hint }}
+		</div>
 		{% endif %}
 
-	
-		{% if result %}
-			{% if result == 'AC' %}
-			<div class="subtitle" style="color:green">{{ result }}</div>
-			{% else %}
-			<div class="subtitle" style="color:red">{{ result }}</div>
-			<pre class="insideText">{{ input }}</pre>
-			<pre class="insideText">{{ output }}</pre>
-			{% endif %}
-		{% endif %}
+		<div class="subtitle">Test your code</div>
 		<form method="post" class="code">
 			<textarea name="code" class="codeArea" cols="30" rows="10" placeholder="Enter your code here"></textarea>
-			<input type="submit" value="Submit", name="submit", class="submitBotton">
+			<input type="submit" value="Submit" , name="submit" , class="submitBotton">
 		</form>
+
+		{% if result != '' %}
+		{% if result == 'AC' %}
+		<div class="subtitle" style="color:green">{{ result }}</div>
+		{% else %}
+		<div class="subtitle" style="color:red">{{ result }}</div>
+		<div class="subtitle">Input</div>
+		<pre><code class="language-">{{ input }}
+		</code></pre>
+		{% if result == 'WA' %}
+		<div class="subtitle">Output</div>
+		<pre><code class="language-">{{ output }}
+		</code></pre>
+		<div class="subtitle">Expected Output</div>
+		<pre><code class="language-">{{ answer }}
+		</code></pre>
+		{% endif %}
+		{% endif %}
+		{% endif %}
 	</div>
 </div>
 
@@ -57,7 +67,7 @@
 	let blocks = document.querySelectorAll("pre");
 
 	blocks.forEach((block) => {
-	// only add button if browser supports Clipboard API
+		// only add button if browser supports Clipboard API
 		if (navigator.clipboard) {
 			let button = document.createElement("button");
 			button.innerText = copyButtonLabel;
@@ -67,18 +77,18 @@
 	});
 
 	async function copyCode(event) {
-	const button = event.srcElement;
-	const pre = button.parentElement;
-	let code = pre.querySelector("code");
-	let text = code.innerText;
-	await navigator.clipboard.writeText(text);
-	
-	button.innerText = "Code Copied";
-	
-	setTimeout(()=> {
-		button.innerText = copyButtonLabel;
-	},1000)
-}
+		const button = event.srcElement;
+		const pre = button.parentElement;
+		let code = pre.querySelector("code");
+		let text = code.innerText;
+		await navigator.clipboard.writeText(text);
+
+		button.innerText = "Code Copied";
+
+		setTimeout(() => {
+			button.innerText = copyButtonLabel;
+		}, 1000)
+	}
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/prism.min.js"></script>
 {% endblock %}
