@@ -6,7 +6,11 @@
         <div class="div-7">{{ problemSet.title }}</div>
         <div class="div-8">
         {% for problem in subProblems %}
+        {% if problem.id in solvedProblems %}
+        <a class="problemLink" style="color:green" href="{{ url_for('problem.singleProblem', problemSetId=problemSet.id, problemId=problem.id) }}">{{ problem.title }}</a>
+        {% else %}
         <a class="problemLink" href="{{ url_for('problem.singleProblem', problemSetId=problemSet.id, problemId=problem.id) }}">{{ problem.title }}</a>
+        {% endif %}
         {% endfor %}
         </div>
     </div>

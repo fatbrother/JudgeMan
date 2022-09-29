@@ -19,7 +19,12 @@ def index(problemSetId: int):
         problem = problems.search(problemId)
         if problem is not None:
             subProblems.append(problem)
-    return render_template('problemSet.html', problemSet=problemSet, subProblems=subProblems)
+    
+    if current_user.is_authenticated:
+        user = accounts.searchById(current_user.id)
+        solvedProblems = json.loads(user.passProblems)
+
+    return render_template('problemSet.html', problemSet=problemSet, subProblems=subProblems, solvedProblems=solvedProblems)
 
 
 @problem.route('/problemSet/<int:problemSetId>/problem/<int:problemId>', methods=['GET', 'POST'])
