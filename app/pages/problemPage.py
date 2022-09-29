@@ -49,6 +49,7 @@ def singleProblem(problemSetId: int, problemId: int, result: str = ''):
 
             problem = problems.search(problemId)
             problemTitle = problem.title
+            code = request.form['code']
             language = request.form['language']
             testCasePaths = json.loads(problem.testCasePaths)
             answerPaths = json.loads(problem.answerCasePaths)
