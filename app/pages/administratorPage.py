@@ -8,10 +8,10 @@ administrator = Blueprint('administrator', __name__)
 @login_required
 def administratorPage():
     if request.method == 'POST':
-        if request.form['accept']:
+        if 'accept' in request.form:
             accounts.update(int(request.form['id']), level='User')
-
-    
+        elif 'reject' in request.form:
+            accounts.delete(int(request.form['id']))
 
     user = accounts.searchById(current_user.id)
     if not user.level == 'Administrator':

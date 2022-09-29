@@ -158,7 +158,7 @@ class Account(db.Model):
         user = Account.query.filter_by(username=username).first()
         return user
 
-    def delete(self, username: str):
-        user = Account.query.filter_by(username=username).first()
+    def delete(self, id: str):
+        user = Account.query.filter_by(id=id).first()
         db.session.delete(user)
         db.session.commit()
