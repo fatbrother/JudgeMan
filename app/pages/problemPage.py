@@ -38,6 +38,10 @@ def singleProblem(problemSetId: int, problemId: int, result: str = ''):
             if not current_user.is_authenticated:
                 return redirect(url_for('account.login'))
 
+            user = accounts.searchById(current_user.id)
+            if user.level == 'Waiting':
+                return 'Your account is waiting for administrator to confirm.'
+
             problem = problems.search(problemId)
             problemTitle = problem.title
             code = request.form['code']

@@ -142,7 +142,7 @@ class Account(db.Model):
             user.passProblems = passProblems
         db.session.commit()
 
-    def viewAll(self):
+    def viewAll(self) -> list:
         users = Account.query.all()
         return users
 

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for user in waitingList %}
+<form method="post">
+    <a>{{ user.name }} {{ user.email }}</a>
+    <input type="hidden" name="id" value="{{ user.id }}">
+    <input type="submit" value="Accept" name="accept">
+</form>
+{% endfor %}
+{% endblock %}

@@ -59,7 +59,7 @@ def register():
         username = request.form['username']
         password = request.form['password']
         confirmPassword = request.form['confirmPassword']
-        level = 'User'
+        level = 'Waiting'
         passProblems = []
 
         if not email:
