@@ -14,8 +14,8 @@ def init():
     p = Problem()
     ps = ProblemSet()
 
-    if os.path.exists(base+'\\problems.json'):
-        with open(base+'\\problems.json', 'r', encoding='UTF-8') as f:
+    if os.path.exists(str(Path(base, 'problems.json'))):
+        with open(str(Path(base, 'problems.json')), 'r', encoding='UTF-8') as f:
             problems = json.loads(f.read())
             for problem in problems:
                 p.insert(
@@ -33,8 +33,8 @@ def init():
                     WA=problem['WA']
                 )
 
-    if os.path.exists(base+'\\problemSets.json'):
-        with open(base+'\\problemSets.json', 'r', encoding='UTF-8') as f:
+    if os.path.exists(str(Path(base, 'problemSets.json'))):
+        with open(str(Path(base, 'problemSets.json')), 'r', encoding='UTF-8') as f:
             problemSets = json.loads(f.read())
             for problemSet in problemSets:
                 ps.insert(
@@ -53,7 +53,7 @@ def init():
             problemTitle = problem.title
             if problemTitle[-1] in '.,?!':
                 problemTitle = problemTitle[:-1]
-            url = base+'\\problemSet\\'+problemSet.title+'\\'+str(problem.id)+'. '+problemTitle+'\\testCases\\'
+            url = str(Path(base, 'problemSet', problemSet.title, str(problem.id)+'. '+problemTitle, 'testCases'))
 
             for testCase in os.listdir(url):
                 if testCase[-4:] == '.out':
