@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 base = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.absolute())
-if not os.path.exists(base+'\site.db'):
+if not os.path.exists(Path(base, 'site.db')):
     init()
 del(base)
 
