@@ -1,5 +1,4 @@
 import json
-import os
 from pathlib import Path
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask_login import current_user
@@ -59,12 +58,12 @@ def singleProblem(problemSetId: int, problemId: int, result: str = ''):
             passProblem = json.loads(account.passProblems)
             problemSetTitle = problemSets.search(problemSetId).title
 
-            base = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute())
-            url = base+'\\problemSet\\'+problemSetTitle+'\\'+str(problem.id)+'. '+problemTitle+'\\testCases\\'
+            base = Path(os.path.dirname(os.path.abspath(__file__))).parent.parent.absolute()
+            url = Path(base, 'problemSet', problemSetTitle, str(problem.id)+'. '+problemTitle, 'testCases')
 
             for testCasePath, answerPath in zip(testCasePaths, answerPaths):
                 result, input, output, answer = judge(
-                    code_text=code, language=language, input_dir=url+testCasePath, answer_dir=url+answerPath)
+                    code_text=code, language=language, input_dir=str(Path(url, testCasePath)), answer_dir=str(Path(url, answerPath)))
 
                 if result != 'AC':
                     break
