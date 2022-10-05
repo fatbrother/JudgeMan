@@ -7,7 +7,7 @@ def run(file_dir: str, input: str, timeLimit: float, memoryLimit: int) -> str:
     try:
         # run the program
         process = subprocess.Popen(
-            [file_dir], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False)
+            ['./'+file_dir], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False)
     except RuntimeError:
         res = 'RE'
     except MemoryError:
