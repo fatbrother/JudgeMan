@@ -655,7 +655,7 @@
     },
     {
         "id": 74,
-        "title": "Mn, Mn + 1,",
+        "title": "Mn, Mn + 1",
         "description": " Write a program to count the number of integers which can be written as M⋅k,M⋅k+1,... and M⋅k+M−1 respectively. 統計有多少整數被 M 除餘 0、餘 1、...、餘 M−1。",
         "inputFormat": " The first line has the number of input integers N. Each of the following N lines has an input integer. The last line has M.1≤M≤200000",
         "outputFormat": " the number of integers which can be written as M⋅k,M⋅k+1,... and M⋅k+M−1.",
