@@ -6,11 +6,10 @@ from decouple import config
 
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
-app.config['SQLALCHEMY_DATABASE_URI'] = config('SQLALCHEMY_DATABASE_URI') or 'sqlite:///./site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = config('SQLALCHEMY_DATABASE_URI', default='sqlite:///./site.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'fatbrother0422issohandsome'
 
-app = createApp()
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
