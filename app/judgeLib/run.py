@@ -23,7 +23,6 @@ def run(file_dir: str, input: str, timeLimit: float, memoryLimit: int) -> str:
         if memory_usage > memoryLimit:
             res = 'MLE'
 
-    if res == '':
         try:
             output, error = process.communicate(
                 input.encode('utf-8', 'ignore'), timeout=timeLimit)
@@ -33,7 +32,6 @@ def run(file_dir: str, input: str, timeLimit: float, memoryLimit: int) -> str:
             res = 'RE'
 
 
-    if res == '':
         # check if the program is something wrong
         if error:
             res = 'CE'
@@ -41,8 +39,5 @@ def run(file_dir: str, input: str, timeLimit: float, memoryLimit: int) -> str:
     # close the process
     process.terminate()
     process.wait()
-
-    if res == '':
-        return output.decode('utf-8')
-    else:
-        return res
+    
+    return (res or output.decode('utf-8'))
