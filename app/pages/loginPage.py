@@ -24,11 +24,11 @@ def login():
         userInfo = accounts.searchByEmail(email)
 
         if not userInfo:
-            error = "電子郵件或密碼錯誤"
+            error = "無此電子郵件"
             return render_template("login.html", error=error)
 
         if not bcrypt.check_password_hash(userInfo.password, password):
-            error = "電子郵件或密碼錯誤"
+            error = "密碼錯誤"
             return render_template("login.html", error=error)
 
         user = User(id=userInfo.id, email=userInfo.email, username=userInfo.username,
