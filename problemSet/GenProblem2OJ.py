@@ -99,4 +99,4 @@ for tag in tag_list:  # tag: Path()
                     'answers': []
                 }
 
-            dump(problem_dict, problem_JSON)
+            dump(problem_dict, problem_JSON, indent=4)
