@@ -19,6 +19,7 @@ def index(problemSetId: int):
         if problem is not None:
             subProblems.append(problem)
     
+    solvedProblems = []
     if current_user.is_authenticated:
         user = accounts.searchById(current_user.id)
         solvedProblems = json.loads(user.passProblems)
