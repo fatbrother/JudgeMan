@@ -4,19 +4,19 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, current_user
 import os
 
-def createApp() -> Flask:
+def createApp() -> tuple[Flask, SQLAlchemy, Bcrypt, LoginManager]:
     app = Flask(__name__, template_folder='../templates', static_folder='../static')
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(('DATABASE_URL')) or 'sqlite:///' + './site.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = 'fatbrother0422issohandsome'
-    return app
+    db = SQLAlchemy(app)
+    bcrypt = Bcrypt(app)
+    login_manager = LoginManager(app)
+    login_manager.session_protection = "strong"
+    login_manager.login_view = 'login'
 
-app = createApp()
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.session_protection = "strong"
-login_manager.login_view = 'login'
+    return app, db, login_manager, bcrypt
 
+app, db, login_manager, bcrypt = createApp()
 from .pages import registerBlueprints
 registerBlueprints(app)
