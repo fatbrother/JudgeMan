@@ -3,10 +3,20 @@
 {% block content %}
 {% for user in waitingList %}
 <form method="post">
-    <a>{{ user.name }} {{ user.email }}</a>
+    <a>{{ user.username }} {{ user.email }}</a>
     <input type="hidden" name="id" value="{{ user.id }}">
     <input type="submit" value="Accept" name="accept">
     <input type="submit" value="Reject" name="reject">
 </form>
 {% endfor %}
+
+{% for user in allUser %}
+<form method="post">
+    <a>{{ user.username }} {{ user.email }}</a>
+    <input type="hidden" name="id" value="{{ user.id }}">
+    <input type="text" name="level" value="{{ user.level }}">
+    <input type="submit" value="updateLevel" name="updateLevel">
+</form>
+{% endfor %}
+
 {% endblock %}

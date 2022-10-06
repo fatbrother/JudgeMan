@@ -12,6 +12,8 @@ def administratorPage():
             accounts.update(int(request.form['id']), level='User')
         elif 'reject' in request.form:
             accounts.delete(int(request.form['id']))
+        elif 'updateLevel' in request.form:
+            accounts.update(int(request.form['id']), level=request.form['level'])
 
     user = accounts.searchById(current_user.id)
     if not user.level == 'Administrator':
@@ -25,6 +27,6 @@ def administratorPage():
         if user.level == 'Waiting':
             waitingList.append(user)
 
-    return render_template('administrator.html', waitingList=waitingList)
+    return render_template('administrator.html', waitingList=waitingList, allUser=allUser)
 
     
