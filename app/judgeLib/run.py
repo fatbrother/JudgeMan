@@ -26,6 +26,9 @@ def run(file_dir: str, input: str, timeLimit: float, memoryLimit: int) -> str:
         try:
             output, error = process.communicate(
                 input.encode('utf-8', 'ignore'), timeout=timeLimit)
+            if error:
+                print(error)
+                res = 'CE'  
         except subprocess.TimeoutExpired:
             res = 'TLE'
         except:
@@ -33,8 +36,7 @@ def run(file_dir: str, input: str, timeLimit: float, memoryLimit: int) -> str:
 
 
         # check if the program is something wrong
-        if error:
-            res = 'CE'
+        
 
     # close the process
     process.terminate()
