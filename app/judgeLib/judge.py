@@ -17,7 +17,6 @@ def judge(file_dir: str = None, code_text: str = None, language: str = None, inp
         if res == '':
             file_dir = 'temp.' + language
             writeFile(file_dir, code_text)
-            need_delete = True
 
     # compile
     if res == '':
