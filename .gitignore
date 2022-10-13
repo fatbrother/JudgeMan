@@ -19,3 +19,5 @@ output_dir
 app/site.db
 example.log
 .env
+product.env
+local.env
