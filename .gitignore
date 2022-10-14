@@ -20,3 +20,4 @@ app/site.db
 example.log
 .env
 geckodriver.log
+geckodriver.exe
