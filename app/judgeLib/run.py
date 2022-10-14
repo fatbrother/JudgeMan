@@ -6,6 +6,7 @@ def run(file_dir: str, input: str, timeLimit: float, memoryLimit: int) -> str:
 
     try:
         # run the program
+        
         process = subprocess.Popen(
             ['./'+file_dir], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False)
     except RuntimeError:
@@ -23,21 +24,20 @@ def run(file_dir: str, input: str, timeLimit: float, memoryLimit: int) -> str:
         if memory_usage > memoryLimit:
             res = 'MLE'
 
+        # check if the program is something wrong
         try:
             output, error = process.communicate(
                 input.encode('utf-8', 'ignore'), timeout=timeLimit)
+            if error:
+                print(error)
+                res = 'CE'  
         except subprocess.TimeoutExpired:
             res = 'TLE'
         except:
             res = 'RE'
 
-
-        # check if the program is something wrong
-        if error:
-            res = 'CE'
-
-    # close the process
-    process.terminate()
-    process.wait()
+        # close the process
+        process.terminate()
+        process.wait()
     
     return (res or output.decode('utf-8'))

@@ -7,7 +7,7 @@ import os
 
 # this func return the result of judging and IO and expect of the program
 def judge(file_dir: str = None, code_text: str = None, language: str = None, input_dir: str = None, input: str = None, answer_dir: str = None, answer: str = None, timeLimit: float = 1, memoryLimit: int = 512) -> tuple[str, str | None, str | None, str | None]:
-    res = ''
+    res, input, output, answer = '', '', '', ''
 
     if file_dir is None:
         if language is None:
@@ -17,7 +17,6 @@ def judge(file_dir: str = None, code_text: str = None, language: str = None, inp
         if res == '':
             file_dir = 'temp.' + language
             writeFile(file_dir, code_text)
-            need_delete = True
 
     # compile
     if res == '':

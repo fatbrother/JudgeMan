@@ -6,3 +6,4 @@ gunicorn
 psutil
 python-decouple
 rich
+docker

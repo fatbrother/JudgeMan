@@ -7,6 +7,10 @@ administrator = Blueprint('administrator', __name__)
 @administrator.route('/administrator', methods=['GET', 'POST'])
 @login_required
 def administratorPage():
+    user = accounts.searchById(current_user.id)
+    if not user.level == 'Administrator':
+        return redirect(session['lastPage'])
+
     if request.method == 'POST':
         if 'accept' in request.form:
             accounts.update(int(request.form['id']), level='User')
@@ -14,10 +18,6 @@ def administratorPage():
             accounts.delete(int(request.form['id']))
         elif 'updateLevel' in request.form:
             accounts.update(int(request.form['id']), level=request.form['level'])
-
-    user = accounts.searchById(current_user.id)
-    if not user.level == 'Administrator':
-        return redirect(session['lastPage'])
 
     session['lastPage'] = url_for('administrator.administratorPage')
 

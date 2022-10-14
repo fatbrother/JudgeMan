@@ -17,10 +17,9 @@ def arrange(lines: list[str]) -> str:
     for index, line in enumerate(lines):
         lines[index] = line.strip()
 
+    lines = [line for line in lines if line]
+    
     for index, line in enumerate(lines):
-        if line == '':
-            lines.pop(index)
-        else:
-            lines[index] = line + '\n'
-
+        lines[index] = line + '\n'
+    
     return ''.join(lines).encode('utf-8', 'ignore').decode('utf-8')
