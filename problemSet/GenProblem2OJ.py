@@ -1,6 +1,7 @@
 from pathlib import Path
 from json import load, dump
 from shutil import copy
+from rich.progress import track
 
 output_dir = Path('..', 'output_dir')
 totalScore = 100  # per Problem
@@ -29,7 +30,7 @@ global_problem_dict = {}
 # load problem json
 rawProblems = load(Path('..', 'problems.json').open(encoding='utf8'))
 problems = []
-for problem in rawProblems:
+for problem in track(rawProblems):
     for key in ["description", "inputFormat", "outputFormat", "hint"]:
         problem[key] = problem[key].replace('\n', '<br />')
 
@@ -42,7 +43,7 @@ for problem in rawProblems:
     global_problem_dict[f"{problem['id']}. {problem['title']}"] = problem
 
 tag_list = [x for x in Path().iterdir() if x.is_dir()]
-for tag in tag_list:  # tag: Path()
+for tag in track(tag_list):  # tag: Path()
     if str(tag) == 'Trash':
         continue
     for problem_path in Path(tag).iterdir():
